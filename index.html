@@ -1,0 +1,584 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Success Meets Educational Consultancy</title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Success Meets Educational Consultancy - Your trusted partner for educational guidance and career counseling. Transform your dreams into reality.">
+    <meta name="keywords" content="educational consultancy, career counseling, study abroad, college admission, Success Meets">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <!-- AOS CSS -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="assets/css/styles.css" rel="stylesheet">
+
+    <!-- Ribbon CSS -->
+    <link rel="stylesheet" href="assets/css/ribbon.css">
+</head>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.png" alt="Success Meets Logo" height="40">
+                Success Meets
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="Courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="fees.html">Fees Structure</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Ribbon Section -->
+<div class="ribbon-container">
+    <div class="ribbon" onclick="openRibbonModal()">
+        <div class="moving-text">
+            🚀 Get notified about our latest courses and exclusive offers! Click here to join our community. 🚀
+        </div>
+    </div>
+</div>
+
+<!-- Ribbon Modal -->
+<div id="ribbonModal" class="ribbon-modal">
+    <div class="ribbon-modal-content">
+        <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
+        <h2>Get Notified</h2>
+        <form id="ribbonForm" class="ribbon-form">
+            <label for="ribbonName">Name:</label>
+            <input type="text" id="ribbonName" required>
+
+            <label for="ribbonMobile">Mobile No:</label>
+            <input type="tel" id="ribbonMobile" required>
+
+            <label for="ribbonEmail">Email:</label>
+            <input type="email" id="ribbonEmail" required>
+
+            <button type="submit">Notify Me</button>
+        </form>
+    </div>
+</div>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero-section">
+        <div class="hero-overlay"></div>
+        <div class="container h-100">
+            <div class="row h-100 align-items-center">
+                <div class="col-lg-8 text-white" data-aos="fade-right">
+                    <h1 class="display-4 fw-bold mb-4">Transform Your Dreams Into Reality</h1>
+                    <p class="lead mb-4">Your trusted partner in educational guidance and career counseling. We help students achieve their academic and career goals through personalized support.</p>
+                    <div class="hero-buttons">
+                        <a href="#contact" class="btn btn-primary btn-lg me-3">Get Started</a>
+                        <a href="#services" class="btn btn-outline-light btn-lg">Our Services</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Key Features Section -->
+    <section id="features" class="py-5">
+        <div class="container">
+            <div class="row text-center">
+                <!-- Feature 1 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="feature-box p-4">
+                        <i class="bi bi-mortarboard-fill feature-icon mb-3"></i>
+                        <h3>Expert Guidance</h3>
+                        <p>Professional counseling from experienced educators and career experts.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 2 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="feature-box p-4">
+                        <i class="bi bi-globe2 feature-icon mb-3"></i>
+                        <h3>Global Opportunities</h3>
+                        <p>Access to prestigious institutions worldwide for higher education.</p>
+                    </div>
+                </div>
+                
+                <!-- Feature 3 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="feature-box p-4">
+                        <i class="bi bi-graph-up-arrow feature-icon mb-3"></i>
+                        <h3>Career Success</h3>
+                        <p>Comprehensive support for achieving your career objectives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview Section -->
+    <section id="services" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2>Our Services</h2>
+                <p>Comprehensive educational consulting services tailored to your needs</p>
+            </div>
+            
+            <div class="row">
+                <!-- Service 1 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card h-100 service-card">
+                        <img src="assets/images/services/career-counseling.jpg" class="card-img-top" alt="Career Counseling">
+                        <div class="card-body">
+                            <h4>Career Counseling</h4>
+                            <p>Professional guidance to help you choose the right career path.</p>
+                            <a href="services.html" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card h-100 service-card">
+                        <img src="assets/images/services/admission-guidance.jpg" class="card-img-top" alt="Admission Guidance">
+                        <div class="card-body">
+                            <h4>Admission Guidance</h4>
+                            <p>Complete support for college applications and admissions process.</p>
+                            <a href="services.html" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card h-100 service-card">
+                        <img src="assets/images/services/study-abroad.jpg" class="card-img-top" alt="Study Abroad">
+                        <div class="card-body">
+                            <h4>Study Abroad</h4>
+                            <p>Guidance for international education opportunities and visa processing.</p>
+                            <a href="services.html" class="btn btn-outline-primary">Learn More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section id="statistics" class="py-5 bg-primary text-white">
+        <div class="container">
+            <div class="row text-center">
+                <!-- Stat 1 -->
+                <div class="col-md-3 col-6 mb-4" data-aos="fade-up">
+                    <div class="stat-box">
+                        <h2 class="counter">1000+</h2>
+                        <p>Students Guided</p>
+                    </div>
+                </div>
+                
+                <!-- Stat 2 -->
+                <div class="col-md-3 col-6 mb-4" data-aos="fade-up">
+                    <div class="stat-box">
+                        <h2 class="counter">50+</h2>
+                        <p>Partner Universities</p>
+                    </div>
+                </div>
+                
+                <!-- Stat 3 -->
+                <div class="col-md-3 col-6 mb-4" data-aos="fade-up">
+                    <div class="stat-box">
+                        <h2 class="counter">95%</h2>
+                        <p>Success Rate</p>
+                    </div>
+                </div>
+                
+                <!-- Stat 4 -->
+                <div class="col-md-3 col-6 mb-4" data-aos="fade-up">
+                    <div class="stat-box">
+                        <h2 class="counter">15+</h2>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2>Student Testimonials</h2>
+                <p>What our students say about us</p>
+            </div>
+            
+            <div class="row">
+                <!-- Testimonial 1 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"Success Meets helped me achieve my dream of studying at Harvard University. Their guidance was invaluable throughout the process."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="assets/images/testimonials/student1.jpg" alt="Student 1">
+                            <div class="author-info">
+                                <h5>John Doe</h5>
+                                <p>Harvard University</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 2 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The career counseling services helped me identify my strengths and choose the right career path. I'm now working at Google!"</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="assets/images/testimonials/student2.jpg" alt="Student 2">
+                            <div class="author-info">
+                                <h5>Jane Smith</h5>
+                                <p>Software Engineer, Google</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Testimonial 3 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="testimonial-card">
+                        <div class="testimonial-content">
+                            <p>"The study abroad program guidance was excellent. They helped me with everything from university selection to visa processing."</p>
+                        </div>
+                        <div class="testimonial-author">
+                            <img src="assets/images/testimonials/student3.jpg" alt="Student 3">
+                            <div class="author-info">
+                                <h5>Mike Johnson</h5>
+                                <p>University of Toronto</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-5 bg-light">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2>Latest Blog Posts</h2>
+                <p>Stay updated with educational insights and career tips</p>
+            </div>
+            
+            <div class="row">
+                <!-- Blog Post 1 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card blog-card">
+                        <img src="assets/images/blog/post1.jpg" class="card-img-top" alt="Blog Post 1">
+                        <div class="card-body">
+                            <h5 class="card-title">How to Choose the Right University</h5>
+                            <p class="card-text">Tips and strategies for selecting the perfect university for your academic journey.</p>
+                            <a href="blog.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 2 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="card blog-card">
+                        <img src="assets/images/blog/post2.jpg" class="card-img-top" alt="Blog Post 2">
+                        <div class="card-body">
+                            <h5 class="card-title">Scholarship Application Guide</h5>
+                            <p class="card-text">Everything you need to know about applying for scholarships successfully.</p>
+                            <a href="blog.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Blog Post 3 -->
+                <div class="col-md-4 mb-4" data-aos="fade-up" data-aos-delay="300">
+                    <div class="card blog-card">
+                        <img src="assets/images/blog/post3.jpg" class="card-img-top" alt="Blog Post 3">
+                        <div class="card-body">
+                            <h5 class="card-title">Career Planning Strategies</h5>
+                            <p class="card-text">Expert advice on planning your career path and achieving your goals.</p>
+                            <a href="blog.html" class="btn btn-outline-primary">Read More</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5">
+        <div class="container">
+            <div class="section-header text-center mb-5" data-aos="fade-up">
+                <h2>Contact Us</h2>
+                <p>Get in touch with our expert counselors</p>
+            </div>
+            
+            <div class="row">
+                <!-- Contact Form -->
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="100">
+                    <form id="contactForm" class="contact-form">
+                        <div class="mb-3">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="mb-3">
+                            <input type="tel" class="form-control" placeholder="Your Phone">
+                        </div>
+                        <div class="mb-3">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+                
+                <!-- Contact Information -->
+                <div class="col-md-6 mb-4" data-aos="fade-up" data-aos-delay="200">
+                    <div class="contact-info">
+                        <h4>Our Office</h4>
+                        <p><i class="bi bi-geo-alt-fill"></i> Andagaloregate, Near Rasipuram, Namakkal, Tamil Nadu - 637018</p>
+                        <p><i class="bi bi-telephone-fill"></i> +91 9345422503</p>
+                        <p><i class="bi bi-envelope-fill"></i> contact@successmeets.com</p>
+                        
+                        <!-- Google Map -->
+                        <div class="map-container mt-4">
+                            <iframe src="https://www.google.com/maps/embed?pb=!1m18!..." width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4">
+                    <h5>Success Meets</h5>
+                    <p>Transforming dreams into reality through expert educational guidance and career counseling.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white">About Us</a></li>
+                        <li><a href="services.html" class="text-white">Services</a></li>
+                        <li><a href="blog.html" class="text-white">Blog</a></li>
+                        <li><a href="contact.html" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter -->
+                <div class="col-md-4 mb-4">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for updates and insights.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your Email">
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center pt-4 border-top">
+                <p>&copy; 2023 Success Meets Educational Consultancy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Social Media Buttons -->
+    <div class="social-float">
+        <a href="https://wa.me/9087442108" class="social-btn whatsapp-float" target="_blank" aria-label="WhatsApp">
+            <i class="bi bi-whatsapp"></i>
+        </a>
+        <a href="https://x.com/yourprofile" class="social-btn x-float" target="_blank" aria-label="X">
+            <i class="bi bi-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/yourprofile" class="social-btn linkedin-float" target="_blank" aria-label="LinkedIn">
+            <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com/success_meets_foundation/" class="social-btn instagram-float" target="_blank" aria-label="Instagram">
+            <i class="bi bi-instagram"></i>
+        </a>
+        <a href="https://t.me/yourprofile" class="social-btn telegram-float" target="_blank" aria-label="Telegram">
+            <i class="bi bi-telegram"></i>
+        </a>
+        <a href="https://www.facebook.com/yourprofile" class="social-btn facebook-float" target="_blank" aria-label="Facebook">
+            <i class="bi bi-facebook"></i>
+        </a>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+
+
+    <!-- Advertisement Modal -->
+<div id="adModal" class="modal">
+    <div class="modal-content">
+        <span class="close-btn" aria-label="Close Modal">&times;</span>
+        <img src="Advertisement.png" alt="Pop Up" class="ad-image">
+    </div>
+</div>
+
+<style>
+    .modal {
+        display: none;
+        position: fixed;
+        z-index: 1000;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        align-items: center;
+        justify-content: center;
+    }
+
+    .modal-content {
+        position: relative;
+        background: white;
+        padding: 1px;
+        border-radius: 1px;
+        max-width: 70%;
+        max-height: 70%;
+        box-shadow: 0 5px 15px rgba(54, 54, 54, 0.168);
+        text-align: center;
+    }
+
+    .close-btn {
+        position: absolute;
+        top: 10px;
+        right: 15px;
+        color: #000;
+        font-size: 32px;
+        font-weight: bold;
+        cursor: pointer;
+        transition: 0.3s;
+    }
+
+    .close-btn:hover {
+        color: rgb(91, 221, 82);
+        transform: scale(1.2);
+    }
+
+    .ad-image {
+        width: 100%;
+        height: auto;
+        border-radius: 5px;
+    }
+</style>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const modal = document.getElementById('adModal');
+        const closeBtn = modal.querySelector('.close-btn');
+
+        function shouldShowAd() {
+            return !sessionStorage.getItem('adShown');
+        }
+
+        if (shouldShowAd()) {
+            setTimeout(() => {
+                modal.style.display = 'flex';
+                document.body.style.overflow = 'hidden';
+            }, 1000);
+        }
+
+        function closeModal() {
+            modal.style.display = 'none';
+            document.body.style.overflow = 'auto';
+            sessionStorage.setItem('adShown', 'true');
+        }
+
+        closeBtn.addEventListener('click', closeModal);
+        
+        // Close modal when clicking outside
+        window.addEventListener('click', (e) => {
+            if (e.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Close modal with Escape key
+        window.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                closeModal();
+            }
+        });
+    });
+</script>
+
+    <!-- Scripts -->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS JS -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    
+    <!-- Custom JS -->
+    <script src="assets/js/scripts.js"></script>
+
+    <!-- Ribbon JS -->
+    <script src="assets/js/ribbon.js"></script>
+</body>
+</html>

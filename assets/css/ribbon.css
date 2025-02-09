@@ -1,0 +1,104 @@
+/* assets/css/ribbon.css */
+.ribbon-container {
+    position: fixed;
+    top: 76px; /* Adjust this value based on your navbar height */
+    width: 100%;
+    z-index: 1040; /* Below navbar's z-index */
+}
+
+.ribbon {
+    width: 100%;
+    background-color: #ff5733;
+    color: #fff;
+    padding: 8px 0;
+    text-align: center;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.ribbon .moving-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: scroll-left 15s linear infinite;
+    padding-left: 100%;
+}
+
+@keyframes scroll-left {
+    from {
+        transform: translateX(0%);
+    }
+    to {
+        transform: translateX(-100%);
+    }
+}
+
+.ribbon:hover .moving-text {
+    animation-play-state: paused;
+}
+
+/* Modal Styles */
+.ribbon-modal {
+    display: none;
+    position: fixed;
+    z-index: 1050;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.ribbon-modal-content {
+    background-color: #fff;
+    margin: 15% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 90%;
+    max-width: 500px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.ribbon-close {
+    color: #aaa;
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    font-size: 28px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.ribbon-close:hover {
+    color: #000;
+    cursor: pointer;
+}
+
+.ribbon-form label {
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+.ribbon-form input {
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.ribbon-form button {
+    margin-top: 15px;
+    background-color: #007bff;
+    color: white;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+}
+
+.ribbon-form button:hover {
+    background-color: #0056b3;
+}

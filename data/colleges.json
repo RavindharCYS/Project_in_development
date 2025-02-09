@@ -17,7 +17,7 @@
     },
     {
         "collegeName": "College E",
-        "branches": ["B.Sc", "M.Sc", "Ph.D"]
+        "branches": ["B.Sc", "M.Sc",  "Ph.D"]
     }
 
 ]

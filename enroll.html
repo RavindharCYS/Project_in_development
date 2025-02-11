@@ -36,6 +36,32 @@
           emailjs.init("YOUR_USER_ID"); // Replace with your actual User ID
        })();
     </script>
+
+    <!-- Additional Custom Styles -->
+    <style>
+        /* Custom styles specific to the Enroll page */
+        .enroll-form .form-label {
+            font-weight: 500;
+        }
+        .enroll-form .required::after {
+            content: " *";
+            color: red;
+        }
+        /* Styles for dynamic input fields */
+        .dynamic-input {
+            display: none;
+        }
+        /* Star Rating Styles (if applicable) */
+        .star-rating {
+            color: #ffc107;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .enroll-form .form-label {
+                font-size: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Navigation Bar -->
@@ -100,16 +126,19 @@
             <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
             <h2>Get Notified</h2>
             <form id="ribbonForm" class="ribbon-form">
-                <label for="ribbonName">Name:</label>
-                <input type="text" id="ribbonName" required>
-
-                <label for="ribbonMobile">Mobile No:</label>
-                <input type="tel" id="ribbonMobile" pattern="[0-9]{10}" required>
-
-                <label for="ribbonEmail">Email:</label>
-                <input type="email" id="ribbonEmail" required>
-
-                <button type="submit">Notify Me</button>
+                <div class="mb-3">
+                    <label for="ribbonName" class="form-label">Name:</label>
+                    <input type="text" id="ribbonName" class="form-control" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ribbonMobile" class="form-label">Mobile No:</label>
+                    <input type="tel" id="ribbonMobile" class="form-control" pattern="[0-9]{10}" required>
+                </div>
+                <div class="mb-3">
+                    <label for="ribbonEmail" class="form-label">Email:</label>
+                    <input type="email" id="ribbonEmail" class="form-control" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Notify Me</button>
             </form>
         </div>
     </div>
@@ -117,53 +146,89 @@
     <!-- Main Content -->
     <div class="container mt-5 pt-5">
         <h2 class="text-center mb-4">Enroll in a Course</h2>
-        <form id="enrollForm" class="enroll-form">
+        <form id="enrollForm" class="enroll-form" data-aos="fade-up">
+            <!-- Name -->
             <div class="mb-3">
-                <label for="enrollName" class="form-label">Name <span class="text-danger">*</span></label>
+                <label for="enrollName" class="form-label required">
+                    <i class="bi bi-person-fill"></i> Name
+                </label>
                 <input type="text" class="form-control" id="enrollName" name="name" required>
             </div>
             
+            <!-- Email -->
             <div class="mb-3">
-                <label for="enrollEmail" class="form-label">Email ID <span class="text-danger">*</span></label>
+                <label for="enrollEmail" class="form-label required">
+                    <i class="bi bi-envelope-fill"></i> Email ID
+                </label>
                 <input type="email" class="form-control" id="enrollEmail" name="email" required>
             </div>
             
+            <!-- Mobile -->
             <div class="mb-3">
-                <label for="enrollMobile" class="form-label">Mobile No <span class="text-danger">*</span></label>
+                <label for="enrollMobile" class="form-label required">
+                    <i class="bi bi-telephone-fill"></i> Mobile No
+                </label>
                 <input type="tel" class="form-control" id="enrollMobile" name="mobile" pattern="[0-9]{10}" required>
                 <div class="form-text">Please enter a 10-digit mobile number.</div>
             </div>
             
+            <!-- College Name -->
             <div class="mb-3">
-                <label for="enrollCollege" class="form-label">Select College Name <span class="text-danger">*</span></label>
+                <label for="enrollCollege" class="form-label required">
+                    <i class="bi bi-building-fill"></i> Select College Name
+                </label>
                 <select class="form-select" id="enrollCollege" name="college" required>
                     <option value="" disabled selected>Select College</option>
-                    <!-- Options will be populated via JavaScript -->
+                    <option value="College A">College A</option>
+                    <option value="College B">College B</option>
+                    <option value="College C">College C</option>
+                    <option value="Others">Others</option>
                 </select>
+                <!-- Dynamic Input for College -->
+                <input type="text" class="form-control mt-2 dynamic-input" id="collegeOthers" name="college_others" placeholder="Enter your College Name">
             </div>
             
+            <!-- Branch -->
             <div class="mb-3">
-                <label for="enrollBranch" class="form-label">Branch <span class="text-danger">*</span></label>
+                <label for="enrollBranch" class="form-label required">
+                    <i class="bi bi-mortarboard-fill"></i> Branch
+                </label>
                 <select class="form-select" id="enrollBranch" name="branch" required>
                     <option value="" disabled selected>Select Branch</option>
-                    <!-- Options will be populated based on selected college -->
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Mechanical">Mechanical</option>
+                    <option value="Electrical">Electrical</option>
+                    <option value="Civil">Civil</option>
+                    <option value="Others">Others</option>
                 </select>
+                <!-- Dynamic Input for Branch -->
+                <input type="text" class="form-control mt-2 dynamic-input" id="branchOthers" name="branch_others" placeholder="Enter your Branch">
             </div>
             
+            <!-- Course Selection -->
             <div class="mb-3">
-                <label for="enrollCourse" class="form-label">Select Course <span class="text-danger">*</span></label>
+                <label for="enrollCourse" class="form-label required">
+                    <i class="bi bi-book-fill"></i> Select Course
+                </label>
                 <select class="form-select" id="enrollCourse" name="course" required>
                     <option value="" disabled selected>Select Course</option>
-                    <option value="Undergraduate">Undergraduate</option>
-                    <option value="Postgraduate">Postgraduate</option>
-                    <option value="Diploma">Diploma</option>
-                    <option value="Certificate">Certificate</option>
-                    <!-- Add more courses as needed -->
+                    <option value="Web Development Bootcamp">Web Development Bootcamp</option>
+                    <option value="Data Science Program">Data Science Program</option>
+                    <option value="Digital Marketing Course">Digital Marketing Course</option>
+                    <option value="Placement Trainings">Placement Trainings</option>
+                    <option value="Aptitude Training">Aptitude Training</option>
+                    <option value="Technical Training">Technical Training</option>
+                    <option value="Others">Others</option>
                 </select>
+                <!-- Dynamic Input for Course -->
+                <input type="text" class="form-control mt-2 dynamic-input" id="courseOthers" name="course_others" placeholder="Enter your Course">
             </div>
             
+            <!-- Quota -->
             <div class="mb-3">
-                <label class="form-label">Quota <span class="text-danger">*</span></label>
+                <label class="form-label required">
+                    <i class="bi bi-people-fill"></i> Quota
+                </label>
                 <div class="form-check">
                     <input class="form-check-input" type="radio" name="quota" id="enrollGovernment" value="Government" required>
                     <label class="form-check-label" for="enrollGovernment">
@@ -178,7 +243,10 @@
                 </div>
             </div>
             
-            <button type="submit" class="btn btn-primary">Enroll Now</button>
+            <!-- Enroll Button -->
+            <button type="submit" class="btn btn-primary">
+                <i class="bi bi-pencil-square"></i> Enroll Now
+            </button>
         </form>
 
         <!-- Alert Section -->
@@ -208,8 +276,12 @@
     </div>
 
     <!-- Footer (Optional) -->
-    <!-- Include your footer here -->
     <!-- Example: <?php include 'footer.html'; ?> -->
+    
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
@@ -227,6 +299,129 @@
     <script src="assets/js/ribbon.js"></script>
 
     <!-- Enroll Form Script -->
-    <script src="assets/js/enroll.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Function to toggle dynamic input fields
+            function toggleDynamicInput(selectElement, inputElement) {
+                if (selectElement.value === 'Others') {
+                    inputElement.style.display = 'block';
+                    inputElement.setAttribute('required', 'required');
+                } else {
+                    inputElement.style.display = 'none';
+                    inputElement.removeAttribute('required');
+                }
+            }
+
+            // Get references to select elements and corresponding input fields
+            const enrollCollege = document.getElementById('enrollCollege');
+            const collegeOthers = document.getElementById('collegeOthers');
+
+            const enrollBranch = document.getElementById('enrollBranch');
+            const branchOthers = document.getElementById('branchOthers');
+
+            const enrollCourse = document.getElementById('enrollCourse');
+            const courseOthers = document.getElementById('courseOthers');
+
+            // Event listeners for College select
+            enrollCollege.addEventListener('change', function() {
+                toggleDynamicInput(enrollCollege, collegeOthers);
+            });
+
+            // Event listeners for Branch select
+            enrollBranch.addEventListener('change', function() {
+                toggleDynamicInput(enrollBranch, branchOthers);
+            });
+
+            // Event listeners for Course select
+            enrollCourse.addEventListener('change', function() {
+                toggleDynamicInput(enrollCourse, courseOthers);
+            });
+
+            // Populate College options (example)
+            // This can be replaced with dynamic data fetching if needed
+            const collegeOptions = [
+                'College A',
+                'College B',
+                'College C'
+            ];
+
+            function populateCollegeOptions() {
+                // Assuming options are already in the HTML; if dynamic, implement here
+            }
+
+            // Populate Branch options based on College selection
+            // This can be replaced with dynamic data fetching based on selected college
+            enrollCollege.addEventListener('change', function() {
+                const selectedCollege = enrollCollege.value;
+                // Clear existing options
+                enrollBranch.innerHTML = '<option value="" disabled selected>Select Branch</option>';
+                let branches = [];
+
+                // Example branch data based on college
+                if (selectedCollege === 'College A') {
+                    branches = ['Computer Science', 'Mechanical', 'Electrical'];
+                } else if (selectedCollege === 'College B') {
+                    branches = ['Civil', 'Biotechnology', 'Information Technology'];
+                } else if (selectedCollege === 'College C') {
+                    branches = ['Electrical', 'Mechanical', 'Civil'];
+                } else {
+                    branches = ['Others'];
+                }
+
+                branches.forEach(function(branch) {
+                    const option = document.createElement('option');
+                    option.value = branch;
+                    option.textContent = branch;
+                    enrollBranch.appendChild(option);
+                });
+
+                // If "Others" was previously selected, hide the input
+                branchOthers.style.display = 'none';
+                branchOthers.removeAttribute('required');
+            });
+
+            // Handle form submission with EmailJS
+            const enrollForm = document.getElementById('enrollForm');
+            const enrollAlert = document.getElementById('enrollAlert');
+
+            enrollForm.addEventListener('submit', function(event) {
+                event.preventDefault();
+
+                // Prepare form data
+                const formData = {
+                    name: document.getElementById('enrollName').value,
+                    email: document.getElementById('enrollEmail').value,
+                    mobile: document.getElementById('enrollMobile').value,
+                    college: enrollCollege.value === 'Others' ? document.getElementById('collegeOthers').value : enrollCollege.value,
+                    branch: enrollBranch.value === 'Others' ? document.getElementById('branchOthers').value : enrollBranch.value,
+                    course: enrollCourse.value === 'Others' ? document.getElementById('courseOthers').value : enrollCourse.value,
+                    quota: document.querySelector('input[name="quota"]:checked').value
+                };
+
+                // Send email using EmailJS
+                emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
+                    .then(function(response) {
+                        enrollAlert.innerHTML = `
+                            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <i class="bi bi-check-circle-fill"></i> Enrollment successful! We will contact you shortly.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        `;
+                        enrollForm.reset();
+                        // Hide dynamic input fields
+                        collegeOthers.style.display = 'none';
+                        branchOthers.style.display = 'none';
+                        courseOthers.style.display = 'none';
+                    }, function(error) {
+                        enrollAlert.innerHTML = `
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <i class="bi bi-exclamation-triangle-fill"></i> Oops! Something went wrong. Please try again later.
+                                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>
+                        `;
+                    });
+            });
+        });
+    </script>
 </body>
 </html>

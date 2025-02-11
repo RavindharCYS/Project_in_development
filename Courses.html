@@ -56,6 +56,10 @@
         #goal-output ol {
             margin-top: 20px;
         }
+        /* Star Rating Styles */
+        .star-rating {
+            color: #ffc107;
+        }
         /* Responsive adjustments */
         @media (max-width: 767px) {
             .course-header h1 {
@@ -115,35 +119,33 @@
     </nav>
     
     <!-- Ribbon Section -->
-<div class="ribbon-container">
-    <div class="ribbon" onclick="openRibbonModal()">
-        <div class="moving-text">
-            🚀 Get notified about our latest courses and exclusive offers! Click here to join our community. 🚀
+    <div class="ribbon-container">
+        <div class="ribbon" onclick="openRibbonModal()">
+            <div class="moving-text">
+                🚀 Get notified about our latest courses and exclusive offers! Click here to join our community. 🚀
+            </div>
         </div>
     </div>
-</div>
-
-<!-- Ribbon Modal -->
-<div id="ribbonModal" class="ribbon-modal">
-    <div class="ribbon-modal-content">
-        <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
-        <h2>Get Notified</h2>
-        <form id="ribbonForm" class="ribbon-form">
-            <label for="ribbonName">Name:</label>
-            <input type="text" id="ribbonName" required>
-
-            <label for="ribbonMobile">Mobile No:</label>
-            <input type="tel" id="ribbonMobile" required>
-
-            <label for="ribbonEmail">Email:</label>
-            <input type="email" id="ribbonEmail" required>
-
-            <button type="submit">Notify Me</button>
-        </form>
+    
+    <!-- Ribbon Modal -->
+    <div id="ribbonModal" class="ribbon-modal">
+        <div class="ribbon-modal-content">
+            <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
+            <h2>Get Notified</h2>
+            <form id="ribbonForm" class="ribbon-form">
+                <label for="ribbonName">Name:</label>
+                <input type="text" id="ribbonName" required>
+    
+                <label for="ribbonMobile">Mobile No:</label>
+                <input type="tel" id="ribbonMobile" required>
+    
+                <label for="ribbonEmail">Email:</label>
+                <input type="email" id="ribbonEmail" required>
+    
+                <button type="submit">Notify Me</button>
+            </form>
+        </div>
     </div>
-</div>
-    <!-- Include your navigation bar here -->
-    <!-- Example: <?php include 'navbar.php'; ?> -->
     
     <!-- Header Section -->
     <header class="course-header">
@@ -162,8 +164,19 @@
                 <!-- Course Item 1 -->
                 <div class="col-md-4 course-item">
                     <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/web-development.jpg" class="card-img-top" alt="Web Development Bootcamp">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title">Web Development Bootcamp</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span class="ms-2">4.5</span>
+                            </div>
                             <p class="card-text">Learn HTML, CSS, JavaScript, and more to build modern, responsive websites.</p>
                             <a href="enroll.html" class="btn btn-primary mt-auto">Enroll Now</a>
                         </div>
@@ -172,8 +185,19 @@
                 <!-- Course Item 2 -->
                 <div class="col-md-4 course-item">
                     <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/data-science.jpg" class="card-img-top" alt="Data Science Program">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title">Data Science Program</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span class="ms-2">4.5</span>
+                            </div>
                             <p class="card-text">Master data analysis, visualization, and machine learning with Python.</p>
                             <a href="enroll.html" class="btn btn-primary mt-auto">Enroll Now</a>
                         </div>
@@ -182,8 +206,19 @@
                 <!-- Course Item 3 -->
                 <div class="col-md-4 course-item">
                     <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/digital-marketing.jpg" class="card-img-top" alt="Digital Marketing Course">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title">Digital Marketing Course</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <span class="ms-2">4.0</span>
+                            </div>
                             <p class="card-text">Discover strategies for SEO, social media marketing, and content creation.</p>
                             <a href="enroll.html" class="btn btn-primary mt-auto">Enroll Now</a>
                         </div>
@@ -193,8 +228,19 @@
                 <!-- Placement Trainings -->
                 <div class="col-md-4 course-item">
                     <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/placement-trainings.jpg" class="card-img-top" alt="Placement Trainings">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title">Placement Trainings</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span class="ms-2">4.5</span>
+                            </div>
                             <p class="card-text">Prepare for your career with our comprehensive placement training programs.</p>
                             <a href="enroll.html" class="btn btn-primary mt-auto">Enroll Now</a>
                         </div>
@@ -203,8 +249,19 @@
                 <!-- Aptitude Training -->
                 <div class="col-md-4 course-item">
                     <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/aptitude-training.jpg" class="card-img-top" alt="Aptitude Training">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title">Aptitude Training</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star"></i>
+                                <span class="ms-2">3.5</span>
+                            </div>
                             <p class="card-text">Enhance your problem-solving skills with our aptitude training courses.</p>
                             <a href="enroll.html" class="btn btn-primary mt-auto">Enroll Now</a>
                         </div>
@@ -213,8 +270,19 @@
                 <!-- Technical Training -->
                 <div class="col-md-4 course-item">
                     <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/technical-training.jpg" class="card-img-top" alt="Technical Training">
                         <div class="card-body d-flex flex-column">
                             <h3 class="card-title">Technical Training</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star"></i>
+                                <span class="ms-2">3.5</span>
+                            </div>
                             <p class="card-text">Gain in-depth technical knowledge in your field of interest.</p>
                             <a href="enroll.html" class="btn btn-primary mt-auto">Enroll Now</a>
                         </div>

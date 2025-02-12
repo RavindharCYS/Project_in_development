@@ -5,8 +5,8 @@
     --success-color: #198754;
     --white-color: #ffffff;
     --dark-color: #212529;
-    --light-color: #f8f9fa;
-    --transition: all 0.3s ease;
+    --light-color: #ffffff;
+    --transition: all 0.5s ease;
 }
 
 html {

@@ -4,124 +4,100 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Blog - Success Meets Educational Consultancy</title>
-    
-    <!-- Meta Tags for SEO -->
     <meta name="description" content="Educational insights, career tips, and guidance from Success Meets Educational Consultancy experts.">
     <meta name="keywords" content="education blog, career tips, study abroad guidance, college admission tips">
-    
-    <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    
-    <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap Icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    
-    <!-- AOS CSS -->
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
     <link href="assets/css/styles.css" rel="stylesheet">
-
-    <!-- Ribbon CSS -->
     <link rel="stylesheet" href="assets/css/ribbon.css">
+    <style>
+        .blog-post p { text-align: justify; line-height: 1.8; margin-bottom: 1.5rem; }
+        .blog-post { background: #fff; padding: 2rem; border-radius: 8px; box-shadow: 0 2px 15px rgba(0,0,0,0.1); }
+        .blog-post h2 { color: #333; margin-bottom: 1.5rem; font-weight: 600; }
+        .post-meta { color: #666; font-size: 0.9rem; }
+        .post-meta i { margin-right: 5px; }
+        .page-header { background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%); padding: 4rem 0 2rem; margin-bottom: 3rem; }
+        .social-float { position: fixed; right: 20px; top: 50%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 10px; }
+        .social-btn { width: 40px; height: 40px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; transition: transform 0.3s ease; }
+        .social-btn:hover { transform: scale(1.1); }
+        .whatsapp-float { background: #25D366; }
+        .x-float { background: #000000; }
+        .linkedin-float { background: #0077B5; }
+        .instagram-float { background: #E4405F; }
+        .telegram-float { background: #0088cc; }
+        .facebook-float { background: #1877F2; }
+        .scroll-to-top { position: fixed; bottom: 20px; right: 20px; background: #0d6efd; color: white; width: 40px; height: 40px; border-radius: 50%; border: none; display: none; align-items: center; justify-content: center; cursor: pointer; transition: background-color 0.3s; }
+        .scroll-to-top:hover { background: #0a58ca; }
+        .newsletter-section { background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%); }
+        .card { border: none; box-shadow: 0 2px 15px rgba(0,0,0,0.1); margin-bottom: 2rem; }
+        .card-title { color: #333; font-weight: 600; margin-bottom: 1.5rem; }
+        .tags .badge { margin: 0.2rem; padding: 0.5rem 1rem; font-weight: 500; }
+    </style>
 </head>
 <body>
-
-
-    <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
             <a class="navbar-brand" href="index.html">
                 <img src="assets/images/logo.png" alt="Success Meets Logo" height="40">
                 Success Meets
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="index.html">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="Courses.html">Courses</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="fees.html">Fees Structure</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="services.html">Services</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link active" href="blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="Courses.html">Courses</a></li>
+                    <li class="nav-item"><a class="nav-link" href="fees.html">Fees Structure</a></li>
+                    <li class="nav-item"><a class="nav-link" href="services.html">Services</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
                 </ul>
             </div>
         </div>
     </nav>
-
-    <!-- Ribbon Section -->
-<div class="ribbon-container">
-    <div class="ribbon" onclick="openRibbonModal()">
-        <div class="moving-text">
-            🚀 Get notified about our latest courses and exclusive offers! Click here to join our community. 🚀
+    <div class="ribbon-container">
+        <div class="ribbon" onclick="openRibbonModal()">
+            <div class="moving-text">🚀 Get notified about our latest courses and exclusive offers! Click here to join our community. 🚀</div>
         </div>
     </div>
-</div>
-
-<!-- Ribbon Modal -->
-<div id="ribbonModal" class="ribbon-modal">
-    <div class="ribbon-modal-content">
-        <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
-        <h2>Get Notified</h2>
-        <form id="ribbonForm" class="ribbon-form">
-            <label for="ribbonName">Name:</label>
-            <input type="text" id="ribbonName" required>
-
-            <label for="ribbonMobile">Mobile No:</label>
-            <input type="tel" id="ribbonMobile" required>
-
-            <label for="ribbonEmail">Email:</label>
-            <input type="email" id="ribbonEmail" required>
-
-            <button type="submit">Notify Me</button>
-        </form>
+    <div id="ribbonModal" class="ribbon-modal">
+        <div class="ribbon-modal-content">
+            <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
+            <h2>Get Notified</h2>
+            <form id="ribbonForm" class="ribbon-form">
+                <label for="ribbonName">Name:</label>
+                <input type="text" id="ribbonName" required>
+                <label for="ribbonMobile">Mobile No:</label>
+                <input type="tel" id="ribbonMobile" required>
+                <label for="ribbonEmail">Email:</label>
+                <input type="email" id="ribbonEmail" required>
+                <button type="submit">Notify Me</button>
+            </form>
+        </div>
     </div>
-</div>
-
-    <!-- Page Header -->
-    <header class="page-header bg-primary text-white">
+    <header class="page-header">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-8">
-                    <h1>Our Blog</h1>
+                    <h1 class="display-4 fw-bold text-white">Our Blog</h1>
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb">
                             <li class="breadcrumb-item"><a href="index.html" class="text-white">Home</a></li>
-                            <li class="breadcrumb-item active" aria-current="page">Blog</li>
+                            <li class="breadcrumb-item active text-white" aria-current="page">Blog</li>
                         </ol>
                     </nav>
                 </div>
             </div>
         </div>
     </header>
-
-    <!-- Blog Section -->
     <section class="blog-section py-5">
         <div class="container">
             <div class="row">
-                <!-- Main Content -->
                 <div class="col-lg-8">
-                    <!-- Blog Post 1 -->
                     <article class="blog-post mb-5" data-aos="fade-up">
                         <img src="assets/images/blog/post1.jpg" alt="Choosing the Right University" class="img-fluid rounded mb-3">
                         <div class="post-meta mb-2">
@@ -130,11 +106,10 @@
                             <span class="ms-3"><i class="bi bi-tag"></i> Education</span>
                         </div>
                         <h2>How to Choose the Right University for Your Future</h2>
-                        <p>Selecting the right university is a crucial decision that can shape your future career. Here are key factors to consider when making this important choice...</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
+                        <p>Choosing the right university is a crucial decision that shapes your career and personal growth. With thousands of options available, it's essential to consider key factors before making a choice. Start by identifying your career goals whether you want to enter technology, business, healthcare, or any other field, selecting a university that specializes in your area of interest is important. Next, research the university's accreditation, ranking, and faculty expertise to ensure quality education and global recognition.</p>
+                        <p>Location also plays a vital role in your university experience. Consider whether you want to study in your home country or abroad, keeping in mind the cost of living, job opportunities, and student-friendly environment. Additionally, look into the university's placement records, internship opportunities, and industry connections, as they significantly impact your future job prospects. Financial factors such as tuition fees, scholarships, and education loans should also be carefully evaluated to avoid unnecessary financial burden.</p>
+                        <p>Beyond academics, a university should offer strong student support services, career counselling, and networking opportunities to help you succeed. If you plan to study abroad, check visa policies and post-study work opportunities to maximize your career growth. Choosing the right university requires thorough research, and if you need expert guidance, Success Meet is here to assist you in making the best decision for your future.</p>
                     </article>
-
-                    <!-- Blog Post 2 -->
                     <article class="blog-post mb-5" data-aos="fade-up">
                         <img src="assets/images/blog/post2.jpg" alt="Scholarship Tips" class="img-fluid rounded mb-3">
                         <div class="post-meta mb-2">
@@ -143,11 +118,10 @@
                             <span class="ms-3"><i class="bi bi-tag"></i> Scholarships</span>
                         </div>
                         <h2>Top Tips for Winning Scholarships</h2>
-                        <p>Securing scholarships can significantly reduce your educational expenses. Learn about effective strategies to increase your chances of winning scholarships...</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
+                        <p>Winning a scholarship can significantly reduce your financial burden and make higher education more accessible. However, with thousands of applicants competing for limited scholarships, you need a strong strategy to stand out. Here are the top tips to improve your chances of securing a scholarship.</p>
+                        <p>Start by researching available scholarships based on your academic achievements, financial needs, or extracurricular activities. Many organizations, universities, and governments offer scholarships, so explore options like merit-based, need-based, or field-specific scholarships. Once you find the right ones, carefully read the eligibility criteria and application deadlines to avoid missing opportunities.</p>
+                        <p>A compelling application is crucial. Write a well-structured and personalized scholarship essay that highlights your achievements, career goals, and why you deserve the award. Keep it clear, engaging, and authentic. Strong letters of recommendation from teachers, mentors, or employers can also add value to your application. Additionally, maintaining a high academic record and participating in extracurricular activities, leadership roles, and community service can make you a more competitive candidate.</p>
                     </article>
-
-                    <!-- Blog Post 3 -->
                     <article class="blog-post mb-5" data-aos="fade-up">
                         <img src="assets/images/blog/post3.jpg" alt="Career Planning" class="img-fluid rounded mb-3">
                         <div class="post-meta mb-2">
@@ -156,29 +130,20 @@
                             <span class="ms-3"><i class="bi bi-tag"></i> Career</span>
                         </div>
                         <h2>Essential Career Planning Strategies for Students</h2>
-                        <p>Effective career planning is crucial for long-term success. Discover key strategies to plan your career path and achieve your professional goals...</p>
-                        <a href="#" class="btn btn-primary">Read More</a>
+                        <p>Planning your career early can set you on the right path to success. Many students struggle with choosing the right career due to a lack of guidance and awareness. A well-structured plan can help you identify your strengths, explore career options, and achieve your goals. The first step in career planning is self assessment understanding your interests, skills, and weaknesses.</p>
+                        <p>Setting clear and realistic career goals is crucial. Define both short-term and long-term objectives, such as gaining relevant certifications, securing internships, or improving specific skills. Apart from academic knowledge, developing technical and soft skills is essential for employability. Engaging in workshops, online courses, and practical projects will provide hands-on experience and enhance your resume.</p>
                     </article>
-
-                    <!-- Pagination -->
                     <nav aria-label="Blog pagination">
                         <ul class="pagination justify-content-center">
-                            <li class="page-item disabled">
-                                <a class="page-link" href="#" tabindex="-1">Previous</a>
-                            </li>
+                            <li class="page-item disabled"><a class="page-link" href="#" tabindex="-1">Previous</a></li>
                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
                             <li class="page-item"><a class="page-link" href="#">2</a></li>
                             <li class="page-item"><a class="page-link" href="#">3</a></li>
-                            <li class="page-item">
-                                <a class="page-link" href="#">Next</a>
-                            </li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
                         </ul>
                     </nav>
                 </div>
-
-                <!-- Sidebar -->
                 <div class="col-lg-4">
-                    <!-- Search Widget -->
                     <div class="card mb-4" data-aos="fade-left">
                         <div class="card-body">
                             <h5 class="card-title">Search</h5>
@@ -188,8 +153,6 @@
                             </div>
                         </div>
                     </div>
-
-                    <!-- Categories Widget -->
                     <div class="card mb-4" data-aos="fade-left">
                         <div class="card-body">
                             <h5 class="card-title">Categories</h5>
@@ -202,8 +165,6 @@
                             </ul>
                         </div>
                     </div>
-
-                    <!-- Recent Posts Widget -->
                     <div class="card mb-4" data-aos="fade-left">
                         <div class="card-body">
                             <h5 class="card-title">Recent Posts</h5>
@@ -218,13 +179,12 @@
                                 </li>
                                 <li class="mb-3">
                                     <a href="#" class="text-decoration-none">Top Universities in 2023</a>
-                                    <small class="text-muted d-block">June 25, 2023</small>
+                                    <small class="text-muted d-block">
+                                        <small class="text-muted d-block">June 25, 2023</small>
                                 </li>
                             </ul>
                         </div>
                     </div>
-
-                    <!-- Tags Widget -->
                     <div class="card mb-4" data-aos="fade-left">
                         <div class="card-body">
                             <h5 class="card-title">Tags</h5>
@@ -242,8 +202,6 @@
             </div>
         </div>
     </section>
-
-    <!-- Newsletter Section -->
     <section class="newsletter-section py-5 bg-light">
         <div class="container">
             <div class="row justify-content-center">
@@ -260,12 +218,9 @@
             </div>
         </div>
     </section>
-
-    <!-- Footer -->
     <footer class="footer bg-dark text-white py-5">
         <div class="container">
             <div class="row">
-                <!-- Company Info -->
                 <div class="col-md-4 mb-4">
                     <h5>Success Meets</h5>
                     <p>Transforming dreams into reality through expert educational guidance and career counseling.</p>
@@ -276,8 +231,6 @@
                         <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
-                
-                <!-- Quick Links -->
                 <div class="col-md-4 mb-4">
                     <h5>Quick Links</h5>
                     <ul class="list-unstyled">
@@ -287,8 +240,6 @@
                         <li><a href="contact.html" class="text-white">Contact</a></li>
                     </ul>
                 </div>
-                
-                <!-- Contact Info -->
                 <div class="col-md-4 mb-4">
                     <h5>Contact Us</h5>
                     <p>
@@ -299,16 +250,12 @@
                     </p>
                 </div>
             </div>
-            
-            <!-- Copyright -->
             <div class="text-center pt-4 border-top">
                 <p>&copy; 2023 Success Meets Educational Consultancy. All rights reserved.</p>
             </div>
         </div>
     </footer>
-
-     <!-- Floating Social Media Buttons -->
-     <div class="social-float">
+    <div class="social-float">
         <a href="https://wa.me/9087442108" class="social-btn whatsapp-float" target="_blank" aria-label="WhatsApp">
             <i class="bi bi-whatsapp"></i>
         </a>
@@ -328,27 +275,33 @@
             <i class="bi bi-facebook"></i>
         </a>
     </div>
-
-    <!-- Scroll to Top Button -->
     <button id="scrollToTop" class="scroll-to-top">
         <i class="bi bi-arrow-up"></i>
     </button>
-
-    <!-- Scripts -->
-    <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    
-    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    
-    <!-- AOS JS -->
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    
-    <!-- Custom JS -->
     <script src="assets/js/scripts.js"></script>
-
-    <!-- Ribbon JS -->
     <script src="assets/js/ribbon.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            once: true
+        });
+        const scrollToTopBtn = document.getElementById('scrollToTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.style.display = 'flex';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+        });
+        scrollToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    </script>
 </body>
 </html>
-

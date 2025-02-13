@@ -1,13 +1,41 @@
-/* === General Styles === */
+/* === Theme Variables === */
+
+/* Light Theme (Default) */
 :root {
     --primary-color: #0d6efd;
     --secondary-color: #6c757d;
     --success-color: #198754;
     --white-color: #ffffff;
     --dark-color: #212529;
-    --light-color: #ffffff;
+    --light-color: #f8f9fa;
+    --background-color: #ffffff;
+    --text-color: #212529;
     --transition: all 0.5s ease;
+    --navbar-bg: #ffffff;
+    --card-bg: #ffffff;
+    --footer-bg: #212529;
+    --footer-text: #ffffff;
+    --modal-bg: rgba(0, 0, 0, 0.5);
 }
+
+/* Dark Theme */
+[data-theme="dark"] {
+    --primary-color: #0d6efd;
+    --secondary-color: #6c757d;
+    --success-color: #198754;
+    --white-color: #121212;
+    --dark-color: #f8f9fa;
+    --light-color: #343a40;
+    --background-color: #121212;
+    --text-color: #f8f9fa;
+    --navbar-bg: #343a40;
+    --card-bg: #1e1e1e;
+    --footer-bg: #000000;
+    --footer-text: #f8f9fa;
+    --modal-bg: rgba(255, 255, 255, 0.1);
+}
+
+/* === General Styles === */
 
 html {
     scroll-behavior: smooth;
@@ -16,11 +44,14 @@ html {
 body {
     font-family: "Garamond", serif;
     line-height: 1.6;
-    color: var(--dark-color);
+    color: var(--text-color);
+    background-color: var(--background-color);
     padding-top: 76px; /* Adjust based on navbar height */
+    transition: var(--transition);
 }
 
 /* === Preloader === */
+
 #preloader {
     position: fixed;
     top: 0;
@@ -49,8 +80,10 @@ body {
 }
 
 /* === Navigation === */
+
 .navbar {
     transition: var(--transition);
+    background-color: var(--navbar-bg) !important;
 }
 
 .navbar-brand img {
@@ -60,6 +93,7 @@ body {
 .nav-link {
     position: relative;
     padding: 0.5rem 1rem !important;
+    color: var(--text-color) !important;
 }
 
 .nav-link::after {
@@ -79,7 +113,12 @@ body {
     width: 80%;
 }
 
+.navbar-nav .nav-link.active {
+    font-weight: bold;
+}
+
 /* === Hero Section === */
+
 .hero-section {
     position: relative;
     height: 100vh;
@@ -88,6 +127,7 @@ body {
     display: flex;
     align-items: center;
     color: var(--white-color);
+    transition: var(--transition);
 }
 
 .hero-overlay {
@@ -102,9 +142,20 @@ body {
 .hero-content {
     position: relative;
     z-index: 1;
+    text-align: center;
+}
+
+.hero-content h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.25rem;
 }
 
 /* === Section Headers === */
+
 .section-header {
     margin-bottom: 3rem;
 }
@@ -113,6 +164,7 @@ body {
     position: relative;
     padding-bottom: 1rem;
     margin-bottom: 1rem;
+    color: var(--text-color);
 }
 
 .section-header h2::after {
@@ -127,10 +179,13 @@ body {
 }
 
 /* === Cards === */
+
 .card {
     border: none;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
+    background-color: var(--card-bg);
+    color: var(--text-color);
 }
 
 .card:hover {
@@ -144,13 +199,15 @@ body {
 }
 
 /* === Features === */
+
 .feature-box {
     padding: 2rem;
     text-align: center;
-    background: var(--white-color);
+    background: var(--card-bg);
     border-radius: 10px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
     transition: var(--transition);
+    color: var(--text-color);
 }
 
 .feature-box:hover {
@@ -164,21 +221,34 @@ body {
 }
 
 /* === Testimonials === */
+
 .testimonial-card {
-    background: var(--white-color);
+    background: var(--card-bg);
     padding: 2rem;
     border-radius: 10px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    color: var(--text-color);
+}
+
+.testimonial-author {
+    display: flex;
+    align-items: center;
+    margin-top: 1.5rem;
 }
 
 .testimonial-author img {
-    width: 200px;
-    height: 200px;
+    width: 80px;
+    height: 80px;
     border-radius: 50%;
     margin-right: 1rem;
 }
 
+.testimonial-author h5 {
+    margin: 0;
+}
+
 /* === Blog === */
+
 .blog-card .card-img-top {
     height: 200px;
     object-fit: cover;
@@ -194,9 +264,11 @@ body {
 }
 
 /* === Contact Form === */
+
 .contact-form .form-control {
     padding: 0.8rem;
     border: 1px solid #ddd;
+    border-radius: 5px;
 }
 
 .contact-form .form-control:focus {
@@ -205,6 +277,7 @@ body {
 }
 
 /* === Map === */
+
 .map-container {
     height: 450px;
 }
@@ -216,13 +289,16 @@ body {
 }
 
 /* === Footer === */
+
 .footer {
-    background: var(--dark-color);
-    color: var(--white-color);
+    background: var(--footer-bg);
+    color: var(--footer-text);
+    padding: 2rem 0;
+    transition: var(--transition);
 }
 
 .footer a {
-    color: var(--white-color);
+    color: var(--footer-text);
     text-decoration: none;
     transition: var(--transition);
 }
@@ -231,16 +307,15 @@ body {
     color: var(--primary-color);
 }
 
+/* === Scroll to Top Button === */
 
-
-/* Scroll to Top Button */
 .scroll-to-top {
     position: fixed;
     bottom: 40px; /* Distance from bottom */
     right: 20px;  /* Distance from right */
     width: 50px;
     height: 50px;
-    background-color: #0d6efd; /* Bootstrap primary color */
+    background-color: var(--primary-color);
     color: #fff;
     border: none;
     border-radius: 50%;
@@ -281,9 +356,8 @@ body {
     }
 }
 
-/* Social Float Container */
-/* Social Float Container */
-/* Social Float Container */
+/* === Social Float Container === */
+
 .social-links a {
     display: inline-block;
     width: 35px;
@@ -338,7 +412,7 @@ body {
 }
 
 .x-float {
-    background-color: #000000; /* Using Twitter's color since X's is similar */
+    background-color: #000000; /* Using X's color */
 }
 
 .linkedin-float {
@@ -358,6 +432,7 @@ body {
 }
 
 /* === Animations === */
+
 @keyframes fadeIn {
     from { opacity: 0; }
     to { opacity: 1; }
@@ -412,6 +487,7 @@ body {
 }
 
 /* === Custom Classes === */
+
 .bg-overlay {
     position: relative;
 }
@@ -445,6 +521,7 @@ body {
 }
 
 /* === Additional Utility Classes === */
+
 .shadow-sm {
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1) !important;
 }
@@ -458,6 +535,7 @@ body {
 }
 
 /* === Form Styling === */
+
 .form-control {
     border-radius: 5px;
 }
@@ -468,6 +546,7 @@ body {
 }
 
 /* === Custom Animations === */
+
 .hover-scale {
     transition: var(--transition);
 }
@@ -481,6 +560,7 @@ body {
 }
 
 /* === AOS Custom Styles === */
+
 [data-aos] {
     pointer-events: none;
 }
@@ -490,6 +570,7 @@ body {
 }
 
 /* === Newsletter Form === */
+
 .newsletter-form .form-control {
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
@@ -501,6 +582,7 @@ body {
 }
 
 /* === Page Header === */
+
 .page-header {
     padding: 4rem 0;
     position: relative;
@@ -518,10 +600,11 @@ body {
 }
 
 .breadcrumb-item + .breadcrumb-item::before {
-    color: var(--white-color);
+    color: var(--footer-text);
 }
 
 /* === Service Features === */
+
 .service-features {
     list-style: none;
     padding-left: 0;
@@ -541,12 +624,14 @@ body {
 }
 
 /* === Team Cards === */
+
 .team-card {
     text-align: center;
     padding: 2rem;
-    background: var(--white-color);
+    background: var(--card-bg);
     border-radius: 10px;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.1);
+    color: var(--text-color);
 }
 
 .team-card img {
@@ -556,6 +641,7 @@ body {
 }
 
 /* === Blog Sidebar === */
+
 .sidebar-widget {
     margin-bottom: 2rem;
 }
@@ -572,6 +658,7 @@ body {
 }
 
 /* === Loading States === */
+
 .loading {
     position: relative;
 }
@@ -595,4 +682,3 @@ body {
         display: none !important;
     }
 }
-

@@ -135,6 +135,16 @@ body {
     text-decoration: underline;
 }
 
+@media (max-width: 768px) {
+    .sub-navbar {
+        top: 112px; /* Adjust based on the combined height of both navbars */
+    }
+    
+    .sub-navbar .nav {
+        flex-direction: column; /* Stack items vertically on smaller screens */
+    }
+}
+
 body {
     padding-top: 112px; /* Adjust based on the combined height of both navbars */
 }

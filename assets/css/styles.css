@@ -117,6 +117,27 @@ body {
     font-weight: bold;
 }
 
+.sub-navbar {
+    background-color: #e7f3ff; /* Light blue background */
+    position: fixed;
+    top: 56px; /* Adjust based on the height of your main navbar */
+    width: 100%;
+    z-index: 1030; /* Ensure it stays above other content */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Optional shadow for depth */
+}
+
+.sub-navbar .nav-link {
+    color: #007bff; /* Blue text color */
+    font-weight: 500;
+}
+
+.sub-navbar .nav-link:hover {
+    text-decoration: underline;
+}
+
+body {
+    padding-top: 112px; /* Adjust based on the combined height of both navbars */
+}
 /* === Hero Section === */
 
 .hero-section {

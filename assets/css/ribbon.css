@@ -1,9 +1,8 @@
-/* assets/css/ribbon.css */
 .ribbon-container {
     position: fixed;
-    top: 76px; /* Adjust this value based on your navbar height */
+    top: 10; /* Keep it at the bottom of the viewport */
     width: 100%;
-    z-index: 1040; /* Below navbar's z-index */
+    z-index: 1040; /* Ensure it's below the navbar */
 }
 
 .ribbon {

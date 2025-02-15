@@ -1,6 +1,6 @@
 .ribbon-container {
     position: fixed;
-    top: 10; /* Keep it at the bottom of the viewport */
+    top: 10; /* Default for desktop */
     width: 100%;
     z-index: 1040; /* Ensure it's below the navbar */
 }
@@ -100,4 +100,11 @@
 
 .ribbon-form button:hover {
     background-color: #0056b3;
+}
+
+@media (max-width: 768px) {
+    .ribbon-container {
+        top: 56px; /* Position it below the main navbar on mobile */
+        bottom: auto; /* Remove bottom positioning */
+    }
 }

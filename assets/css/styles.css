@@ -20,9 +20,6 @@
 
 /* Dark Theme */
 [data-theme="dark"] {
-    --primary-color: #0d6efd;
-    --secondary-color: #6c757d;
-    --success-color: #198754;
     --white-color: #121212;
     --dark-color: #f8f9fa;
     --light-color: #343a40;
@@ -80,13 +77,6 @@ body {
 }
 
 /* === Navigation === */
-
-:root {
-    --transition: 0.3s ease;
-    --navbar-bg: #fff;
-    --text-color: #000;
-    --primary-color: #007bff;
-}
 
 .navbar {
     transition: var(--transition);
@@ -362,8 +352,8 @@ body {
 
 .scroll-to-top {
     position: fixed;
-    bottom: 40px; /* Distance from bottom */
-    right: 20px;  /* Distance from right */
+    bottom: 40px;
+    right: 20px;
     width: 50px;
     height: 50px;
     background-color: var(--primary-color);
@@ -374,26 +364,25 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    opacity: 0; /* Initially hidden */
+    opacity: 0;
     visibility: hidden;
     transition: opacity 0.4s, visibility 0.4s, transform 0.3s;
-    z-index: 1000; /* Ensure it stays above other elements */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: Shadow for depth */
+    z-index: 1000;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-.scroll-to-top.show { /* CSS listens for 'show' class */
+.scroll-to-top.show {
     opacity: 1;
     visibility: visible;
     transform: translateY(0);
 }
 
 .scroll-to-top:hover {
-    background-color: #0b5ed7; /* Darker shade on hover */
+    background-color: #0b5ed7;
     transform: scale(1.1);
     transition: background-color 0.3s, transform 0.3s;
 }
 
-/* Media Queries for Responsiveness (Optional) */
 @media (max-width: 576px) {
     .scroll-to-top {
         bottom: 20px;
@@ -431,17 +420,16 @@ body {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
-    z-index: 1000; /* Ensure it stays above other elements */
+    z-index: 1000;
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Space between buttons */
+    gap: 10px;
 }
 
-/* General Styling for Social Buttons */
 .social-btn {
     width: 50px;
     height: 50px;
-    background-color: #555; /* Default color */
+    background-color: #555;
     color: #fff;
     border-radius: 50%;
     display: flex;
@@ -452,18 +440,16 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
-/* Hover Effects */
 .social-btn:hover {
     transform: scale(1.1);
 }
 
-/* Platform-Specific Colors */
 .whatsapp-float {
     background-color: #25D366;
 }
 
 .x-float {
-    background-color: #000000; /* Using X's color */
+    background-color: #000000;
 }
 
 .linkedin-float {
@@ -494,6 +480,7 @@ body {
 }
 
 /* === Media Queries === */
+
 @media (max-width: 991.98px) {
     .navbar-nav {
         padding: 1rem 0;
@@ -517,10 +504,7 @@ body {
         font-size: 1.8rem;
     }
 
-    .feature-box {
-        margin-bottom: 1.5rem;
-    }
-
+    .feature-box,
     .testimonial-card {
         margin-bottom: 1.5rem;
     }
@@ -728,6 +712,7 @@ body {
 }
 
 /* === Print Styles === */
+
 @media print {
     .no-print {
         display: none !important;

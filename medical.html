@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Medical Programs</title>
+    <title>Medical Programs | Medical Education Excellence</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -48,392 +48,448 @@
             font-weight: 600;
         }
 
-        .tabs-container {
+        .header p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Navigation Styles */
+        .nav-container {
             background: white;
-            padding: 20px;
-            border-radius: 10px;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            margin-bottom: 30px;
         }
 
-        .tabs {
+        .nav-menu {
             display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
             justify-content: center;
+            gap: 20px;
+            list-style: none;
+            flex-wrap: wrap;
         }
 
-        .tab-button {
-            padding: 12px 24px;
-            background: var(--light-bg);
-            border: none;
-            cursor: pointer;
-            border-radius: 5px;
-            font-weight: 500;
+        .nav-menu li a {
             color: var(--primary-color);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
             transition: all 0.3s ease;
         }
 
-        .tab-button:hover,
-        .tab-button.active {
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
             background: var(--primary-color);
             color: white;
         }
 
-        .tab-content {
+        /* Course Section Styles */
+        .course-section {
             display: none;
-            padding: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
         }
 
-        .tab-content.active {
+        .course-section.active {
             display: block;
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        .section {
-            margin-bottom: 30px;
-            background: white;
-            padding: 25px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
-        }
-
-        .section-title {
+        .course-title {
             color: var(--primary-color);
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid var(--secondary-color);
+            margin-bottom: 25px;
+            font-size: 2em;
+            position: relative;
+            padding-bottom: 15px;
         }
 
-        .content-text {
-            margin-bottom: 20px;
-            text-align: justify;
+        .course-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
         }
 
-        .list-content {
+        .course-description {
+            font-size: 1.1em;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+
+        .eligibility-box, .scope-box {
+            background: white;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .eligibility-box:hover, .scope-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .eligibility-box {
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .scope-box {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .list-custom {
             list-style: none;
+            padding-left: 0;
         }
 
-        .list-content li {
-            margin-bottom: 15px;
+        .list-custom li {
+            padding: 10px 0;
             padding-left: 25px;
             position: relative;
         }
 
-        .list-content li::before {
-            content: "→";
-            color: var(--accent-color);
+        .list-custom li:before {
+            content: '→';
             position: absolute;
             left: 0;
+            color: var(--accent-color);
         }
 
-        .highlight {
+        .h5 {
+            font-size: 1.1em;
             color: var(--primary-color);
-            font-weight: 500;
+            margin-bottom: 15px;
         }
 
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .feature-card {
-            background: var(--light-bg);
-            padding: 20px;
-            border-radius: 8px;
-            border-left: 4px solid var(--accent-color);
-        }
-
-        .feature-card h4 {
-            color: var(--primary-color);
-            margin-bottom: 10px;
-        }
-
+        /* Responsive Styles */
         @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
             .header h1 {
                 font-size: 2em;
             }
 
-            .tab-button {
-                padding: 10px 15px;
-                font-size: 14px;
+            .nav-menu {
+                gap: 10px;
+                padding: 10px;
+                white-space: nowrap;
+                overflow-x: auto;
             }
 
-            .section {
-                padding: 15px;
+            .nav-menu li a {
+                padding: 6px 12px;
+                font-size: 0.9em;
             }
+
+            .course-title {
+                font-size: 1.5em;
+            }
+
+            .course-description {
+                font-size: 1em;
+            }
+
+            .eligibility-box, .scope-box {
+                padding: 20px;
+            }
+        }
+
+        /* Animation Keyframes */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
         }
     </style>
 </head>
-<body> 
+<body>
     <div class="header">
         <h1>Medical Programs</h1>
-        <p>Explore Our Comprehensive Medical Courses</p>
+        <p>Comprehensive Medical Education for Future Healthcare Professionals</p>
     </div>
 
+    <div class="nav-container">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" class="active" onclick="showCourse('mbbs', this)">MBBS</a></li>
+                <li><a href="#" onclick="showCourse('bds', this)">BDS</a></li>
+                <li><a href="#" onclick="showCourse('bhms', this)">BHMS</a></li>
+                <li><a href="#" onclick="showCourse('bams', this)">BAMS</a></li>
+                <li><a href="#" onclick="showCourse('bums', this)">BUMS</a></li>
+                <li><a href="#" onclick="showCourse('bsms', this)">BSMS</a></li>
+                <li><a href="#" onclick="showCourse('bvsc', this)">B.V.Sc</a></li>
+            </ul>
+        </div>
+    </div>
+
+<!-- Course Content -->
+<div class="course-content">
     <div class="container">
-        <div class="tabs-container">
-            <div class="tabs">
-                <button class="tab-button active" onclick="openTab('bds')">BDS</button>
-                <button class="tab-button" onclick="openTab('bhms')">BHMS</button>
-                <button class="tab-button" onclick="openTab('bams')">BAMS</button>
-                <button class="tab-button" onclick="openTab('bums')">BUMS</button>
-                <button class="tab-button" onclick="openTab('bsms')">BSMS</button>
-                <button class="tab-button" onclick="openTab('bvsc')">B.V.Sc & AH</button>
+        <!-- MBBS Section -->
+        <div id="mbbs" class="course-section active" data-aos="fade-up">
+            <h2 class="course-title">MBBS - Bachelor of Medicine, Bachelor of Surgery</h2>
+            
+            <p class="course-description">
+                A comprehensive 5.5-year program focusing on theoretical instruction and hands-on clinical internships, 
+                preparing students for excellence in medical practice.
+            </p>
+
+            <div class="eligibility-box">
+                <h3 class="h5 mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i>Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>Completion of 12th standard with Science stream</li>
+                    <li>Minimum 50% marks in Physics, Chemistry, Biology</li>
+                    <li>NEET qualification</li>
+                    <li>Minimum age: 17 years</li>
+                </ul>
             </div>
 
-            <!-- BDS Content -->
-            <div id="bds" class="tab-content active">
-                <div class="section">
-                    <h2 class="section-title">Bachelor of Dental Surgery (BDS)</h2>
-                    <p class="content-text">
-                        BDS is a 5-year professional degree program including one year of compulsory internship. The program provides comprehensive training in dental sciences, oral healthcare, and surgical procedures.
-                    </p>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Reasons to Pursue BDS</h3>
-                    <ul class="list-content">
-                        <li><span class="highlight">High Demand:</span> Growing awareness of dental health has created substantial career opportunities.</li>
-                        <li><span class="highlight">Modern Facilities:</span> Access to advanced dental equipment and latest technologies.</li>
-                        <li><span class="highlight">Diverse Opportunities:</span> Options in private practice, hospitals, research, and academics.</li>
-                        <li><span class="highlight">Global Recognition:</span> Indian dental degrees are widely accepted internationally.</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Eligibility</h3>
-                    <ul class="list-content">
-                        <li>Minimum 17 years of age</li>
-                        <li>10+2 with Physics, Chemistry, and Biology</li>
-                        <li>Minimum 50% aggregate in PCB (45% for SC/ST)</li>
-                        <li>NEET qualification mandatory</li>
-                    </ul>
-                </div>
-
-                <div class="section">
-                    <h3 class="section-title">Career Prospects</h3>
-                    <div class="features-grid">
-                        <div class="feature-card">
-                            <h4>Private Practice</h4>
-                            <p>Establish your own dental clinic</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>Hospital Career</h4>
-                            <p>Work in government or private hospitals</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>Academic Career</h4>
-                            <p>Teach in dental colleges</p>
-                        </div>
-                        <div class="feature-card">
-                            <h4>Research</h4>
-                            <p>Pursue research in dental sciences</p>
-                        </div>
-                    </div>
-                </div>
+            <div class="scope-box">
+                <h3 class="h5 mb-3"><i class="bi bi-briefcase-fill text-success me-2"></i>Career Scope</h3>
+                <ul class="list-custom">
+                    <li>Clinical Practice in Hospitals</li>
+                    <li>Specialized Medical Fields</li>
+                    <li>Medical Research</li>
+                    <li>Healthcare Administration</li>
+                    <li>Medical Education</li>
+                </ul>
             </div>
-                        <!-- BHMS Content -->
-                        <div id="bhms" class="tab-content">
-                            <div class="section">
-                                <h2 class="section-title">Bachelor of Homeopathic Medicine and Surgery (BHMS)</h2>
-                                <p class="content-text">
-                                    BHMS is a 5.5-year program that focuses on homeopathic medicine and holistic healing approaches. The program combines traditional homeopathic principles with modern medical knowledge.
-                                </p>
-                            </div>
+        </div>
+
+        <!-- Add other course sections following the same structure -->
+        <!-- Copy the MBBS section structure and modify content for other courses -->
+         <!-- BDS Section -->
+         <div id="bds" class="course-section" data-aos="fade-up">
+            <h2 class="course-title">BDS - Bachelor of Dental Surgery</h2>
+            <p class="course-description">
+                A comprehensive 4-year program followed by one year of mandatory internship, focusing on dental sciences 
+                and oral healthcare.
+            </p>
+            <div class="eligibility-box">
+                <h3 class="h5 mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i>Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>Successful completion of 12th standard examination</li>
+                    <li>Science stream with English, Biology, Physics, and Chemistry</li>
+                    <li>Minimum 50% marks (40% for reserved categories)</li>
+                    <li>NEET qualification</li>
+                </ul>
+            </div>
+            <div class="scope-box">
+                <h3 class="h5 mb-3"><i class="bi bi-briefcase-fill text-success me-2"></i>Career Scope</h3>
+                <ul class="list-custom">
+                    <li>Private dental practices</li>
+                    <li>Dental clinics and hospitals</li>
+                    <li>Specializations (Orthodontics, Oral Surgery)</li>
+                    <li>Dental research</li>
+                    <li>Academic institutions</li>
+                    <li>Public health dentistry</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BHMS Section -->
+        <div id="bhms" class="course-section" data-aos="fade-up">
+            <h2 class="course-title">BHMS - Bachelor of Homeopathy Medicine and Surgery</h2>
+            <p class="course-description">
+                A 5.5-year program with 4.5 years of academic learning and one year of internship in homeopathic medicine.
+            </p>
+            <div class="eligibility-box">
+                <h3 class="h5 mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i>Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>Minimum age of 17 years</li>
+                    <li>12th standard with Physics, Chemistry, and Biology</li>
+                    <li>Minimum 50% marks in board examination</li>
+                    <li>NEET qualification</li>
+                </ul>
+            </div>
+            <div class="scope-box">
+                <h3 class="h5 mb-3"><i class="bi bi-briefcase-fill text-success me-2"></i>Career Scope</h3>
+                <ul class="list-custom">
+                    <li>Homeopathic pharmacy</li>
+                    <li>Infertility and sex specialist</li>
+                    <li>Psychiatry</li>
+                    <li>Skin specialist</li>
+                    <li>Pediatrics</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BAMS Section -->
+        <div id="bams" class="course-section" data-aos="fade-up">
+            <h2 class="course-title">BAMS - Bachelor of Ayurvedic Medicine and Surgery</h2>
+            <p class="course-description">
+                A 5.5-year program focusing on Ayurvedic Medicine and Surgery for treating human ailments through 
+                traditional Indian medicine.
+            </p>
+            <div class="eligibility-box">
+                <h3 class="h5 mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i>Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>Duration: 5.5 years</li>
+                    <li>Minimum age: 17 years</li>
+                    <li>Passed Class 12 with minimum 50% marks (general category)</li>
+                    <li>NEET qualification</li>
+                </ul>
+            </div>
+            <div class="scope-box">
+                <h3 class="h5 mb-3"><i class="bi bi-briefcase-fill text-success me-2"></i>Career Scope</h3>
+                <ul class="list-custom">
+                    <li>Government healthcare centers</li>
+                    <li>Private clinics</li>
+                    <li>Wellness resorts</li>
+                    <li>Research institutions</li>
+                    <li>International opportunities in Ayurveda</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BUMS Section -->
+        <div id="bums" class="course-section" data-aos="fade-up">
+            <h2 class="course-title">BUMS - Bachelor of Unani Medicine and Surgery</h2>
+            <p class="course-description">
+                An AYUSH program rooted in Unani methods of medical treatment, providing a unique and holistic 
+                perspective on healthcare.
+            </p>
+            <div class="eligibility-box">
+                <h3 class="h5 mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i>Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>Duration: 5.5 years</li>
+                    <li>Minimum age: 17 years</li>
+                    <li>Class 12 completion with 50% marks (UR category)</li>
+                    <li>NEET UG qualification</li>
+                </ul>
+            </div>
+            <div class="scope-box">
+                <h3 class="h5 mb-3"><i class="bi bi-briefcase-fill text-success me-2"></i>Career Scope</h3>
+                <ul class="list-custom">
+                    <li>Government healthcare facilities</li>
+                    <li>Private clinics</li>
+                    <li>Wellness centers</li>
+                    <li>Research institutions</li>
+                    <li>International Unani practice</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- BSMS Section -->
+        <div id="bsms" class="course-section" data-aos="fade-up">
+            <h2 class="course-title">BSMS - Bachelor of Siddha Medicine and Surgery</h2>
+            <p class="course-description">
+                A captivating AYUSH course that combines traditional healing with modern medical science.
+            </p>
+            <div class="eligibility-box">
+                <h3 class="h5 mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i>Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>Duration: 5.5 years</li>
+                    <li>Minimum age: 17 years</li>
+                    <li>Class 12 completion with science background</li>
+                    <li>NEET exam qualification</li>
+                </ul>
+            </div>
+            <div class="scope-box">
+                <h3 class="h5 mb-3"><i class="bi bi-briefcase-fill text-success me-2"></i>Career Scope</h3>
+                <ul class="list-custom">
+                    <li>Government healthcare facilities</li>
+                    <li>Private practices</li>
+                    <li>Research institutions</li>
+                    <li>International opportunities</li>
+                    <li>Academic institutions</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- B.V.Sc & AH Section -->
+        <div id="bvsc" class="course-section" data-aos="fade-up">
+            <h2 class="course-title">B.V.Sc & AH - Bachelor of Veterinary Science & Animal Husbandry</h2>
+            <p class="course-description">
+                A 5-year program focusing on understanding and treating diseases of animals and birds, with excellent 
+                job prospects.
+            </p>
+            <div class="eligibility-box">
+                <h3 class="h5 mb-3"><i class="bi bi-check-circle-fill text-primary me-2"></i>Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>Completion of Class 12</li>
+                    <li>Science stream background</li>
+                    <li>Relevant entrance exam qualification</li>
+                    <li>Minimum 50% marks in PCB</li>
+                </ul>
+            </div>
+            <div class="scope-box">
+                <h3 class="h5 mb-3"><i class="bi bi-briefcase-fill text-success me-2"></i>Career Scope</h3>
+                <ul class="list-custom">
+                    <li>Public sector veterinary services</li>
+                    <li>Private veterinary clinics</li>
+                    <li>Animal research facilities</li>
+                    <li>Wildlife conservation</li>
+                    <li>Animal husbandry departments</li>
+                </ul>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+        <!-- Add other course sections here following the same structure -->
+        <!-- Copy the MBBS section structure and modify content for other courses -->
+
+    </div>
+
+    <script>
+        function showCourse(courseId, element) {
+            event.preventDefault();
             
-                            <div class="section">
-                                <h3 class="section-title">Reasons to Pursue BHMS</h3>
-                                <ul class="list-content">
-                                    <li><span class="highlight">Natural Healing:</span> Focus on natural remedies and holistic treatment approaches.</li>
-                                    <li><span class="highlight">Growing Acceptance:</span> Increasing global recognition of alternative medicine.</li>
-                                    <li><span class="highlight">Minimal Side Effects:</span> Treatment methods with fewer adverse effects.</li>
-                                    <li><span class="highlight">Private Practice Potential:</span> Opportunity to establish individual clinics.</li>
-                                </ul>
-                            </div>
+            // Hide all courses
+            document.querySelectorAll('.course-section').forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
             
-                            <div class="section">
-                                <h3 class="section-title">Eligibility</h3>
-                                <ul class="list-content">
-                                    <li>10+2 with Physics, Chemistry, and Biology</li>
-                                    <li>Minimum 50% aggregate in PCB</li>
-                                    <li>NEET qualification required</li>
-                                    <li>Age limit as per regulatory guidelines</li>
-                                </ul>
-                            </div>
+            // Show selected course
+            const selectedSection = document.getElementById(courseId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+                // Trigger reflow
+                selectedSection.offsetHeight;
+                selectedSection.classList.add('active');
+            }
             
-                            <div class="section">
-                                <h3 class="section-title">Career Prospects</h3>
-                                <div class="features-grid">
-                                    <div class="feature-card">
-                                        <h4>Clinical Practice</h4>
-                                        <p>Private clinic or hospital practice</p>
-                                    </div>
-                                    <div class="feature-card">
-                                        <h4>Research</h4>
-                                        <p>Homeopathic research and development</p>
-                                    </div>
-                                    <div class="feature-card">
-                                        <h4>Government Sector</h4>
-                                        <p>Government hospitals and healthcare centers</p>
-                                    </div>
-                                    <div class="feature-card">
-                                        <h4>Academia</h4>
-                                        <p>Teaching in homeopathic colleges</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <!-- BAMS Content -->
-                        <div id="bams" class="tab-content">
-                            <div class="section">
-                                <h2 class="section-title">Bachelor of Ayurvedic Medicine and Surgery (BAMS)</h2>
-                                <p class="content-text">
-                                    BAMS is a 5.5-year program that integrates traditional Ayurvedic knowledge with modern medical science. The course provides comprehensive training in Ayurvedic principles and practices.
-                                </p>
-                            </div>
-            
-                            <div class="section">
-                                <h3 class="section-title">Reasons to Pursue BAMS</h3>
-                                <ul class="list-content">
-                                    <li><span class="highlight">Rich Heritage:</span> Learn ancient Indian medical wisdom.</li>
-                                    <li><span class="highlight">Global Recognition:</span> Growing international acceptance of Ayurveda.</li>
-                                    <li><span class="highlight">Holistic Approach:</span> Focus on complete physical and mental wellness.</li>
-                                    <li><span class="highlight">Research Opportunities:</span> Vast scope for research and development.</li>
-                                </ul>
-                            </div>
-            
-                            <div class="section">
-                                <h3 class="section-title">Career Prospects</h3>
-                                <div class="features-grid">
-                                    <div class="feature-card">
-                                        <h4>Private Practice</h4>
-                                        <p>Establish Ayurvedic clinics</p>
-                                    </div>
-                                    <div class="feature-card">
-                                        <h4>Hospital Management</h4>
-                                        <p>Work in Ayurvedic hospitals</p>
-                                    </div>
-                                    <div class="feature-card">
-                                        <h4>Drug Companies</h4>
-                                        <p>Ayurvedic pharmaceutical industry</p>
-                                    </div>
-                                    <div class="feature-card">
-                                        <h4>Wellness Centers</h4>
-                                        <p>Manage health and wellness centers</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            
-                        <!-- BUMS Content -->
-                        <div id="bums" class="tab-content">
-                            <div class="section">
-                                <h2 class="section-title">Bachelor of Unani Medicine and Surgery (BUMS)</h2>
-                                <p class="content-text">
-                                    BUMS is a 5.5-year program focusing on the Unani system of medicine, which originated in Greece and developed in the Middle East and South Asia.
-                                </p>
-                            </div>
-            
-                            <div class="section">
-                                <h3 class="section-title">Key Features</h3>
-                                <ul class="list-content">
-                                    <li><span class="highlight">Traditional Wisdom:</span> Study ancient Unani medical principles.</li>
-                                    <li><span class="highlight">Natural Treatment:</span> Focus on natural healing methods.</li>
-                                    <li><span class="highlight">Clinical Practice:</span> Extensive practical training.</li>
-                                    <li><span class="highlight">Research Opportunities:</span> Scope for research in Unani medicine.</li>
-                                </ul>
-                            </div>
-                        </div>
-            
-                        <!-- BSMS Content -->
-                        <div id="bsms" class="tab-content">
-                            <div class="section">
-                                <h2 class="section-title">Bachelor of Siddha Medicine and Surgery (BSMS)</h2>
-                                <p class="content-text">
-                                    BSMS is a 5.5-year program that teaches the traditional Tamil system of medicine, integrating ancient wisdom with modern medical practices.
-                                </p>
-                            </div>
-            
-                            <div class="section">
-                                <h3 class="section-title">Program Highlights</h3>
-                                <ul class="list-content">
-                                    <li><span class="highlight">Traditional Knowledge:</span> Learn ancient Tamil medical systems.</li>
-                                    <li><span class="highlight">Practical Training:</span> Hands-on experience in Siddha hospitals.</li>
-                                    <li><span class="highlight">Research Focus:</span> Opportunities in Siddha drug research.</li>
-                                    <li><span class="highlight">Clinical Experience:</span> Extensive clinical exposure.</li>
-                                </ul>
-                            </div>
-                        </div>
-            
-                        <!-- B.V.Sc & AH Content -->
-                        <div id="bvsc" class="tab-content">
-                            <div class="section">
-                                <h2 class="section-title">Bachelor of Veterinary Science & Animal Husbandry</h2>
-                                <p class="content-text">
-                                    B.V.Sc & AH is a 5.5-year program focused on animal healthcare, surgery, and management. The program provides comprehensive training in veterinary medicine.
-                                </p>
-                            </div>
-            
-                            <div class="section">
-                                <h3 class="section-title">Career Opportunities</h3>
-                                <div class="features-grid">
-                                    <div class="feature-card">
-                                        <h4>Veterinary Practice</h4>
-                                        <p>Private clinics and hospitals</p>
-                                    </div>
-                                    <div class="feature-card">
-                                        <h4>Government Service</h4>
-                                        <p>Animal husbandry departments</p>
-                                    </div>
-                                    <div class="feature-card">
-                                        <h4>Research</h4>
-                                        <p>Veterinary research institutions</p>
-                                    </div>
-                                    <div class="feature-card">
-                                        <h4>Pharmaceutical Industry</h4>
-                                        <p>Veterinary drug development</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            
-                <script>
-                    function openTab(tabName) {
-                        // Hide all tab content
-                        var tabContents = document.getElementsByClassName('tab-content');
-                        for (var i = 0; i < tabContents.length; i++) {
-                            tabContents[i].classList.remove('active');
-                        }
-            
-                        // Remove active class from all buttons
-                        var tabButtons = document.getElementsByClassName('tab-button');
-                        for (var i = 0; i < tabButtons.length; i++) {
-                            tabButtons[i].classList.remove('active');
-                        }
-            
-                        // Show the selected tab content
-                        document.getElementById(tabName).classList.add('active');
-                        
-                        // Add active class to the clicked button
-                        event.currentTarget.classList.add('active');
-                    }
-            
-                    // Add smooth scrolling
-                    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-                        anchor.addEventListener('click', function (e) {
-                            e.preventDefault();
-                            document.querySelector(this.getAttribute('href')).scrollIntoView({
-                                behavior: 'smooth'
-                            });
-                        });
-                    });
-                </script>
-            </body>
-            </html>
+            // Update navigation
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            // Smooth scroll to content
+            window.scrollTo({
+                top: document.querySelector('.nav-container').offsetTop,
+                behavior: 'smooth'
+            });
+        }
+
+        // Initialize first section
+        window.addEventListener('load', function() {
+            document.querySelector('.course-section.active').style.display = 'block';
+        });
+
+        // Handle mobile navigation scroll
+        const navContainer = document.querySelector('.nav-container');
+        let isScrolling;
+        navContainer.addEventListener('scroll', function() {
+            window.clearTimeout(isScrolling);
+            isScrolling = setTimeout(function() {
+                navContainer.style.overflow = 'hidden';
+            }, 66);
+            navContainer.style.overflow = 'auto';
+        });
+    </script>
+</body>
+</html>

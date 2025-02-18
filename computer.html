@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Computer Science Programs | Academic Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Root Variables */
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #4299e1;
+            --accent-color: #f6ad55;
+            --text-color: #2d3748;
+            --light-bg: #f0f9ff;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --error: #f56565;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --transition-normal: all 0.3s ease;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--light-bg);
+        }
+
+        /* Container and Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Navigation Styles */
+        .nav-container {
+            background: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            list-style: none;
+            padding: 10px;
+        }
+
+        .nav-menu li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: var(--transition-normal);
+            border: 1px solid transparent;
+        }
+
+        .nav-menu li a:hover {
+            background: var(--gray-50);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu li a.active {
+            background: var(--primary-color);
+            color: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Course Section Styles */
+        .course-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-normal);
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .course-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .course-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 2em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .program-type {
+            display: inline-block;
+            padding: 6px 15px;
+            background: var(--accent-color);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .course-description {
+            font-size: 1.1em;
+            line-height: 1.8;
+            color: var(--text-color);
+            margin-bottom: 30px;
+        }
+
+        /* Info Boxes */
+        .info-box {
+            background: var(--gray-50);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-normal);
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .eligibility-box {
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .scope-box {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .program-structure {
+            border-left: 4px solid var(--success);
+        }
+
+        /* List Styles */
+        .list-custom {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list-custom li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            transition: var(--transition-normal);
+        }
+
+        .list-custom li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .list-custom li:hover {
+            padding-left: 30px;
+            color: var(--primary-color);
+        }
+
+        .list-custom li:hover:before {
+            transform: translateX(5px);
+        }
+
+        /* Category Header */
+        .category-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 20px;
+            margin: 30px 0 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .nav-menu {
+                gap: 8px;
+                padding: 8px;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                scrollbar-width: none;
+            }
+
+            .nav-menu::-webkit-scrollbar {
+                display: none;
+            }
+
+            .nav-menu li a {
+                padding: 6px 12px;
+                font-size: 0.85em;
+                white-space: nowrap;
+            }
+
+            .course-title {
+                font-size: 1.5em;
+            }
+
+            .course-description {
+                font-size: 1em;
+            }
+
+            .info-box {
+                padding: 20px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        @keyframes headerFade {
+            0% { opacity: 0.7; transform: translateY(-5px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+
+        .category-header.animate {
+            animation: headerFade 0.3s ease-out;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Computer Science Programs</h1>
+        <p>Excellence in Computer Science Education and Industry-Ready Training</p>
+    </div>
+
+    <div id="categoryHeaderContainer" class="category-header">
+        <h2 id="currentCategory">Bachelor of Computer Applications (BCA)</h2>
+    </div>
+
+    <div class="nav-container">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" class="active" onclick="showCourse('bca-cloud', this, event)">BCA Cloud Computing</a></li>
+                <li><a href="#" onclick="showCourse('bca-ai', this, event)">BCA AI & Cloud</a></li>
+                <li><a href="#" onclick="showCourse('bca-digital', this, event)">BCA Digital Arts</a></li>
+                <li><a href="#" onclick="showCourse('bca-mobile', this, event)">BCA Mobile Dev</a></li>
+                <li><a href="#" onclick="showCourse('mca', this, event)">MCA</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- Course content will go here -->
+        <!-- BCA Cloud Computing -->
+    <div id="bca-cloud" class="course-section active">
+        <h2 class="course-title">BCA (Cloud Computing, Cybersecurity and Ethical Hacking)</h2>
+        <span class="program-type">3-Year Undergraduate Program</span>
+        <p class="course-description">
+            A comprehensive program focusing on cloud technologies, cybersecurity fundamentals, and ethical hacking practices. Students learn to deploy cloud solutions while ensuring security best practices.
+        </p>
+        <div class="info-box program-structure">
+            <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+            <ul class="list-custom">
+                <li>Cloud Computing Fundamentals</li>
+                <li>Network Security</li>
+                <li>Ethical Hacking Methodologies</li>
+                <li>Programming Languages (Python, Java)</li>
+                <li>Database Management Systems</li>
+                <li>Web Technologies</li>
+                <li>Operating Systems</li>
+                <li>Cloud Platforms (AWS, Azure)</li>
+            </ul>
+        </div>
+        <div class="info-box eligibility-box">
+            <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+            <ul class="list-custom">
+                <li>10+2 with minimum 50% marks</li>
+                <li>Mathematics as compulsory subject</li>
+                <li>Qualifying score in entrance exams (SET, CUET, IPM)</li>
+                <li>Basic computer knowledge</li>
+            </ul>
+        </div>
+        <div class="info-box scope-box">
+            <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+            <ul class="list-custom">
+                <li>Cloud Security Specialist</li>
+                <li>Ethical Hacker</li>
+                <li>Security Analyst</li>
+                <li>Cloud Administrator</li>
+                <li>Network Security Engineer</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- BCA AI and Cloud -->
+    <div id="bca-ai" class="course-section">
+        <h2 class="course-title">BCA (Artificial Intelligence, Cloud Computing and DevOps)</h2>
+        <span class="program-type">3-Year Undergraduate Program</span>
+        <p class="course-description">
+            An innovative program combining AI technologies with cloud computing and DevOps practices. Students learn to develop and deploy AI solutions in cloud environments.
+        </p>
+        <div class="info-box program-structure">
+            <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+            <ul class="list-custom">
+                <li>Artificial Intelligence Basics</li>
+                <li>Machine Learning Fundamentals</li>
+                <li>Cloud Services and Architecture</li>
+                <li>DevOps Practices</li>
+                <li>Programming for AI</li>
+                <li>Data Structures and Algorithms</li>
+                <li>Software Development Life Cycle</li>
+                <li>Industry Projects</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- BCA Digital Arts -->
+    <div id="bca-digital" class="course-section">
+        <h2 class="course-title">BCA (Digital Arts, Gaming and AR/VR)</h2>
+        <span class="program-type">3-Year Undergraduate Program</span>
+        <p class="course-description">
+            A specialized program focusing on digital content creation, game development, and immersive technologies. Students learn to create engaging digital experiences using cutting-edge tools.
+        </p>
+        <div class="info-box program-structure">
+            <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+            <ul class="list-custom">
+                <li>Digital Design Principles</li>
+                <li>Game Development</li>
+                <li>AR/VR Development</li>
+                <li>3D Modeling and Animation</li>
+                <li>Unity/Unreal Engine</li>
+                <li>Interactive Media Design</li>
+                <li>User Experience Design</li>
+                <li>Portfolio Development</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- BCA Mobile Development -->
+    <div id="bca-mobile" class="course-section">
+        <h2 class="course-title">BCA (Software Development - Specialization in Mobile 3.0)</h2>
+        <span class="program-type">3-Year Undergraduate Program</span>
+        <p class="course-description">
+            A focused program on mobile application development and modern software development practices. Students learn to create innovative mobile solutions using latest technologies.
+        </p>
+        <div class="info-box program-structure">
+            <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+            <ul class="list-custom">
+                <li>Mobile App Development</li>
+                <li>Cross-Platform Development</li>
+                <li>UI/UX Design for Mobile</li>
+                <li>App Security and Testing</li>
+                <li>Backend Development</li>
+                <li>API Integration</li>
+                <li>Mobile App Marketing</li>
+                <li>Industry Projects</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- MCA Program -->
+    <div id="mca" class="course-section">
+        <h2 class="course-title">Master of Computer Applications (MCA)</h2>
+        <span class="program-type">2-Year Postgraduate Program</span>
+        <p class="course-description">
+            An advanced program designed to create industry-ready IT professionals with expertise in software development, system design, and advanced computing concepts.
+        </p>
+        <div class="info-box program-structure">
+            <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+            <ul class="list-custom">
+                <li>Advanced Programming Concepts</li>
+                <li>Software Engineering</li>
+                <li>Database Management Systems</li>
+                <li>Web Technologies</li>
+                <li>Cloud Computing</li>
+                <li>Artificial Intelligence</li>
+                <li>Project Management</li>
+                <li>Industry Internship</li>
+            </ul>
+        </div>
+        <div class="info-box eligibility-box">
+            <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+            <ul class="list-custom">
+                <li>Bachelor's degree in any discipline with Mathematics</li>
+                <li>Minimum 50% aggregate marks</li>
+                <li>Valid entrance exam score</li>
+                <li>Programming knowledge preferred</li>
+            </ul>
+        </div>
+        <div class="info-box scope-box">
+            <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+            <ul class="list-custom">
+                <li>Software Developer</li>
+                <li>System Analyst</li>
+                <li>Project Manager</li>
+                <li>Database Administrator</li>
+                <li>Software Architect</li>
+                <li>IT Consultant</li>
+                <li>Technical Lead</li>
+            </ul>
+        </div>
+    </div>
+
+    </div>
+
+    <script>
+        // Category Management
+        const categoryMap = {
+            'bca-cloud': 'Bachelor of Computer Applications (BCA)',
+            'bca-ai': 'Bachelor of Computer Applications (BCA)',
+            'bca-digital': 'Bachelor of Computer Applications (BCA)',
+            'bca-mobile': 'Bachelor of Computer Applications (BCA)',
+            'mca': 'Master of Computer Applications (MCA)'
+        };
+
+        function updateCategory(courseId) {
+            const categoryHeader = document.getElementById('currentCategory');
+            if (categoryHeader && categoryMap[courseId]) {
+                categoryHeader.textContent = categoryMap[courseId];
+                animateCategoryChange();
+            }
+        }
+
+        function animateCategoryChange() {
+            const header = document.querySelector('.category-header');
+            header.classList.remove('animate');
+            void header.offsetHeight;
+            header.classList.add('animate');
+        }
+
+        function showCourse(courseId, element, event) {
+            event.preventDefault();
+            
+            updateCategory(courseId);
+            
+            const sections = document.querySelectorAll('.course-section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.classList.remove('active');
+                setTimeout(() => {
+                    section.style.display = 'none';
+                }, 300);
+            });
+            
+            const selectedSection = document.getElementById(courseId);
+            if (selectedSection) {
+                setTimeout(() => {
+                    selectedSection.style.display = 'block';
+                    selectedSection.offsetHeight;
+                    selectedSection.style.opacity = '1';
+                    selectedSection.classList.add('active');
+                }, 300);
+            }
+            
+            updateNavigation(element);
+            scrollToContent();
+        }
+
+        function updateNavigation(element) {
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            if (element) {
+                element.classList.add('active');
+            }
+        }
+
+        function scrollToContent() {
+            const navContainer = document.querySelector('.nav-container');
+            if (navContainer) {
+                window.scrollTo({
+                    top: navContainer.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelector('.course-section.active').style.display = 'block';
+            initMobileNav();
+        });
+
+        function initMobileNav() {
+            const navContainer = document.querySelector('.nav-container');
+            if (!navContainer) return;
+
+            let isScrolling;
+            navContainer.addEventListener('scroll', function() {
+                window.clearTimeout(isScrolling);
+                isScrolling = setTimeout(function() {
+                    navContainer.style.overflow = 'hidden';
+                }, 66);
+                navContainer.style.overflow = 'auto';
+            });
+        }
+    </script>
+</body>
+</html>

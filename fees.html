@@ -1,217 +1,191 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- Existing Head Content -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Success Meets Educational Consultancy - Fees Structure</title>
-    
-    <!-- Meta Tags for SEO -->
-    <meta name="description" content="Success Meets Educational Consultancy - View and understand our fees structure for various courses and colleges.">
-    <meta name="keywords" content="fees structure, educational consultancy, college fees, Success Meets">
-    
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    <title>Success Meets - Fees Structure Form</title>
     
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    
-    <!-- AOS CSS -->
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
-    <link href="assets/css/styles.css" rel="stylesheet">
+    <style>
+        /* Custom styles */
+        :root {
+            --primary-color: #0d6efd;
+            --secondary-color: #6c757d;
+            --success-color: #198754;
+            --warning-color: #ffc107;
+            --danger-color: #dc3545;
+        }
 
-    <!-- Ribbon CSS -->
-    <link rel="stylesheet" href="assets/css/ribbon.css">
+        body {
+            background-color: #f8f9fa;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
 
-    <!-- EmailJS SDK -->
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-    <script type="text/javascript">
-       (function(){
-          emailjs.init("YOUR_USER_ID"); // Replace with your actual User ID
-       })();
-    </script>
+        .form-container {
+            max-width: 800px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-title {
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: bold;
+            font-size: 2rem;
+        }
+
+        .form-control:focus, 
+        .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+        }
+
+        .btn-primary {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+            width: 100%;
+            padding: 0.8rem;
+            font-size: 1.1rem;
+            margin-top: 1rem;
+        }
+
+        .btn-primary:hover {
+            background-color: #0b5ed7;
+            border-color: #0a58ca;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: #333;
+        }
+
+        .required-field {
+            color: var(--danger-color);
+        }
+
+        .form-text {
+            color: var(--secondary-color);
+            font-size: 0.875rem;
+        }
+
+        .other-input {
+            margin-top: 0.5rem;
+        }
+
+        .alert {
+            margin-top: 1rem;
+            border-radius: 5px;
+        }
+
+        .alert-success {
+            background-color: #d1e7dd;
+            border-color: #badbcc;
+            color: #0f5132;
+        }
+
+        .alert-danger {
+            background-color: #f8d7da;
+            border-color: #f5c2c7;
+            color: #842029;
+        }
+
+        .form-check {
+            margin-bottom: 0.5rem;
+        }
+
+        .form-check-input:checked {
+            background-color: var(--primary-color);
+            border-color: var(--primary-color);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .form-container {
+                margin: 1rem;
+                padding: 1rem;
+            }
+
+            .form-title {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
 </head>
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
-    <div class="container">
-        <!-- Logo -->
-        <a class="navbar-brand" href="index.html">
-            <img src="assets/images/logo.png" alt="Success Meets Logo" height="40">
-            Success Meets
-        </a>
-        
-        <!-- Mobile Toggle Button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!-- Navigation Links -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog.html">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="institutes.html">Institutes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="study-abroad.html">Study Abroad</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="entrance-exams.html">Entrance Exams</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admissions.html">Admissions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="fees.html">Fees</a>
-                </li>
-            </ul>
-        </div>
-    </div>
-</nav>
-
-<!-- Sub Navigation Bar -->
-<div class="sub-navbar bg-light py-2">
-    <div class="container">
-        <ul class="nav justify-content-center">
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">MBBS</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Medical</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Paramedical</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Engineering</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Nursing</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Pharmacy</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Physiotherapy</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Management</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Science</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Computer</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Agriculture</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">Architecture</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link text-primary" href="#">B-Design</a>
-            </li>
-        </ul>
-    </div>
-</div>
-
-    
-    <!-- Ribbon Section -->
-    <div class="ribbon-container">
-        <div class="ribbon" onclick="openRibbonModal()">
-            <div class="moving-text">
-                🚀 Get notified about our latest courses and exclusive offers! Click here to join our community. 🚀
-            </div>
-        </div>
-    </div>
-
-    <!-- Ribbon Modal -->
-    <div id="ribbonModal" class="ribbon-modal">
-        <div class="ribbon-modal-content">
-            <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
-            <h2>Get Notified</h2>
-            <form id="ribbonForm" class="ribbon-form">
-                <label for="ribbonName">Name:</label>
-                <input type="text" id="ribbonName" required>
-
-                <label for="ribbonMobile">Mobile No:</label>
-                <input type="tel" id="ribbonMobile" pattern="[0-9]{10}" required>
-
-                <label for="ribbonEmail">Email:</label>
-                <input type="email" id="ribbonEmail" required>
-
-                <button type="submit">Notify Me</button>
-            </form>
-        </div>
-    </div>
-    
-    <div class="container mt-5 pt-5">
-        <h2 class="text-center mb-4">Get Your Fees Structure</h2>
+    <div class="container form-container">
+        <h2 class="form-title">Get Your Fees Structure</h2>
         <form id="feesForm">
+            <!-- Name Field -->
             <div class="mb-3">
-                <label for="name" class="form-label">Name <span class="text-danger">*</span></label>
-                <input type="text" class="form-control" id="name" name="name" required>
+                <label for="name" class="form-label">Name <span class="required-field">*</span></label>
+                <input type="text" class="form-control" id="name" name="name" 
+                       placeholder="Enter your full name" required>
             </div>
             
+            <!-- Email Field -->
             <div class="mb-3">
-                <label for="email" class="form-label">Email ID <span class="text-danger">*</span></label>
-                <input type="email" class="form-control" id="email" name="email" required>
+                <label for="email" class="form-label">Email ID <span class="required-field">*</span></label>
+                <input type="email" class="form-control" id="email" name="email" 
+                       placeholder="Enter your email address" required>
             </div>
             
+            <!-- Mobile Field -->
             <div class="mb-3">
-                <label for="mobile" class="form-label">Mobile No <span class="text-danger">*</span></label>
-                <input type="tel" class="form-control" id="mobile" name="mobile" pattern="[0-9]{10}" required>
-                <div class="form-text">Please enter a 10-digit mobile number.</div>
+                <label for="mobile" class="form-label">Mobile No <span class="required-field">*</span></label>
+                <input type="tel" class="form-control" id="mobile" name="mobile" 
+                       pattern="[0-9]{10}" placeholder="Enter 10-digit mobile number" required>
+                <div class="form-text">Please enter a valid 10-digit mobile number</div>
+            </div>
+
+            <!-- Degree Select -->
+            <div class="mb-3">
+                <label for="degree" class="form-label">Select Degree <span class="required-field">*</span></label>
+                <select class="form-select" id="degree" name="degree" required>
+                    <option value="" disabled selected>Select Degree</option>
+                </select>
+                <div id="otherDegreeContainer"></div>
             </div>
             
+            <!-- College Select -->
             <div class="mb-3">
-                <label for="college" class="form-label">Select College Name <span class="text-danger">*</span></label>
+                <label for="college" class="form-label">Select College Name <span class="required-field">*</span></label>
                 <select class="form-select" id="college" name="college" required>
                     <option value="" disabled selected>Select College</option>
-                    <!-- Options will be populated via JavaScript -->
                 </select>
+                <div id="otherCollegeContainer"></div>
             </div>
             
+            <!-- Branch Select -->
             <div class="mb-3">
-                <label for="branch" class="form-label">Branch <span class="text-danger">*</span></label>
+                <label for="branch" class="form-label">Branch <span class="required-field">*</span></label>
                 <select class="form-select" id="branch" name="branch" required>
                     <option value="" disabled selected>Select Branch</option>
-                    <!-- Options will be populated based on selected college -->
                 </select>
+                <div id="otherBranchContainer"></div>
             </div>
             
+            <!-- Quota Selection -->
             <div class="mb-3">
-                <label class="form-label">Quota <span class="text-danger">*</span></label>
+                <label class="form-label">Quota <span class="required-field">*</span></label>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="quota" id="government" value="Government" required>
-                    <label class="form-check-label" for="government">
-                        Government
-                    </label>
+                    <input class="form-check-input" type="radio" name="quota" 
+                           id="government" value="Government" required>
+                    <label class="form-check-label" for="government">Government</label>
                 </div>
                 <div class="form-check">
-                    <input class="form-check-input" type="radio" name="quota" id="management" value="Management">
-                    <label class="form-check-label" for="management">
-                        Management
-                    </label>
+                    <input class="form-check-input" type="radio" name="quota" 
+                           id="management" value="Management">
+                    <label class="form-check-label" for="management">Management</label>
                 </div>
             </div>
             
+            <!-- Submit Button -->
             <button type="submit" class="btn btn-primary">Get Fees Structure</button>
         </form>
 
@@ -219,233 +193,453 @@
         <div id="formAlert" class="mt-3"></div>
     </div>
 
-    <!-- Footer (Optional) -->
-     <!-- Footer -->
-    <footer class="footer bg-dark text-white py-5">
-        <div class="container">
-            <div class="row">
-                <!-- Company Info -->
-                <div class="col-md-4 mb-4">
-                    <h5>Success Meets</h5>
-                    <p>Transforming dreams into reality through expert educational guidance and career counseling.</p>
-                    <div class="social-links">
-                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
-                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
-                        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
-                    </div>
-                </div>
-                
-                <!-- Quick Links -->
-                <div class="col-md-4 mb-4">
-                    <h5>Quick Links</h5>
-                    <ul class="list-unstyled">
-                        <li><a href="about.html" class="text-white">About Us</a></li>
-                        <li><a href="services.html" class="text-white">Services</a></li>
-                        <li><a href="blog.html" class="text-white">Blog</a></li>
-                        <li><a href="contact.html" class="text-white">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <!-- Newsletter -->
-                <div class="col-md-4 mb-4">
-                    <h5>Newsletter</h5>
-                    <p>Subscribe to our newsletter for updates and insights.</p>
-                    <form class="newsletter-form">
-                        <div class="input-group">
-                            <input type="email" class="form-control" placeholder="Your Email">
-                            <button class="btn btn-primary" type="submit">Subscribe</button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-            
-            <!-- Copyright -->
-            <div class="text-center pt-4 border-top">
-                <p>&copy; 2023 Success Meets Educational Consultancy. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Floating Social Media Buttons -->
-    <div class="social-float">
-        <a href="https://wa.me/9087442108" class="social-btn whatsapp-float" target="_blank" aria-label="WhatsApp">
-            <i class="bi bi-whatsapp"></i>
-        </a>
-        <a href="https://x.com/yourprofile" class="social-btn x-float" target="_blank" aria-label="X">
-            <i class="bi bi-twitter"></i>
-        </a>
-        <a href="https://www.linkedin.com/in/success-meets-technology-b0378734b/" class="social-btn linkedin-float" target="_blank" aria-label="LinkedIn">
-            <i class="bi bi-linkedin"></i>
-        </a>
-        <a href="https://www.instagram.com/success_meets_foundation/" class="social-btn instagram-float" target="_blank" aria-label="Instagram">
-            <i class="bi bi-instagram"></i>
-        </a>
-        <a href="https://t.me/successmeets" class="social-btn telegram-float" target="_blank" aria-label="Telegram">
-            <i class="bi bi-telegram"></i>
-        </a>
-        <a href="https://www.facebook.com/share/19ryQbVNLp/" class="social-btn facebook-float" target="_blank" aria-label="Facebook">
-            <i class="bi bi-facebook"></i>
-        </a>
-    </div>
-
-    <!-- Scroll to Top Button -->
-    <button id="scrollToTop" class="scroll-to-top">
-        <i class="bi bi-arrow-up"></i>
-    </button>
-    <!-- Include your footer here -->
-    <!-- Example: <?php include 'footer.html'; ?> -->
-
-    <!-- Bootstrap JS and dependencies -->
+    <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- Add this script section after the Bootstrap JS -->
+        <script>
+            // Degree List - Comprehensive list of degrees
+            const degrees = [
+                // Engineering Degrees
+                "B.E. - Bachelor of Engineering",
+                "B.Tech - Bachelor of Technology",
+                "M.E. - Master of Engineering",
+                "M.Tech - Master of Technology",
+                
+                // Medical & Healthcare Degrees
+                "MBBS - Bachelor of Medicine and Bachelor of Surgery",
+                "BDS - Bachelor of Dental Surgery",
+                "BAMS - Bachelor of Ayurvedic Medicine and Surgery",
+                "BHMS - Bachelor of Homeopathic Medicine and Surgery",
+                "B.Pharm - Bachelor of Pharmacy",
+                "M.Pharm - Master of Pharmacy",
+                "BSc Nursing - Bachelor of Science in Nursing",
+                "MSc Nursing - Master of Science in Nursing",
+                "BPT - Bachelor of Physiotherapy",
+                "MPT - Master of Physiotherapy",
+                
+                // Computer & IT Degrees
+                "BCA - Bachelor of Computer Applications",
+                "MCA - Master of Computer Applications",
+                "BSc IT - Bachelor of Science in Information Technology",
+                "MSc IT - Master of Science in Information Technology",
+                
+                // Business & Management Degrees
+                "BBA - Bachelor of Business Administration",
+                "MBA - Master of Business Administration",
+                "BBM - Bachelor of Business Management",
+                
+                // Science Degrees
+                "BSc - Bachelor of Science",
+                "MSc - Master of Science",
+                
+                // Arts Degrees
+                "BA - Bachelor of Arts",
+                "MA - Master of Arts",
+                
+                // Architecture & Design
+                "B.Arch - Bachelor of Architecture",
+                "M.Arch - Master of Architecture",
+                "B.Des - Bachelor of Design",
+                "M.Des - Master of Design",
+                
+                // Law Degrees
+                "LLB - Bachelor of Laws",
+                "LLM - Master of Laws",
+                
+                // Commerce Degrees
+                "B.Com - Bachelor of Commerce",
+                "M.Com - Master of Commerce",
+                
+                // Agriculture
+                "BSc Agriculture",
+                "MSc Agriculture",
+                
+                // Education
+                "B.Ed - Bachelor of Education",
+                "M.Ed - Master of Education",
     
-    <!-- AOS JS -->
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script>
-        AOS.init();
-    </script>
+                // Research Degrees
+                "Ph.D - Doctor of Philosophy",
+                "M.Phil - Master of Philosophy"
+            ];
     
-    <!-- Custom JS -->
-    <script src="assets/js/scripts.js"></script>
+            // Branch mapping based on degree
+            const branchMapping = {
+                "B.E. - Bachelor of Engineering": [
+                    "Aerospace Engineering",
+                    "Agricultural Engineering",
+                    "Automobile Engineering",
+                    "Biomedical Engineering",
+                    "Biotechnology Engineering",
+                    "Chemical Engineering",
+                    "Civil Engineering",
+                    "Computer Science and Engineering",
+                    "Electrical and Electronics Engineering",
+                    "Electronics and Communication Engineering",
+                    "Industrial Engineering",
+                    "Information Technology",
+                    "Mechanical Engineering",
+                    "Mechatronics Engineering",
+                    "Mining Engineering",
+                    "Production Engineering",
+                    "Robotics Engineering",
+                    "Software Engineering"
+                ],
+                "B.Tech - Bachelor of Technology": [
+                    "Artificial Intelligence and Machine Learning",
+                    "Automobile Engineering",
+                    "Biotechnology",
+                    "Chemical Engineering",
+                    "Civil Engineering",
+                    "Computer Science and Engineering",
+                    "Cyber Security",
+                    "Data Science",
+                    "Electrical and Electronics Engineering",
+                    "Electronics and Communication Engineering",
+                    "Information Technology",
+                    "Mechanical Engineering",
+                    "Robotics and Automation",
+                    "Software Engineering"
+                ],
+                "BSc - Bachelor of Science": [
+                    "Mathematics",
+                    "Physics",
+                    "Chemistry",
+                    "Computer Science",
+                    "Information Technology",
+                    "Electronics",
+                    "Biotechnology",
+                    "Microbiology",
+                    "Statistics",
+                    "Psychology",
+                    "Nutrition and Dietetics",
+                    "Visual Communication",
+                    "Animation and Multimedia"
+                ],
+                "BCA - Bachelor of Computer Applications": [
+                    "General",
+                    "Cloud Computing and Information Security",
+                    "Data Analytics",
+                    "Mobile Applications",
+                    "Artificial Intelligence",
+                    "Gaming and Animation"
+                ],
+                "MBA - Master of Business Administration": [
+                    "Finance",
+                    "Marketing",
+                    "Human Resource Management",
+                    "Operations Management",
+                    "International Business",
+                    "Information Technology",
+                    "Healthcare Management",
+                    "Project Management",
+                    "Business Analytics",
+                    "Digital Marketing"
+                ]
+                // Add more degree-branch mappings as needed
+            };
+    
+            // College List
+            const colleges = [
+                // Universities
+                "VIT University, Vellore",
+                "SRM University, Chennai & Trichy",
+                "Hindustan University, Chennai",
+                "Vinayaka Missions University, Salem",
+                "Karpagam University, Coimbatore",
+                "Sathyabama University, Chennai",
+                "Dr. MGR University, Chennai",
+                "Meenakshi University, Chennai",
+                "Saveetha University, Chennai",
+                "Vel's University, Chennai",
+                "Amirtha University, Kovai",
+    
+                // Engineering Top Colleges
+                "PGP Group of Institutions",
+                "Kumaraguru College of Technology",
+                "Sri Krishna College of Engg & Technology",
+                "Sri Ramakrishna Engineering College",
+                "Dr. Mahalingam College of Engg. & Tech",
+                "SRM Group of Institutions",
+                "Sathyabama Group of Institutions",
+                "RMK & RMD Group of Institutions",
+                "Panimalar Group of Institutions",
+                "Kongu Engineering College",
+                "Sona College of Technology",
+                "Bannari Group of Institution",
+    
+                // Coimbatore Zone
+                "Karpagam College of Engineering",
+                "Hindusthan College of Engineering",
+                "Maharaja Group of Institutions",
+                "Kathir College of Engineering",
+                "Nandha Group of Institutions",
+                "Dhanalakshmi Engineering College",
+                "Akshaya College of Engineering",
+                "Rathinam Engineering College",
+                "Kalaignar Karunanithi Engineering College",
+                "KPR Engineering College",
+                "KGISL Engineering College",
+                "Sri Sakthi Engineering College",
+                "Park College of Engineering",
+                "RVS Engineering College",
+                "Sasuri Group of Institutions",
+                "Nehru Group of Institutes",
+                "Adithiya Institute of Technology",
+    
+                // Salem Zone
+                "Muthayammal Engineering College",
+                "Mahendra Group of Institutions",
+                "Paavai Group of Institutions",
+                "Ganamani Engineering College",
+                "Vivekananda Engineering College",
+                "Kumarasamy College of Engineering",
+                "Kongunadu Engineering College",
+                "Sengunthar Engineering College",
+                "Excel Engineering College",
+                "AVS Engineering College",
+                "The Kavery Engineering College",
+                "KSR Group of Institutions",
+                "Dr. Dhirajlal Engineering College",
+                "Knowledge Institute of Technology",
+                "Shanmuga Group of Colleges",
+                "Venkateshwara Group of Institutions",
+                "Tagore Engineering College",
+                "Bharathiyar Engineering College",
+                "Salem College of Technology",
+                "Ganesh Engineering College",
+                "SSM College of Engineering"
+            ];
+                    // DOM Elements
+        const degreeSelect = document.getElementById('degree');
+        const collegeSelect = document.getElementById('college');
+        const branchSelect = document.getElementById('branch');
+        const otherDegreeContainer = document.getElementById('otherDegreeContainer');
+        const otherCollegeContainer = document.getElementById('otherCollegeContainer');
+        const otherBranchContainer = document.getElementById('otherBranchContainer');
+        const feesForm = document.getElementById('feesForm');
 
-    <!-- Ribbon JS -->
-    <script src="assets/js/ribbon.js"></script>
-
-    <!-- Fees Form Script -->
-    <script>
-        // Path to your colleges.json file
-        const collegesJSONPath = 'data/colleges.json'; // Adjust the path if necessary
-
-        let collegeData = [];
-
-        // Fetch the colleges data from colleges.json
-        fetch(collegesJSONPath)
-            .then(response => {
-                if (!response.ok) {
-                    throw new Error('Network response was not ok ' + response.statusText);
-                }
-                return response.json();
-            })
-            .then(data => {
-                collegeData = data;
-                populateCollegeSelect();
-            })
-            .catch(error => {
-                console.error('Error fetching colleges data:', error);
-                showAlert('Unable to load college data at this time. Please try again later.', 'danger');
-            });
-
-        // Function to populate the College Select dropdown
-        function populateCollegeSelect() {
-            const collegeSelect = document.getElementById('college');
-            collegeData.forEach(college => {
+        // Populate Degree Select
+        function populateDegreeSelect() {
+            // Sort degrees alphabetically
+            degrees.sort();
+            
+            // Clear existing options
+            degreeSelect.innerHTML = '<option value="" disabled selected>Select Degree</option>';
+            
+            // Add degrees to select element
+            degrees.forEach(degree => {
                 const option = document.createElement('option');
-                option.value = college.collegeName;
-                option.textContent = college.collegeName;
-                collegeSelect.appendChild(option);
+                option.value = degree;
+                option.textContent = degree;
+                degreeSelect.appendChild(option);
             });
+
+            // Add "Others" option
+            const othersOption = document.createElement('option');
+            othersOption.value = "others";
+            othersOption.textContent = "Others";
+            degreeSelect.appendChild(othersOption);
         }
 
-        // Function to populate the Branch Select dropdown based on selected college
-        function populateBranchSelect(selectedCollege) {
-            const branchSelect = document.getElementById('branch');
-            // Clear previous options
+        // Populate College Select
+        function populateCollegeSelect() {
+            // Sort colleges alphabetically
+            colleges.sort();
+            
+            // Clear existing options
+            collegeSelect.innerHTML = '<option value="" disabled selected>Select College</option>';
+            
+            // Add colleges to select element
+            colleges.forEach(college => {
+                const option = document.createElement('option');
+                option.value = college;
+                option.textContent = college;
+                collegeSelect.appendChild(option);
+            });
+
+            // Add "Others" option
+            const othersOption = document.createElement('option');
+            othersOption.value = "others";
+            othersOption.textContent = "Others";
+            collegeSelect.appendChild(othersOption);
+        }
+
+        // Populate Branch Select based on selected degree
+        function populateBranchSelect(selectedDegree) {
+            // Clear existing options
             branchSelect.innerHTML = '<option value="" disabled selected>Select Branch</option>';
-            // Find the selected college in the data
-            const college = collegeData.find(col => col.collegeName === selectedCollege);
-            if (college && college.branches.length > 0) {
-                college.branches.forEach(branch => {
+            
+            if (branchMapping[selectedDegree]) {
+                // Sort branches alphabetically
+                const branches = branchMapping[selectedDegree].sort();
+                
+                // Add branches to select element
+                branches.forEach(branch => {
                     const option = document.createElement('option');
                     option.value = branch;
                     option.textContent = branch;
                     branchSelect.appendChild(option);
                 });
-            } else {
-                // If no branches found, you can display a message or disable the dropdown
-                const option = document.createElement('option');
-                option.value = "";
-                option.textContent = "No branches available";
-                branchSelect.appendChild(option);
             }
+            
+            // Add "Others" option
+            const othersOption = document.createElement('option');
+            othersOption.value = "others";
+            othersOption.textContent = "Others";
+            branchSelect.appendChild(othersOption);
         }
 
-        // Event listener for College Select change
-        const collegeSelectElement = document.getElementById('college');
-        collegeSelectElement.addEventListener('change', function() {
-            const selectedCollege = this.value;
-            populateBranchSelect(selectedCollege);
-        });
-
-        // Handle Form Submission
-        const feesForm = document.getElementById('feesForm');
-        feesForm.addEventListener('submit', function(e) {
-            e.preventDefault(); // Prevent default form submission
-
-            // Collect form data
-            const formData = {
-                name: document.getElementById('name').value.trim(),
-                email: document.getElementById('email').value.trim(),
-                mobile: document.getElementById('mobile').value.trim(),
-                college: document.getElementById('college').value,
-                branch: document.getElementById('branch').value,
-                quota: document.querySelector('input[name="quota"]:checked').value
-            };
-
-            // Validate form data
-            if (!validateFormData(formData)) {
-                return;
+        // Event Listeners
+        degreeSelect.addEventListener('change', function() {
+            if (this.value === "others") {
+                otherDegreeContainer.innerHTML = `
+                    <input type="text" 
+                           class="form-control other-input" 
+                           id="otherDegree" 
+                           placeholder="Enter Degree Name" 
+                           required>
+                `;
+                // Reset branch select
+                branchSelect.innerHTML = '<option value="" disabled selected>Select Branch</option>';
+                const othersOption = document.createElement('option');
+                othersOption.value = "others";
+                othersOption.textContent = "Others";
+                branchSelect.appendChild(othersOption);
+            } else {
+                otherDegreeContainer.innerHTML = '';
+                populateBranchSelect(this.value);
             }
-
-            // Send email via EmailJS
-            emailjs.send('YOUR_SERVICE_ID', 'YOUR_TEMPLATE_ID', formData)
-                .then(function(response) {
-                    console.log('SUCCESS!', response.status, response.text);
-                    showAlert('Your request has been submitted successfully. We will contact you shortly.', 'success');
-                    feesForm.reset();
-                    // Reset Branch Select
-                    document.getElementById('branch').innerHTML = '<option value="" disabled selected>Select Branch</option>';
-                }, function(error) {
-                    console.log('FAILED...', error);
-                    showAlert('There was an error submitting your request. Please try again later.', 'danger');
-                });
         });
 
-        // Form Data Validation Function
-        function validateFormData(data) {
-            // Basic validation (additional validations can be added)
-            if (data.name === "" || data.email === "" || data.mobile === "" ||
-                data.college === "" || data.branch === "" || data.quota === "") {
-                showAlert('Please fill in all the required fields.', 'warning');
+        collegeSelect.addEventListener('change', function() {
+            if (this.value === "others") {
+                otherCollegeContainer.innerHTML = `
+                    <input type="text" 
+                           class="form-control other-input" 
+                           id="otherCollege" 
+                           placeholder="Enter College Name" 
+                           required>
+                `;
+            } else {
+                otherCollegeContainer.innerHTML = '';
+            }
+        });
+
+        branchSelect.addEventListener('change', function() {
+            if (this.value === "others") {
+                otherBranchContainer.innerHTML = `
+                    <input type="text" 
+                           class="form-control other-input" 
+                           id="otherBranch" 
+                           placeholder="Enter Branch Name" 
+                           required>
+                `;
+            } else {
+                otherBranchContainer.innerHTML = '';
+            }
+        });
+
+        // Form Validation
+        function validateForm(data) {
+            // Name validation
+            if (data.name.length < 3) {
+                showAlert('Name should be at least 3 characters long', 'danger');
                 return false;
             }
 
-            // Email format validation
+            // Email validation
             const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailPattern.test(data.email)) {
-                showAlert('Please enter a valid email address.', 'warning');
+                showAlert('Please enter a valid email address', 'danger');
                 return false;
             }
 
-            // Mobile number validation
+            // Mobile validation
             const mobilePattern = /^[0-9]{10}$/;
             if (!mobilePattern.test(data.mobile)) {
-                showAlert('Please enter a valid 10-digit mobile number.', 'warning');
+                showAlert('Please enter a valid 10-digit mobile number', 'danger');
                 return false;
+            }
+
+            // Check all fields are filled
+            for (let key in data) {
+                if (!data[key]) {
+                    showAlert('Please fill all required fields', 'danger');
+                    return false;
+                }
             }
 
             return true;
         }
 
-        // Function to Display Alerts
+        // Show Alert Function
         function showAlert(message, type) {
-            const formAlert = document.getElementById('formAlert');
-            formAlert.innerHTML = `
+            const alertDiv = document.getElementById('formAlert');
+            alertDiv.innerHTML = `
                 <div class="alert alert-${type} alert-dismissible fade show" role="alert">
                     ${message}
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             `;
+
+            // Auto-dismiss success alerts after 5 seconds
+            if (type === 'success') {
+                setTimeout(() => {
+                    const alert = alertDiv.querySelector('.alert');
+                    if (alert) {
+                        alert.remove();
+                    }
+                }, 5000);
+            }
         }
+
+        // Form Submission Handler
+        feesForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                mobile: document.getElementById('mobile').value.trim(),
+                degree: degreeSelect.value === "others" 
+                    ? document.getElementById('otherDegree').value.trim() 
+                    : degreeSelect.value,
+                college: collegeSelect.value === "others" 
+                    ? document.getElementById('otherCollege').value.trim() 
+                    : collegeSelect.value,
+                branch: branchSelect.value === "others" 
+                    ? document.getElementById('otherBranch').value.trim() 
+                    : branchSelect.value,
+                quota: document.querySelector('input[name="quota"]:checked')?.value
+            };
+
+            if (validateForm(formData)) {
+                // Here you would typically send the data to a server
+                console.log('Form Data:', formData);
+                
+                // Show success message
+                showAlert('Form submitted successfully! We will contact you shortly with the fees details.', 'success');
+                
+                // Reset form
+                feesForm.reset();
+                otherDegreeContainer.innerHTML = '';
+                otherCollegeContainer.innerHTML = '';
+                otherBranchContainer.innerHTML = '';
+                branchSelect.innerHTML = '<option value="" disabled selected>Select Branch</option>';
+                
+                // Reset selects to initial state
+                populateDegreeSelect();
+                populateCollegeSelect();
+            }
+        });
+
+        // Initialize the form
+        document.addEventListener('DOMContentLoaded', function() {
+            populateDegreeSelect();
+            populateCollegeSelect();
+        });
     </script>
 </body>
 </html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Referrals</title>
+    <link rel="stylesheet" href="assets/css/referrals.css">
+</head>
+<body>
+    <div class="referral-container">
+        <div class="referral-header">
+            <h2>Refer a Friend</h2>
+            <p>Help your friends discover great opportunities</p>
+        </div>
+
+        <form id="referralForm">
+            <!-- Student Details Section -->
+            <div class="form-section">
+                <h3 class="section-title">Student Details</h3>
+                
+                <div class="form-group">
+                    <label class="required" for="studentName">Student Name</label>
+                    <input 
+                        type="text" 
+                        id="studentName" 
+                        name="studentName" 
+                        required
+                        placeholder="Enter your full name"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="required" for="studentMobile">Mobile Number</label>
+                    <input 
+                        type="tel" 
+                        id="studentMobile" 
+                        name="studentMobile" 
+                        required
+                        placeholder="Enter your mobile number"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="required" for="studentEmail">Email Address</label>
+                    <input 
+                        type="email" 
+                        id="studentEmail" 
+                        name="studentEmail" 
+                        required
+                        placeholder="Enter your email address"
+                    >
+                </div>
+            </div>
+
+            <!-- Referral Details Section -->
+            <div class="form-section">
+                <h3 class="section-title">Referral's Details</h3>
+                
+                <div class="form-group">
+                    <label class="required" for="referralName">Referral's Name</label>
+                    <input 
+                        type="text" 
+                        id="referralName" 
+                        name="referralName" 
+                        required
+                        placeholder="Enter Referral's full name"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="required" for="referralMobile">Referral's Mobile Number</label>
+                    <input 
+                        type="tel" 
+                        id="referralMobile" 
+                        name="referralMobile" 
+                        required
+                        placeholder="Enter Referral's mobile number"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label class="required" for="referralEmail">Referral's Email Address</label>
+                    <input 
+                        type="email" 
+                        id="referralEmail" 
+                        name="referralEmail" 
+                        required
+                        placeholder="Enter Referral's email address"
+                    >
+                </div>
+            </div>
+
+            <button type="submit" class="submit-button">Submit Referral</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script src="assets/js/referrals.js"></script>
+</body>
+</html>

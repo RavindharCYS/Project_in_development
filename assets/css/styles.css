@@ -77,7 +77,12 @@ body {
 }
 
 /* === Navigation === */
-
+/* === Navigation === */
+/* === Navigation === */
+/* === Navigation === */
+/* === Navigation === */
+/* === Navigation === */
+/* === Navigation === */
 .navbar {
     transition: var(--transition);
     background-color: var(--navbar-bg) !important;
@@ -115,6 +120,7 @@ body {
     font-weight: bold;
 }
 
+/* Sub Navbar Styles */
 .sub-navbar {
     background-color: #e7f3ff;
     position: fixed;
@@ -122,40 +128,90 @@ body {
     width: 100%;
     z-index: 1030;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.sub-navbar::-webkit-scrollbar {
+    display: none;
+}
+
+.sub-navbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.sub-navbar .nav {
+    display: flex;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+    padding: 0 10px;
 }
 
 .sub-navbar .nav-link {
     color: #007bff;
     font-weight: 500;
+    flex: 0 0 auto;
 }
 
 .sub-navbar .nav-link:hover {
     text-decoration: underline;
 }
 
+body {
+    padding-top: 112px;
+}
+
+/* Mobile and Tablet Styles */
 @media (max-width: 768px) {
+    body {
+        padding-top: 56px;
+    }
+
     .navbar {
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1050;
         padding-bottom: 0;
+    }
+
+    .ribbon-container {
+        position: fixed !important;
+        top: 56px !important;
+        z-index: 1045;
     }
 
     .sub-navbar {
         position: static;
-        top: 0;
-        margin-top: 56px;
+        margin-top: 40px; /* Reduced margin to remove gap */
+        overflow-x: visible;
     }
     
     .sub-navbar .nav {
-        flex-direction: column;
-        align-items: flex-start;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 5px;
+        padding: 10px;
+        white-space: normal;
     }
 
     .sub-navbar .nav-link {
-        padding-left: 15px;
+        padding: 8px 5px;
+        text-align: center;
+        font-size: 14px;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border-bottom: 1px solid rgba(0,123,255,0.1);
     }
 }
 
-body {
-    padding-top: 112px;
+/* Very small screens */
+@media (max-width: 480px) {
+    .sub-navbar .nav-link {
+        font-size: 12px;
+    }
 }
 
 /* === Hero Section === */

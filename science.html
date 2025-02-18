@@ -1,0 +1,1252 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Science Programs | Academic Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Root Variables */
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #4299e1;
+            --accent-color: #f6ad55;
+            --text-color: #2d3748;
+            --light-bg: #f0f9ff;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --error: #f56565;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --transition-normal: all 0.3s ease;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--light-bg);
+        }
+
+        /* Container and Layout */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Category Header */
+        .category-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 20px;
+            margin: 30px 0 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Navigation Styles */
+        .nav-container {
+            background: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            list-style: none;
+            padding: 10px;
+        }
+
+        .nav-menu li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: var(--transition-normal);
+            border: 1px solid transparent;
+        }
+
+        .nav-menu li a:hover {
+            background: var(--gray-50);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu li a.active {
+            background: var(--primary-color);
+            color: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Science Programs</h1>
+        <p>Excellence in Scientific Education and Research</p>
+    </div>
+
+    <!-- Single Category Header -->
+    <div id="categoryHeaderContainer" class="category-header">
+        <h2 id="currentCategory">Medical Science Programs</h2>
+    </div>
+    <div class="nav-container">
+        <div class="container">
+            <ul class="nav-menu">
+                <!-- Integrated Programs -->
+                <li><a href="#" class="active" onclick="showCourse('int-biotech', this, event)">Int. M.Sc Biotech</a></li>
+                <li><a href="#" onclick="showCourse('int-food', this, event)">Int. M.Sc Food Science</a></li>
+                <li><a href="#" onclick="showCourse('int-stats', this, event)">Int. M.Sc Statistics</a></li>
+                <li><a href="#" onclick="showCourse('int-physics', this, event)">Int. M.Sc Physics</a></li>
+                <li><a href="#" onclick="showCourse('int-chem', this, event)">Int. M.Sc Chemistry</a></li>
+                <li><a href="#" onclick="showCourse('int-math', this, event)">Int. M.Sc Mathematics</a></li>
+
+                <!-- Medical Science Programs -->
+                <li><a href="#" onclick="showCourse('msc-anesthesia', this, event)">M.Sc Anesthesia</a></li>
+                <li><a href="#" onclick="showCourse('msc-imaging', this, event)">M.Sc Medical Imaging</a></li>
+                <li><a href="#" onclick="showCourse('msc-lab', this, event)">M.Sc Lab Technology</a></li>
+                <li><a href="#" onclick="showCourse('mot', this, event)">MOT</a></li>
+                <li><a href="#" onclick="showCourse('msc-cardiac', this, event)">M.Sc Cardiac Tech</a></li>
+
+                <!-- Technology Programs -->
+                <li><a href="#" onclick="showCourse('msc-food-tech', this, event)">M.Sc Food Tech</a></li>
+                <li><a href="#" onclick="showCourse('msc-cloud', this, event)">M.Sc Cloud Computing</a></li>
+                <li><a href="#" onclick="showCourse('msc-cyber', this, event)">M.Sc Cybersecurity</a></li>
+                <li><a href="#" onclick="showCourse('msc-ai', this, event)">M.Sc AI & ML</a></li>
+                <li><a href="#" onclick="showCourse('msc-data', this, event)">M.Sc Data Science</a></li>
+                <li><a href="#" onclick="showCourse('msc-iot', this, event)">M.Sc IoT</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Int. M.Sc Biotech -->
+<div id="int-biotech" class="course-section active">
+    <h2 class="course-title">Integrated M.Sc. Biotechnology</h2>
+    <span class="program-type">5-Year Integrated Program</span>
+    <p class="course-description">
+        A comprehensive 5-year program that integrates bachelor's and master's level education in biotechnology. The program focuses on molecular biology, genetic engineering, agricultural biotechnology, and bioprocess technology, preparing students for research and industry roles.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Molecular Biology and Genetics</li>
+            <li>Biochemistry and Cell Biology</li>
+            <li>Microbiology and Immunology</li>
+            <li>Bioprocess Technology</li>
+            <li>Bioinformatics and Computational Biology</li>
+            <li>Industrial Biotechnology</li>
+            <li>Research Methodology and Biostatistics</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>10+2 with minimum 60% marks from recognized board</li>
+            <li>PCB/PCM stream in higher secondary</li>
+            <li>Valid entrance exam score (JEE/NEET/University specific)</li>
+            <li>Merit-based admission process</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Research Scientist in R&D Organizations</li>
+            <li>Biotechnology Consultant</li>
+            <li>Quality Control Manager</li>
+            <li>Clinical Research Associate</li>
+            <li>Bioinformatics Specialist</li>
+            <li>Academic Researcher</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Int. M.Sc Food Science -->
+<div id="int-food" class="course-section">
+    <h2 class="course-title">Integrated M.Sc. Food Science and Technology</h2>
+    <span class="program-type">5-Year Integrated Program</span>
+    <p class="course-description">
+        This integrated program combines food science fundamentals with advanced food technology applications. Students learn about food processing, preservation, quality control, and innovation in food products.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Food Chemistry and Nutrition</li>
+            <li>Food Microbiology and Safety</li>
+            <li>Food Processing Technology</li>
+            <li>Quality Assurance and Control</li>
+            <li>Food Product Development</li>
+            <li>Food Packaging Technology</li>
+            <li>Industrial Food Production</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>10+2 with minimum 55% marks in PCM/PCB</li>
+            <li>Science stream in higher secondary</li>
+            <li>Entrance examination qualification</li>
+            <li>Interview process clearance</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Food Safety Officer</li>
+            <li>Quality Assurance Manager</li>
+            <li>Food Product Developer</li>
+            <li>Research Scientist</li>
+            <li>Food Processing Technologist</li>
+            <li>Food Industry Consultant</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Int. M.Sc Statistics -->
+<div id="int-stats" class="course-section">
+    <h2 class="course-title">Integrated M.Sc. Statistics</h2>
+    <span class="program-type">5-Year Integrated Program</span>
+    <p class="course-description">
+        A comprehensive program combining theoretical statistics with practical applications in data analysis, probability theory, and statistical computing. The program emphasizes both classical and modern statistical methods.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Probability Theory and Distribution</li>
+            <li>Mathematical Statistics</li>
+            <li>Statistical Computing and Software</li>
+            <li>Data Analysis and Visualization</li>
+            <li>Time Series Analysis</li>
+            <li>Multivariate Analysis</li>
+            <li>Machine Learning Applications</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>10+2 with minimum 60% marks in Mathematics</li>
+            <li>Strong foundation in Mathematics</li>
+            <li>Entrance test qualification</li>
+            <li>Merit-based selection process</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Data Scientist</li>
+            <li>Statistical Analyst</li>
+            <li>Research Statistician</li>
+            <li>Biostatistician</li>
+            <li>Market Research Analyst</li>
+            <li>Business Analytics Consultant</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Int. M.Sc Physics -->
+<div id="int-physics" class="course-section">
+    <h2 class="course-title">Integrated M.Sc. Physics</h2>
+    <span class="program-type">5-Year Integrated Program</span>
+    <p class="course-description">
+        An advanced program covering classical and modern physics, quantum mechanics, and experimental physics. Students gain deep theoretical knowledge and practical research experience in physics.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Classical Mechanics</li>
+            <li>Quantum Mechanics</li>
+            <li>Electromagnetic Theory</li>
+            <li>Statistical Physics</li>
+            <li>Solid State Physics</li>
+            <li>Nuclear and Particle Physics</li>
+            <li>Experimental Methods in Physics</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>10+2 with minimum 60% marks in PCM</li>
+            <li>Strong background in Physics and Mathematics</li>
+            <li>Entrance examination qualification</li>
+            <li>Interview clearance</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Research Scientist</li>
+            <li>Physics Professor</li>
+            <li>Nuclear Physicist</li>
+            <li>Quantum Computing Researcher</li>
+            <li>Industrial Physicist</li>
+            <li>Technical Consultant</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Int. M.Sc Chemistry -->
+<div id="int-chem" class="course-section">
+    <h2 class="course-title">Integrated M.Sc. Chemistry</h2>
+    <span class="program-type">5-Year Integrated Program</span>
+    <p class="course-description">
+        A comprehensive program covering organic, inorganic, physical, and analytical chemistry. Students learn advanced chemical concepts and laboratory techniques with emphasis on research and industrial applications.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Organic Chemistry</li>
+            <li>Inorganic Chemistry</li>
+            <li>Physical Chemistry</li>
+            <li>Analytical Chemistry</li>
+            <li>Instrumental Methods of Analysis</li>
+            <li>Medicinal Chemistry</li>
+            <li>Industrial Chemistry</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>10+2 with minimum 60% marks in PCM/PCB</li>
+            <li>Strong foundation in Chemistry</li>
+            <li>Entrance test qualification</li>
+            <li>Merit-based admission</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Research Chemist</li>
+            <li>Analytical Chemist</li>
+            <li>Quality Control Manager</li>
+            <li>Pharmaceutical Researcher</li>
+            <li>Chemical Process Engineer</li>
+            <li>Environmental Consultant</li>
+        </ul>
+    </div>
+</div>
+
+<!-- Int. M.Sc Mathematics -->
+<div id="int-math" class="course-section">
+    <h2 class="course-title">Integrated M.Sc. Mathematics</h2>
+    <span class="program-type">5-Year Integrated Program</span>
+    <p class="course-description">
+        An intensive program covering pure and applied mathematics, including advanced calculus, algebra, analysis, and computational mathematics. Students develop strong analytical and problem-solving skills.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Advanced Calculus</li>
+            <li>Abstract Algebra</li>
+            <li>Real and Complex Analysis</li>
+            <li>Differential Equations</li>
+            <li>Topology and Geometry</li>
+            <li>Number Theory</li>
+            <li>Computational Mathematics</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>10+2 with minimum 65% marks in Mathematics</li>
+            <li>Excellence in Mathematics at school level</li>
+            <li>Entrance examination qualification</li>
+            <li>Merit-based selection</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Mathematics Professor</li>
+            <li>Research Mathematician</li>
+            <li>Data Analyst</li>
+            <li>Cryptographer</li>
+            <li>Financial Analyst</li>
+            <li>Operations Research Analyst</li>
+        </ul>
+    </div>
+</div>
+        <!-- M.Sc Anesthesia -->
+<div id="msc-anesthesia" class="course-section">
+    <h2 class="course-title">M.Sc. Anesthesia Technology</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        An advanced program designed to train specialists in anesthesia technology and perioperative care. The program combines theoretical knowledge with extensive practical training in modern healthcare settings.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Advanced Anatomy and Physiology</li>
+            <li>Principles of Anesthesia</li>
+            <li>Anesthesia Equipment and Monitoring</li>
+            <li>Regional Anesthesia Techniques</li>
+            <li>Critical Care Medicine</li>
+            <li>Pain Management</li>
+            <li>Emergency Care and Resuscitation</li>
+            <li>Clinical Practicum in Various Specialties</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>B.Sc in Anesthesia Technology/Life Sciences</li>
+            <li>Minimum 55% aggregate in graduation</li>
+            <li>Clinical experience preferred</li>
+            <li>Entrance examination clearance</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Anesthesia Technologist in Hospitals</li>
+            <li>Clinical Research Coordinator</li>
+            <li>Medical Equipment Specialist</li>
+            <li>Healthcare Facility Manager</li>
+            <li>Technical Supervisor in OT</li>
+            <li>Medical Education Instructor</li>
+        </ul>
+    </div>
+</div>
+
+<!-- M.Sc Medical Imaging -->
+<div id="msc-imaging" class="course-section">
+    <h2 class="course-title">M.Sc. Medical Imaging Technology</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        A specialized program focusing on advanced medical imaging techniques, radiation physics, and diagnostic procedures. Students gain expertise in operating sophisticated imaging equipment and interpreting medical images.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Advanced Radiographic Imaging</li>
+            <li>CT and MRI Technology</li>
+            <li>Nuclear Medicine</li>
+            <li>Ultrasound Imaging</li>
+            <li>Radiation Physics and Protection</li>
+            <li>Digital Image Processing</li>
+            <li>3D Imaging and Reconstruction</li>
+            <li>Clinical Applications and Practice</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>B.Sc in Radiology/Medical Imaging</li>
+            <li>Minimum 50% marks in graduation</li>
+            <li>Basic computer knowledge required</li>
+            <li>Entrance test qualification</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Radiologic Technologist</li>
+            <li>MRI/CT Specialist</li>
+            <li>Nuclear Medicine Technologist</li>
+            <li>Imaging Center Manager</li>
+            <li>Research Associate</li>
+            <li>Application Specialist</li>
+        </ul>
+    </div>
+</div>
+
+<!-- M.Sc Lab Technology -->
+<div id="msc-lab" class="course-section">
+    <h2 class="course-title">M.Sc. Medical Laboratory Technology</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        An advanced program in medical laboratory sciences focusing on clinical diagnostics, molecular techniques, and laboratory management. Students learn cutting-edge diagnostic methods and quality control procedures.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Clinical Biochemistry</li>
+            <li>Molecular Diagnostics</li>
+            <li>Hematology and Blood Banking</li>
+            <li>Clinical Microbiology</li>
+            <li>Immunology and Serology</li>
+            <li>Laboratory Management</li>
+            <li>Quality Assurance in Medical Laboratory</li>
+            <li>Research Methodology</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>B.Sc in Medical Lab Technology</li>
+            <li>Minimum 55% aggregate marks</li>
+            <li>Laboratory experience preferred</li>
+            <li>Entrance examination qualification</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Medical Laboratory Scientist</li>
+            <li>Clinical Research Coordinator</li>
+            <li>Quality Control Manager</li>
+            <li>Laboratory Supervisor</li>
+            <li>Diagnostic Center Manager</li>
+            <li>Research Laboratory Technologist</li>
+        </ul>
+    </div>
+</div>
+
+<!-- MOT (Master of Occupational Therapy) -->
+<div id="mot" class="course-section">
+    <h2 class="course-title">Master of Occupational Therapy (MOT)</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        A specialized program focusing on advanced occupational therapy practices, rehabilitation techniques, and therapeutic interventions. Students develop expertise in helping patients recover and maintain daily living skills.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Advanced Therapeutic Techniques</li>
+            <li>Neurological Rehabilitation</li>
+            <li>Ergonomics and Work Rehabilitation</li>
+            <li>Pediatric Occupational Therapy</li>
+            <li>Geriatric Rehabilitation</li>
+            <li>Assistive Technology</li>
+            <li>Research in Occupational Therapy</li>
+            <li>Clinical Practice Management</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>Bachelor's in Occupational Therapy</li>
+            <li>Minimum 50% aggregate marks</li>
+            <li>Clinical internship completion</li>
+            <li>Entrance test clearance</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Clinical Occupational Therapist</li>
+            <li>Rehabilitation Specialist</li>
+            <li>Research Therapist</li>
+            <li>Ergonomics Consultant</li>
+            <li>Healthcare Administrator</li>
+            <li>Academic Faculty</li>
+        </ul>
+    </div>
+</div>
+
+<!-- M.Sc Cardiac Tech -->
+<div id="msc-cardiac" class="course-section">
+    <h2 class="course-title">M.Sc. Cardiac Technology</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        An advanced program specializing in cardiac care technology, cardiovascular procedures, and cardiac monitoring. Students learn to operate sophisticated cardiac equipment and assist in cardiac procedures.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Cardiovascular Anatomy and Physiology</li>
+            <li>ECG and Cardiac Monitoring</li>
+            <li>Cardiac Catheterization Techniques</li>
+            <li>Echocardiography</li>
+            <li>Cardiac Electrophysiology</li>
+            <li>Cardiovascular Pharmacology</li>
+            <li>Emergency Cardiac Care</li>
+            <li>Clinical Practicum</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>B.Sc in Cardiac Technology/Life Sciences</li>
+            <li>Minimum 55% aggregate marks</li>
+            <li>Clinical experience preferred</li>
+            <li>Entrance examination qualification</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Cardiac Technologist</li>
+            <li>Cath Lab Technologist</li>
+            <li>ECG/Echo Technician</li>
+            <li>Cardiac Research Associate</li>
+            <li>Cardiac Center Manager</li>
+            <li>Medical Device Specialist</li>
+        </ul>
+    </div>
+</div>
+
+<!-- M.Sc Food Tech -->
+<div id="msc-food-tech" class="course-section">
+    <h2 class="course-title">M.Sc. Food Technology</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        An advanced program in food science and technology focusing on food processing, preservation, quality control, and product development. Students learn about modern food technologies and industry practices.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Advanced Food Processing</li>
+            <li>Food Chemistry and Analysis</li>
+            <li>Food Microbiology and Safety</li>
+            <li>Food Product Development</li>
+            <li>Quality Assurance Systems</li>
+            <li>Food Packaging Technology</li>
+            <li>Nutrition and Functional Foods</li>
+            <li>Industrial Training</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>B.Sc in Food Science/Technology</li>
+            <li>Minimum 55% aggregate marks</li>
+            <li>Basic knowledge of chemistry/biology</li>
+            <li>Entrance test qualification</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Food Technologist</li>
+            <li>Quality Assurance Manager</li>
+            <li>R&D Scientist</li>
+            <li>Food Safety Officer</li>
+            <li>Production Manager</li>
+            <li>Food Product Developer</li>
+        </ul>
+    </div>
+</div>
+
+        <!-- Additional styles for course sections -->
+        <style>
+            .course-section {
+                display: none;
+                opacity: 0;
+                transform: translateY(20px);
+                transition: var(--transition-normal);
+                background: var(--white);
+                padding: 25px;
+                border-radius: 10px;
+                margin-bottom: 30px;
+                box-shadow: var(--shadow-md);
+            }
+
+            .course-section.active {
+                display: block;
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+            .course-title {
+                color: var(--primary-color);
+                margin-bottom: 25px;
+                font-size: 2em;
+                position: relative;
+                padding-bottom: 15px;
+            }
+
+            .info-box {
+                background: var(--gray-50);
+                border-radius: 10px;
+                padding: 25px;
+                margin-bottom: 30px;
+                box-shadow: var(--shadow-sm);
+                transition: var(--transition-normal);
+            }
+
+            .list-custom {
+                list-style: none;
+                padding-left: 0;
+            }
+
+            .list-custom li {
+                padding: 10px 0;
+                padding-left: 25px;
+                position: relative;
+                transition: var(--transition-normal);
+            }
+
+            .list-custom li:before {
+                content: '→';
+                position: absolute;
+                left: 0;
+                color: var(--accent-color);
+                transition: transform 0.3s ease;
+            }
+        </style>
+
+                <!-- M.Sc Cloud Computing -->
+<div id="msc-cloud" class="course-section">
+    <h2 class="course-title">M.Sc. Cloud Computing and DevOps (In Collaboration with IBM)</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        An industry-aligned program developed in partnership with IBM, focusing on cloud architecture, DevOps practices, and modern cloud services. Students gain hands-on experience with major cloud platforms and automation tools.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Cloud Computing Fundamentals</li>
+            <li>AWS, Azure, and Google Cloud Platforms</li>
+            <li>DevOps Principles and Practices</li>
+            <li>Container Orchestration (Docker, Kubernetes)</li>
+            <li>Infrastructure as Code (Terraform, Ansible)</li>
+            <li>Cloud Security and Compliance</li>
+            <li>Microservices Architecture</li>
+            <li>CI/CD Pipeline Implementation</li>
+            <li>Cloud Cost Optimization</li>
+            <li>Industry Projects with IBM</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>Bachelor's degree in CS/IT/related field</li>
+            <li>Minimum 60% aggregate in graduation</li>
+            <li>Basic programming knowledge required</li>
+            <li>Entrance test and technical interview</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Cloud Solutions Architect</li>
+            <li>DevOps Engineer</li>
+            <li>Cloud Infrastructure Engineer</li>
+            <li>Site Reliability Engineer (SRE)</li>
+            <li>Cloud Security Specialist</li>
+            <li>Platform Engineer</li>
+            <li>Cloud Consultant</li>
+        </ul>
+    </div>
+</div>
+
+<!-- M.Sc Cybersecurity -->
+<div id="msc-cyber" class="course-section">
+    <h2 class="course-title">M.Sc. Cybersecurity and Digital Forensics</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        A comprehensive program covering advanced cybersecurity concepts, ethical hacking, digital forensics, and security operations. Students learn to protect systems against cyber threats and investigate digital crimes.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Network Security and Penetration Testing</li>
+            <li>Ethical Hacking Methodologies</li>
+            <li>Digital Forensics and Incident Response</li>
+            <li>Malware Analysis and Reverse Engineering</li>
+            <li>Cloud and IoT Security</li>
+            <li>Security Information and Event Management (SIEM)</li>
+            <li>Cryptography and Data Protection</li>
+            <li>Cyber Law and Compliance</li>
+            <li>Security Operations Center Management</li>
+            <li>Advanced Threat Hunting</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>Bachelor's in CS/IT/Electronics</li>
+            <li>Minimum 55% aggregate marks</li>
+            <li>Basic networking knowledge</li>
+            <li>Aptitude test and technical interview</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Security Analyst</li>
+            <li>Ethical Hacker</li>
+            <li>Digital Forensics Investigator</li>
+            <li>Security Operations Manager</li>
+            <li>Threat Intelligence Analyst</li>
+            <li>Information Security Consultant</li>
+            <li>Security Architect</li>
+        </ul>
+    </div>
+</div>
+
+<!-- M.Sc AI & ML -->
+<div id="msc-ai" class="course-section">
+    <h2 class="course-title">M.Sc. Artificial Intelligence and Machine Learning</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        An advanced program focusing on AI algorithms, deep learning, natural language processing, and computer vision. Students learn to develop intelligent systems and implement AI solutions for real-world problems.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Machine Learning Fundamentals</li>
+            <li>Deep Learning and Neural Networks</li>
+            <li>Natural Language Processing</li>
+            <li>Computer Vision and Image Processing</li>
+            <li>Reinforcement Learning</li>
+            <li>Big Data Analytics</li>
+            <li>AI Ethics and Governance</li>
+            <li>MLOps and AI Pipeline Development</li>
+            <li>Advanced AI Frameworks (TensorFlow, PyTorch)</li>
+            <li>Industry Projects and Research</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>Bachelor's degree in CS/IT/Mathematics</li>
+            <li>Minimum 60% aggregate marks</li>
+            <li>Strong programming skills (Python)</li>
+            <li>Mathematics and statistics background</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>AI Engineer</li>
+            <li>Machine Learning Engineer</li>
+            <li>Data Scientist</li>
+            <li>NLP Engineer</li>
+            <li>Computer Vision Engineer</li>
+            <li>AI Research Scientist</li>
+            <li>AI Solutions Architect</li>
+        </ul>
+    </div>
+</div>
+
+<!-- M.Sc Data Science -->
+<div id="msc-data" class="course-section">
+    <h2 class="course-title">M.Sc. Data Science and Analytics</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        A comprehensive program combining statistics, programming, and business analytics. Students learn to extract insights from complex data sets and drive data-informed decision making.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>Statistical Analysis and Probability</li>
+            <li>Data Mining and Warehousing</li>
+            <li>Predictive Analytics</li>
+            <li>Big Data Technologies</li>
+            <li>Data Visualization</li>
+            <li>Time Series Analysis</li>
+            <li>Business Intelligence</li>
+            <li>Data Engineering</li>
+            <li>Advanced SQL and NoSQL</li>
+            <li>Capstone Projects</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>Bachelor's in any quantitative field</li>
+            <li>Minimum 55% aggregate marks</li>
+            <li>Basic programming knowledge</li>
+            <li>Analytical aptitude test</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>Data Scientist</li>
+            <li>Data Analyst</li>
+            <li>Business Intelligence Analyst</li>
+            <li>Data Engineer</li>
+            <li>Analytics Consultant</li>
+            <li>Quantitative Researcher</li>
+            <li>Data Science Manager</li>
+        </ul>
+    </div>
+</div>
+
+<!-- M.Sc IoT -->
+<div id="msc-iot" class="course-section">
+    <h2 class="course-title">M.Sc. Internet of Things (IoT)</h2>
+    <span class="program-type">2-Year Postgraduate Program</span>
+    <p class="course-description">
+        An innovative program focusing on IoT technologies, embedded systems, and connected devices. Students learn to design, develop, and manage IoT solutions for various industry applications.
+    </p>
+    <div class="info-box program-structure">
+        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+        <ul class="list-custom">
+            <li>IoT Architecture and Protocols</li>
+            <li>Embedded Systems Programming</li>
+            <li>Sensor Networks and Integration</li>
+            <li>IoT Security and Privacy</li>
+            <li>Edge Computing</li>
+            <li>IoT Analytics and Data Management</li>
+            <li>Industrial IoT Applications</li>
+            <li>Smart City Technologies</li>
+            <li>IoT Project Management</li>
+            <li>Practical IoT Projects</li>
+        </ul>
+    </div>
+    <div class="info-box eligibility-box">
+        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+        <ul class="list-custom">
+            <li>Bachelor's in Electronics/CS/IT</li>
+            <li>Minimum 60% aggregate marks</li>
+            <li>Basic electronics knowledge</li>
+            <li>Programming fundamentals</li>
+        </ul>
+    </div>
+    <div class="info-box scope-box">
+        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+        <ul class="list-custom">
+            <li>IoT Solutions Architect</li>
+            <li>IoT Developer</li>
+            <li>Embedded Systems Engineer</li>
+            <li>IoT Security Specialist</li>
+            <li>Smart City Consultant</li>
+            <li>Industrial IoT Expert</li>
+            <li>IoT Project Manager</li>
+        </ul>
+    </div>
+</div>
+        
+                <!-- Additional Styles -->
+                <style>
+                    .info-box:hover {
+                        transform: translateY(-5px);
+                        box-shadow: var(--shadow-md);
+                    }
+        
+                    .eligibility-box {
+                        border-left: 4px solid var(--primary-color);
+                    }
+        
+                    .scope-box {
+                        border-left: 4px solid var(--accent-color);
+                    }
+        
+                    .program-structure {
+                        border-left: 4px solid var(--success);
+                    }
+        
+                    .h5 {
+                        color: var(--primary-color);
+                        font-size: 1.1em;
+                        margin-bottom: 15px;
+                        display: flex;
+                        align-items: center;
+                        gap: 10px;
+                    }
+        
+                    .h5 i {
+                        color: var(--primary-color);
+                    }
+        
+                    .list-custom li:hover {
+                        padding-left: 30px;
+                        color: var(--primary-color);
+                    }
+        
+                    .list-custom li:hover:before {
+                        transform: translateX(5px);
+                    }
+        
+                    /* Responsive Design */
+                    @media (max-width: 768px) {
+                        .header {
+                            padding: 40px 20px;
+                        }
+        
+                        .header h1 {
+                            font-size: 2em;
+                        }
+        
+                        .nav-menu {
+                            gap: 8px;
+                            padding: 8px;
+                            overflow-x: auto;
+                            -webkit-overflow-scrolling: touch;
+                            scrollbar-width: none;
+                        }
+        
+                        .nav-menu::-webkit-scrollbar {
+                            display: none;
+                        }
+        
+                        .nav-menu li a {
+                            padding: 6px 12px;
+                            font-size: 0.85em;
+                            white-space: nowrap;
+                        }
+        
+                        .course-title {
+                            font-size: 1.5em;
+                        }
+        
+                        .course-description {
+                            font-size: 1em;
+                        }
+        
+                        .info-box {
+                            padding: 20px;
+                        }
+                    }
+        
+                    /* Animations */
+                    @keyframes fadeIn {
+                        from { 
+                            opacity: 0; 
+                            transform: translateY(20px); 
+                        }
+                        to { 
+                            opacity: 1; 
+                            transform: translateY(0); 
+                        }
+                    }
+        
+                    @keyframes headerFade {
+                        0% { opacity: 0.7; transform: translateY(-5px); }
+                        100% { opacity: 1; transform: translateY(0); }
+                    }
+        
+                    .category-header.animate {
+                        animation: headerFade 0.3s ease-out;
+                    }
+                </style>
+                        <!-- JavaScript Section -->
+        <script>
+            // Category Management
+            const categoryMap = {
+                // Integrated Programs
+                'int-biotech': 'Integrated M.Sc Programs',
+                'int-food': 'Integrated M.Sc Programs',
+                'int-stats': 'Integrated M.Sc Programs',
+                'int-physics': 'Integrated M.Sc Programs',
+                'int-chem': 'Integrated M.Sc Programs',
+                'int-math': 'Integrated M.Sc Programs',
+
+                // Medical Science Programs
+                'msc-anesthesia': 'Medical Science Programs',
+                'msc-imaging': 'Medical Science Programs',
+                'msc-lab': 'Medical Science Programs',
+                'mot': 'Medical Science Programs',
+                'msc-cardiac': 'Medical Science Programs',
+
+                // Technology Programs
+                'msc-food-tech': 'Technology and Computing Programs',
+                'msc-cloud': 'Technology and Computing Programs',
+                'msc-cyber': 'Technology and Computing Programs',
+                'msc-ai': 'Technology and Computing Programs',
+                'msc-data': 'Technology and Computing Programs',
+                'msc-iot': 'Technology and Computing Programs',
+
+                // Basic Science Programs
+                'msc-micro': 'Basic Science Programs',
+                'msc-genetics': 'Basic Science Programs',
+                'msc-biotech': 'Basic Science Programs',
+                'msc-stats': 'Basic Science Programs',
+                'msc-chemistry': 'Basic Science Programs',
+                'msc-physics': 'Basic Science Programs'
+            };
+
+            // Function to update category header
+            function updateCategory(courseId) {
+                const categoryHeader = document.getElementById('currentCategory');
+                if (categoryHeader && categoryMap[courseId]) {
+                    categoryHeader.textContent = categoryMap[courseId];
+                    animateCategoryChange();
+                }
+            }
+
+            // Function to animate category change
+            function animateCategoryChange() {
+                const header = document.querySelector('.category-header');
+                header.classList.remove('animate');
+                void header.offsetHeight; // Trigger reflow
+                header.classList.add('animate');
+            }
+
+            // Main function to show/hide course sections
+            function showCourse(courseId, element, event) {
+                // Prevent default link behavior
+                event.preventDefault();
+                
+                // Update category
+                updateCategory(courseId);
+                
+                // Get all course sections
+                const sections = document.querySelectorAll('.course-section');
+                
+                // Hide all sections with fade out effect
+                sections.forEach(section => {
+                    section.style.opacity = '0';
+                    section.classList.remove('active');
+                    setTimeout(() => {
+                        section.style.display = 'none';
+                    }, 300);
+                });
+                
+                // Show selected section with fade in effect
+                const selectedSection = document.getElementById(courseId);
+                if (selectedSection) {
+                    setTimeout(() => {
+                        selectedSection.style.display = 'block';
+                        selectedSection.offsetHeight; // Trigger reflow
+                        selectedSection.style.opacity = '1';
+                        selectedSection.classList.add('active');
+                    }, 300);
+                }
+                
+                // Update navigation
+                updateNavigation(element);
+                
+                // Smooth scroll to content
+                scrollToContent();
+            }
+
+            // Update navigation highlighting
+            function updateNavigation(element) {
+                // Remove active class from all links
+                document.querySelectorAll('.nav-menu a').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                // Add active class to clicked link
+                if (element) {
+                    element.classList.add('active');
+                }
+            }
+
+            // Smooth scroll to content
+            function scrollToContent() {
+                const navContainer = document.querySelector('.nav-container');
+                if (navContainer) {
+                    window.scrollTo({
+                        top: navContainer.offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+
+            // Mobile navigation handling
+            function initMobileNav() {
+                const navContainer = document.querySelector('.nav-container');
+                let isScrolling;
+
+                if (navContainer) {
+                    // Handle horizontal scroll on mobile
+                    navContainer.addEventListener('scroll', function() {
+                        window.clearTimeout(isScrolling);
+                        
+                        isScrolling = setTimeout(function() {
+                            navContainer.style.overflow = 'hidden';
+                        }, 66);
+                        
+                        navContainer.style.overflow = 'auto';
+                    });
+
+                    // Add scroll indicators for mobile
+                    if (window.innerWidth <= 768) {
+                        addScrollIndicators();
+                    }
+
+                    // Update on window resize
+                    window.addEventListener('resize', function() {
+                        if (window.innerWidth <= 768) {
+                            addScrollIndicators();
+                        } else {
+                            removeScrollIndicators();
+                        }
+                    });
+                }
+            }
+
+            // Initialize on document load
+            document.addEventListener('DOMContentLoaded', function() {
+                // Initialize first section
+                document.querySelector('.course-section.active').style.display = 'block';
+                
+                // Initialize mobile navigation
+                initMobileNav();
+                
+                // Add keyboard navigation
+                initKeyboardNav();
+                
+                // Add accessibility attributes
+                addAccessibility();
+            });
+
+            // Keyboard navigation
+            function initKeyboardNav() {
+                document.addEventListener('keydown', function(e) {
+                    const activeSection = document.querySelector('.course-section.active');
+                    if (!activeSection) return;
+
+                    const sections = Array.from(document.querySelectorAll('.course-section'));
+                    const currentIndex = sections.indexOf(activeSection);
+
+                    if (e.key === 'ArrowRight' && currentIndex < sections.length - 1) {
+                        const nextSection = sections[currentIndex + 1];
+                        const nextLink = document.querySelector(`[onclick*="${nextSection.id}"]`);
+                        if (nextLink) nextLink.click();
+                    } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                        const prevSection = sections[currentIndex - 1];
+                        const prevLink = document.querySelector(`[onclick*="${prevSection.id}"]`);
+                        if (prevLink) prevLink.click();
+                    }
+                });
+            }
+
+            // Accessibility enhancements
+            function addAccessibility() {
+                const navLinks = document.querySelectorAll('.nav-menu a');
+                navLinks.forEach(link => {
+                    link.setAttribute('role', 'tab');
+                    link.setAttribute('aria-selected', link.classList.contains('active'));
+                });
+
+                const sections = document.querySelectorAll('.course-section');
+                sections.forEach(section => {
+                    section.setAttribute('role', 'tabpanel');
+                    section.setAttribute('aria-hidden', !section.classList.contains('active'));
+                });
+            }
+        </script>
+    </div>
+</body>
+</html>

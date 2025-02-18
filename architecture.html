@@ -1,0 +1,1108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Architecture Programs | Academic Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Root Variables */
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #4299e1;
+            --accent-color: #f6ad55;
+            --text-color: #2d3748;
+            --light-bg: #f0f9ff;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --error: #f56565;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --transition-normal: all 0.3s ease;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Category Header */
+        .category-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 20px;
+            margin: 30px 0 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Navigation Styles */
+        .nav-container {
+            background: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            list-style: none;
+            padding: 10px;
+        }
+
+        .nav-menu li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: var(--transition-normal);
+            border: 1px solid transparent;
+        }
+
+        .nav-menu li a:hover {
+            background: var(--gray-50);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu li a.active {
+            background: var(--primary-color);
+            color: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Course Section Styles */
+        .course-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-normal);
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .course-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Info Box Styles */
+        .info-box {
+            background: var(--gray-50);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-normal);
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .eligibility-box {
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .scope-box {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .program-structure {
+            border-left: 4px solid var(--success);
+        }
+
+        .highlights-box {
+            border-left: 4px solid var(--warning);
+        }
+
+        .specialization-box {
+            border-left: 4px solid var(--secondary-color);
+        }
+
+        /* List Styles */
+        .list-custom {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list-custom li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+            transition: var(--transition-normal);
+        }
+
+        .list-custom li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+            transition: transform 0.3s ease;
+        }
+
+        .list-custom li:hover {
+            padding-left: 30px;
+            color: var(--primary-color);
+        }
+
+        .list-custom li:hover:before {
+            transform: translateX(5px);
+        }
+
+        /* Course Content Styles */
+        .course-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 2em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .program-type {
+            display: inline-block;
+            padding: 6px 15px;
+            background: var(--accent-color);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+
+        .course-description {
+            font-size: 1.1em;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .h5 {
+            color: var(--primary-color);
+            font-size: 1.1em;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Architecture Programs</h1>
+        <p>Excellence in Architectural Education and Design</p>
+    </div>
+
+    <div id="categoryHeaderContainer" class="category-header">
+        <h2 id="currentCategory">Bachelor of Architecture (B.Arch)</h2>
+    </div>
+
+    <div class="nav-container">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" class="active" onclick="showCourse('barch', this, event)">B.Arch</a></li>
+                <li><a href="#" onclick="showCourse('bplan', this, event)">B.Plan</a></li>
+                <li><a href="#" onclick="showCourse('btech-urban', this, event)">B.Tech Urban Planning</a></li>
+                <li><a href="#" onclick="showCourse('march', this, event)">M.Arch</a></li>
+                <li><a href="#" onclick="showCourse('mtech-urban', this, event)">M.Tech Urban Planning</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="container">
+        <!-- B.Arch Section -->
+        <div id="barch" class="course-section active">
+            <h2 class="course-title">Bachelor of Architecture (B.Arch)</h2>
+            <span class="program-type">5-Year Professional Program</span>
+            <p class="course-description">
+                A comprehensive five-year undergraduate program that trains students in spatial planning, design, and construction. 
+                This professional degree program prepares students for careers in architecture and related fields.
+            </p>
+            <div class="info-box program-structure">
+                <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                <ul class="list-custom">
+                    <li>Architectural Design</li>
+                    <li>Building Construction and Materials</li>
+                    <li>History of Architecture</li>
+                    <li>Structural Design</li>
+                    <li>Environmental Studies</li>
+                    <li>Computer Applications in Architecture</li>
+                    <li>Professional Practice</li>
+                    <li>Urban Design and Planning</li>
+                </ul>
+            </div>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>12th PCM with minimum 50% aggregate marks</li>
+                    <li>Valid NATA (National Aptitude Test in Architecture) score with 80% or above</li>
+                    <li>JEE Main Paper 2 score (for IITs and NITs)</li>
+                    <li>Diploma holders must have completed 3-year diploma program</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Architectural Designer</li>
+                    <li>Urban Planner</li>
+                    <li>Interior Designer</li>
+                    <li>Construction Manager</li>
+                    <li>Sustainable Design Consultant</li>
+                    <li>Heritage Conservation Architect</li>
+                    <li>Architectural Journalist</li>
+                </ul>
+            </div>
+            <div class="info-box specialization-box">
+                <h3 class="h5"><i class="fas fa-star"></i> Specializations Available</h3>
+                <ul class="list-custom">
+                    <li>Interior Design</li>
+                    <li>Urban Planning</li>
+                    <li>Landscape Architecture</li>
+                    <li>Sustainable Architecture</li>
+                    <li>Construction Management</li>
+                </ul>
+            </div>
+            <div class="info-box highlights-box">
+                <h3 class="h5"><i class="fas fa-lightbulb"></i> Program Highlights</h3>
+                <ul class="list-custom">
+                    <li>Expected 3% global employment growth over next 10 years</li>
+                    <li>Starting salary range: 4-5 LPA</li>
+                    <li>Multiple entrance exam options (NATA, JEE, CEED)</li>
+                    <li>Practical training and internship opportunities</li>
+                    <li>Industry-aligned curriculum</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- B.Plan Section -->
+        <div id="bplan" class="course-section">
+            <h2 class="course-title">Bachelor of Planning (B.Plan)</h2>
+            <span class="program-type">4-Year Professional Program</span>
+            <p class="course-description">
+                A specialized undergraduate program focusing on urban, regional, and environmental planning. Students learn to 
+                develop sustainable solutions for urban development and spatial organization.
+            </p>
+            <div class="info-box program-structure">
+                <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                <ul class="list-custom">
+                    <li>Urban Planning Principles</li>
+                    <li>Regional Planning</li>
+                    <li>Transportation Planning</li>
+                    <li>Environmental Planning</li>
+                    <li>GIS and Remote Sensing</li>
+                    <li>Planning Legislation</li>
+                    <li>Infrastructure Planning</li>
+                    <li>Urban Design</li>
+                </ul>
+            </div>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 with Mathematics as compulsory subject</li>
+                    <li>Minimum 50% aggregate marks</li>
+                    <li>Valid JEE Main score</li>
+                    <li>Entrance exam specific to planning institutes</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Urban Planner</li>
+                    <li>Regional Planner</li>
+                    <li>Environmental Planner</li>
+                    <li>Transport Planner</li>
+                    <li>GIS Specialist</li>
+                    <li>Planning Consultant</li>
+                </ul>
+            </div>
+            <div class="info-box highlights-box">
+                <h3 class="h5"><i class="fas fa-lightbulb"></i> Program Highlights</h3>
+                <ul class="list-custom">
+                    <li>Growing demand in smart city initiatives</li>
+                    <li>Integrated approach to urban development</li>
+                    <li>Focus on sustainable planning</li>
+                    <li>Industry partnerships</li>
+                    <li>Research opportunities</li>
+                </ul>
+            </div>
+        </div>
+                <!-- B.Tech Urban Planning Section -->
+                <div id="btech-urban" class="course-section">
+                    <h2 class="course-title">B.Tech Urban and Regional Planning</h2>
+                    <span class="program-type">4-Year Professional Program</span>
+                    <p class="course-description">
+                        A technical program combining engineering principles with urban planning concepts. Students learn to address 
+                        complex urban challenges through technological solutions and sustainable planning approaches.
+                    </p>
+                    <div class="info-box program-structure">
+                        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                        <ul class="list-custom">
+                            <li>Urban Engineering</li>
+                            <li>Smart City Planning</li>
+                            <li>Infrastructure Development</li>
+                            <li>Transportation Systems</li>
+                            <li>Environmental Engineering</li>
+                            <li>Digital Planning Tools</li>
+                            <li>Urban Economics</li>
+                            <li>Project Management</li>
+                        </ul>
+                    </div>
+                    <div class="info-box eligibility-box">
+                        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                        <ul class="list-custom">
+                            <li>10+2 with PCM subjects</li>
+                            <li>Minimum 60% aggregate marks</li>
+                            <li>JEE Main qualification</li>
+                            <li>State-level engineering entrance exams</li>
+                        </ul>
+                    </div>
+                    <div class="info-box scope-box">
+                        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                        <ul class="list-custom">
+                            <li>Urban Development Engineer</li>
+                            <li>Smart City Planner</li>
+                            <li>Infrastructure Specialist</li>
+                            <li>Transportation Engineer</li>
+                            <li>Environmental Planning Engineer</li>
+                            <li>Urban Systems Analyst</li>
+                        </ul>
+                    </div>
+                    <div class="info-box highlights-box">
+                        <h3 class="h5"><i class="fas fa-lightbulb"></i> Program Highlights</h3>
+                        <ul class="list-custom">
+                            <li>Technical approach to urban planning</li>
+                            <li>Smart city development focus</li>
+                            <li>Industry-integrated curriculum</li>
+                            <li>Hands-on project experience</li>
+                            <li>Advanced technology training</li>
+                        </ul>
+                    </div>
+                </div>
+        
+                <!-- M.Arch Section -->
+                <div id="march" class="course-section">
+                    <h2 class="course-title">Master of Architecture (M.Arch)</h2>
+                    <span class="program-type">2-Year Postgraduate Program</span>
+                    <p class="course-description">
+                        An advanced professional degree program designed for architectural license preparation. The program focuses on 
+                        advanced design concepts, research, and specialized architectural practices.
+                    </p>
+                    <div class="info-box program-structure">
+                        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                        <ul class="list-custom">
+                            <li>Advanced Architectural Design</li>
+                            <li>Research Methodology</li>
+                            <li>Urban Design Theory</li>
+                            <li>Sustainable Architecture</li>
+                            <li>Digital Design and Fabrication</li>
+                            <li>Conservation and Heritage</li>
+                            <li>Professional Practice</li>
+                            <li>Thesis Project</li>
+                        </ul>
+                    </div>
+                    <div class="info-box eligibility-box">
+                        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                        <ul class="list-custom">
+                            <li>B.Arch degree from accredited university</li>
+                            <li>Minimum 50% aggregate marks</li>
+                            <li>Valid GATE score</li>
+                            <li>Some universities accept CEED score</li>
+                        </ul>
+                    </div>
+                    <div class="info-box scope-box">
+                        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                        <ul class="list-custom">
+                            <li>Project Manager</li>
+                            <li>Project Architect</li>
+                            <li>Landscape Architect</li>
+                            <li>Design Architect</li>
+                            <li>Professor</li>
+                            <li>Landscape/Design Conservator</li>
+                        </ul>
+                    </div>
+                    <div class="info-box specialization-box">
+                        <h3 class="h5"><i class="fas fa-star"></i> Specialization Areas</h3>
+                        <ul class="list-custom">
+                            <li>Urban Design</li>
+                            <li>Sustainable Architecture</li>
+                            <li>Heritage Conservation</li>
+                            <li>Digital Architecture</li>
+                            <li>Landscape Architecture</li>
+                        </ul>
+                    </div>
+                    <div class="info-box highlights-box">
+                        <h3 class="h5"><i class="fas fa-lightbulb"></i> Program Highlights</h3>
+                        <ul class="list-custom">
+                            <li>Starting salary range: 5-7 LPA</li>
+                            <li>Advanced research opportunities</li>
+                            <li>Specialization options available</li>
+                            <li>Industry-academia collaboration</li>
+                            <li>International exposure</li>
+                        </ul>
+                    </div>
+                </div>
+                        <!-- M.Tech Urban Planning Section -->
+        <div id="mtech-urban" class="course-section">
+            <h2 class="course-title">M.Tech Urban Planning</h2>
+            <span class="program-type">2-Year Postgraduate Program</span>
+            <p class="course-description">
+                An advanced technical program focusing on urban development, planning technologies, and sustainable city 
+                solutions. The program combines engineering expertise with urban planning principles.
+            </p>
+            <div class="info-box program-structure">
+                <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                <ul class="list-custom">
+                    <li>Advanced Urban Planning</li>
+                    <li>Metropolitan Planning</li>
+                    <li>Urban Infrastructure Systems</li>
+                    <li>Geographic Information Systems</li>
+                    <li>Transportation Planning</li>
+                    <li>Environmental Impact Assessment</li>
+                    <li>Urban Economics and Finance</li>
+                    <li>Research Methodology</li>
+                </ul>
+            </div>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>B.Tech/B.Arch/B.Plan degree</li>
+                    <li>Minimum 60% aggregate marks</li>
+                    <li>Valid GATE score</li>
+                    <li>Professional experience preferred</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Urban Development Specialist</li>
+                    <li>City Planner</li>
+                    <li>Urban Design Consultant</li>
+                    <li>Research Scholar</li>
+                    <li>Policy Analyst</li>
+                    <li>Smart City Expert</li>
+                </ul>
+            </div>
+            <div class="info-box highlights-box">
+                <h3 class="h5"><i class="fas fa-lightbulb"></i> Program Highlights</h3>
+                <ul class="list-custom">
+                    <li>Advanced research facilities</li>
+                    <li>Industry collaboration projects</li>
+                    <li>Smart city development focus</li>
+                    <li>International exposure opportunities</li>
+                    <li>Sustainable development emphasis</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Category Management
+        const categoryMap = {
+            'barch': 'Bachelor of Architecture (B.Arch)',
+            'bplan': 'Bachelor of Planning (B.Plan)',
+            'btech-urban': 'B.Tech Urban and Regional Planning',
+            'march': 'Master of Architecture (M.Arch)',
+            'mtech-urban': 'M.Tech Urban Planning'
+        };
+
+        // Mobile-specific styles
+        const mobileStyles = `
+            @media (max-width: 768px) {
+                .course-title {
+                    font-size: 1.8em;
+                }
+
+                .program-type {
+                    font-size: 0.8em;
+                }
+
+                .info-box {
+                    padding: 15px;
+                }
+
+                .nav-menu {
+                    padding: 5px;
+                    gap: 8px;
+                }
+
+                .nav-menu li a {
+                    padding: 6px 12px;
+                    font-size: 0.85em;
+                }
+
+                .header h1 {
+                    font-size: 2em;
+                }
+
+                .header p {
+                    font-size: 1em;
+                }
+            }
+
+            @media (max-width: 480px) {
+                .course-title {
+                    font-size: 1.5em;
+                }
+
+                .info-box {
+                    margin-bottom: 15px;
+                }
+
+                .list-custom li {
+                    padding: 8px 0 8px 20px;
+                }
+            }
+
+            .scroll-indicator {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 40px;
+                background: rgba(43, 108, 176, 0.9);
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                border-radius: 50%;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: 1000;
+            }
+
+            .scroll-left {
+                left: 10px;
+            }
+
+            .scroll-right {
+                right: 10px;
+            }
+        `;
+
+        // Add mobile styles to document
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = mobileStyles;
+        document.head.appendChild(styleSheet);
+
+        function updateCategory(courseId) {
+            const categoryHeader = document.getElementById('currentCategory');
+            if (categoryHeader && categoryMap[courseId]) {
+                categoryHeader.textContent = categoryMap[courseId];
+                animateCategoryChange();
+            }
+        }
+
+        function animateCategoryChange() {
+            const header = document.querySelector('.category-header');
+            header.classList.remove('animate');
+            void header.offsetHeight; // Trigger reflow
+            header.classList.add('animate');
+        }
+
+        function showCourse(courseId, element, event) {
+            event.preventDefault();
+            
+            updateCategory(courseId);
+            
+            const sections = document.querySelectorAll('.course-section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.classList.remove('active');
+                setTimeout(() => {
+                    section.style.display = 'none';
+                }, 300);
+            });
+            
+            const selectedSection = document.getElementById(courseId);
+            if (selectedSection) {
+                setTimeout(() => {
+                    selectedSection.style.display = 'block';
+                    selectedSection.offsetHeight; // Trigger reflow
+                    selectedSection.style.opacity = '1';
+                    selectedSection.classList.add('active');
+                }, 300);
+            }
+            
+            updateNavigation(element);
+            scrollToContent();
+        }
+
+        function updateNavigation(element) {
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            if (element) {
+                element.classList.add('active');
+            }
+        }
+
+        function scrollToContent() {
+            const navContainer = document.querySelector('.nav-container');
+            if (navContainer) {
+                window.scrollTo({
+                    top: navContainer.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+                // Mobile Navigation Handling
+                function initMobileNav() {
+            const navContainer = document.querySelector('.nav-container');
+            let isScrolling;
+
+            if (navContainer) {
+                // Handle horizontal scroll on mobile
+                navContainer.addEventListener('scroll', function() {
+                    window.clearTimeout(isScrolling);
+                    
+                    isScrolling = setTimeout(function() {
+                        navContainer.style.overflow = 'hidden';
+                    }, 66);
+                    
+                    navContainer.style.overflow = 'auto';
+                });
+
+                // Add scroll indicators for mobile
+                if (window.innerWidth <= 768) {
+                    addScrollIndicators();
+                }
+
+                // Update on window resize
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth <= 768) {
+                        addScrollIndicators();
+                    } else {
+                        removeScrollIndicators();
+                    }
+                });
+            }
+        }
+
+        function addScrollIndicators() {
+            const navContainer = document.querySelector('.nav-container');
+            if (!document.querySelector('.scroll-indicator')) {
+                const leftIndicator = document.createElement('div');
+                leftIndicator.className = 'scroll-indicator scroll-left';
+                leftIndicator.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                
+                const rightIndicator = document.createElement('div');
+                rightIndicator.className = 'scroll-indicator scroll-right';
+                rightIndicator.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                
+                navContainer.appendChild(leftIndicator);
+                navContainer.appendChild(rightIndicator);
+
+                // Add click handlers for indicators
+                leftIndicator.addEventListener('click', () => {
+                    navContainer.scrollBy({ left: -100, behavior: 'smooth' });
+                });
+
+                rightIndicator.addEventListener('click', () => {
+                    navContainer.scrollBy({ left: 100, behavior: 'smooth' });
+                });
+                
+                updateScrollIndicators();
+            }
+        }
+
+        function removeScrollIndicators() {
+            document.querySelectorAll('.scroll-indicator').forEach(indicator => {
+                indicator.remove();
+            });
+        }
+
+        function updateScrollIndicators() {
+            const navContainer = document.querySelector('.nav-container');
+            const leftIndicator = document.querySelector('.scroll-left');
+            const rightIndicator = document.querySelector('.scroll-right');
+            
+            if (navContainer && leftIndicator && rightIndicator) {
+                const showLeft = navContainer.scrollLeft > 0;
+                const showRight = navContainer.scrollLeft < (navContainer.scrollWidth - navContainer.clientWidth);
+                
+                leftIndicator.style.opacity = showLeft ? '1' : '0';
+                rightIndicator.style.opacity = showRight ? '1' : '0';
+            }
+        }
+
+        // Keyboard Navigation
+        function initKeyboardNav() {
+            document.addEventListener('keydown', function(e) {
+                const activeSection = document.querySelector('.course-section.active');
+                if (!activeSection) return;
+
+                const sections = Array.from(document.querySelectorAll('.course-section'));
+                const currentIndex = sections.indexOf(activeSection);
+
+                if (e.key === 'ArrowRight' && currentIndex < sections.length - 1) {
+                    const nextSection = sections[currentIndex + 1];
+                    const nextLink = document.querySelector(`[onclick*="${nextSection.id}"]`);
+                    if (nextLink) nextLink.click();
+                } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    const prevSection = sections[currentIndex - 1];
+                    const prevLink = document.querySelector(`[onclick*="${prevSection.id}"]`);
+                    if (prevLink) prevLink.click();
+                }
+            });
+        }
+
+        // Accessibility Enhancements
+        function addAccessibility() {
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.setAttribute('role', 'tab');
+                link.setAttribute('aria-selected', link.classList.contains('active'));
+            });
+
+            const sections = document.querySelectorAll('.course-section');
+            sections.forEach(section => {
+                section.setAttribute('role', 'tabpanel');
+                section.setAttribute('aria-hidden', !section.classList.contains('active'));
+            });
+        }
+
+        // Animation Observer
+        function initAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                        // Unobserve after animation
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1,
+                rootMargin: '50px'
+            });
+
+            document.querySelectorAll('.info-box').forEach(box => {
+                observer.observe(box);
+            });
+        }
+
+        // Performance Optimization
+        function debounce(func, wait) {
+            let timeout;
+            return function executedFunction(...args) {
+                const later = () => {
+                    clearTimeout(timeout);
+                    func(...args);
+                };
+                clearTimeout(timeout);
+                timeout = setTimeout(later, wait);
+            };
+        }
+
+        // Optimized scroll handler
+        const optimizedScroll = debounce(function() {
+            updateScrollIndicators();
+        }, 16);
+
+        window.addEventListener('scroll', optimizedScroll);
+
+        // Error Handling
+        function handleError(error, message = 'An error occurred') {
+            console.error(error);
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.innerHTML = `
+                <div class="error-content">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>${message}</p>
+                    <button onclick="this.parentElement.parentElement.remove()">Dismiss</button>
+                </div>
+            `;
+            document.body.appendChild(errorDiv);
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+
+        // Loading State
+        function showLoading() {
+            const loader = document.createElement('div');
+            loader.className = 'loading-overlay';
+            loader.innerHTML = `
+                <div class="loader-spinner"></div>
+                <p>Loading content...</p>
+            `;
+            document.body.appendChild(loader);
+        }
+
+        function hideLoading() {
+            const loader = document.querySelector('.loading-overlay');
+            if (loader) {
+                loader.remove();
+            }
+        }
+                // Initialize Everything
+                document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // Initialize first section
+                document.querySelector('.course-section.active').style.display = 'block';
+                
+                // Initialize mobile navigation
+                initMobileNav();
+                
+                // Add keyboard navigation
+                initKeyboardNav();
+                
+                // Add accessibility attributes
+                addAccessibility();
+
+                // Initialize animations
+                initAnimations();
+
+                // Add print functionality
+                setupPrintHandling();
+
+                // Add error boundary
+                setupErrorBoundary();
+
+            } catch (error) {
+                handleError(error, 'Error initializing page');
+            }
+        });
+
+        // Print Handling
+        function setupPrintHandling() {
+            window.addEventListener('beforeprint', function() {
+                document.querySelectorAll('.course-section').forEach(section => {
+                    section.style.display = 'block';
+                    section.style.opacity = '1';
+                });
+            });
+
+            window.addEventListener('afterprint', function() {
+                showCourse(document.querySelector('.course-section.active').id);
+            });
+        }
+
+        // Error Boundary
+        function setupErrorBoundary() {
+            window.addEventListener('error', function(e) {
+                handleError(e.error, 'An unexpected error occurred');
+                return false;
+            });
+
+            window.addEventListener('unhandledrejection', function(e) {
+                handleError(e.reason, 'Promise rejection occurred');
+                return false;
+            });
+        }
+
+        // Cleanup Function
+        function cleanup() {
+            window.removeEventListener('scroll', optimizedScroll);
+            window.removeEventListener('resize', initMobileNav);
+        }
+
+        // Add cleanup on page unload
+        window.addEventListener('unload', cleanup);
+
+        // Additional Styles for Error and Loading States
+        const additionalStyles = `
+            .error-message {
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: var(--white);
+                padding: 15px;
+                border-radius: 8px;
+                box-shadow: var(--shadow-lg);
+                border-left: 4px solid var(--error);
+                animation: slideIn 0.3s ease-out;
+                z-index: 9999;
+            }
+
+            .error-content {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .error-content button {
+                margin-left: 15px;
+                padding: 5px 10px;
+                border: none;
+                background: var(--error);
+                color: white;
+                border-radius: 4px;
+                cursor: pointer;
+            }
+
+            .loading-overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                background: rgba(255, 255, 255, 0.9);
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                z-index: 9999;
+            }
+
+            .loader-spinner {
+                width: 50px;
+                height: 50px;
+                border: 5px solid var(--gray-200);
+                border-top-color: var(--primary-color);
+                border-radius: 50%;
+                animation: spin 1s linear infinite;
+            }
+
+            @keyframes spin {
+                to { transform: rotate(360deg); }
+            }
+
+            /* Print Styles */
+            @media print {
+                .nav-container,
+                .scroll-indicator,
+                .error-message,
+                .loading-overlay {
+                    display: none !important;
+                }
+
+                .course-section {
+                    display: block !important;
+                    opacity: 1 !important;
+                    break-inside: avoid;
+                    page-break-inside: avoid;
+                }
+
+                .info-box {
+                    break-inside: avoid;
+                    page-break-inside: avoid;
+                    border: 1px solid #ccc;
+                }
+
+                .header {
+                    background: none;
+                    color: black;
+                    padding: 20px;
+                    margin-bottom: 20px;
+                    box-shadow: none;
+                }
+
+                body {
+                    background: white;
+                }
+
+                .category-header {
+                    background: none;
+                    color: black;
+                    border: 1px solid #ccc;
+                    box-shadow: none;
+                }
+            }
+
+            /* Accessibility Styles */
+            .visually-hidden {
+                position: absolute;
+                width: 1px;
+                height: 1px;
+                padding: 0;
+                margin: -1px;
+                overflow: hidden;
+                clip: rect(0, 0, 0, 0);
+                border: 0;
+            }
+
+            *:focus {
+                outline: 3px solid var(--primary-color);
+                outline-offset: 2px;
+            }
+
+            .skip-link {
+                position: absolute;
+                top: -40px;
+                left: 0;
+                background: var(--primary-color);
+                color: white;
+                padding: 8px;
+                z-index: 100;
+                transition: top 0.3s;
+            }
+
+            .skip-link:focus {
+                top: 0;
+            }
+        `;
+
+        // Add additional styles to document
+        const finalStyleSheet = document.createElement("style");
+        finalStyleSheet.textContent = additionalStyles;
+        document.head.appendChild(finalStyleSheet);
+
+        // Add skip link for accessibility
+        const skipLink = document.createElement('a');
+        skipLink.href = '#main-content';
+        skipLink.className = 'skip-link';
+        skipLink.textContent = 'Skip to main content';
+        document.body.insertBefore(skipLink, document.body.firstChild);
+    </script>
+</body>
+</html>

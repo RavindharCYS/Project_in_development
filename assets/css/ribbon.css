@@ -1,8 +1,8 @@
 .ribbon-container {
     position: fixed;
-    top: 10; /* Default for desktop */
+    top: 56px; /* Height of navbar */
     width: 100%;
-    z-index: 1040; /* Ensure it's below the navbar */
+    z-index: 1040;
 }
 
 .ribbon {
@@ -102,9 +102,30 @@
     background-color: #0056b3;
 }
 
+/* Adjust body padding to account for navbar and ribbon */
+body {
+    padding-top: 96px; /* 56px (navbar) + 40px (ribbon and some spacing) */
+}
+
+/* Mobile Styles */
 @media (max-width: 768px) {
     .ribbon-container {
-        top: 56px; /* Position it below the main navbar on mobile */
-        bottom: auto; /* Remove bottom positioning */
+        top: 56px; /* Stays attached to navbar on mobile */
+    }
+
+    body {
+        padding-top: 96px; /* Keep the same padding for consistency */
+    }
+}
+
+/* Small Mobile Styles */
+@media (max-width: 576px) {
+    .ribbon {
+        padding: 6px 0;
+    }
+
+    .ribbon-modal-content {
+        margin: 10% auto;
+        padding: 15px;
     }
 }

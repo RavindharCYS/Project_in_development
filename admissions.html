@@ -1,34 +1,20 @@
-<!-- admissions.html - Part 1: Main Structure and Basic Styling -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>College Admissions Portal</title>
+    
     <!-- External CSS Links -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
-    <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
-    
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    
-    <!-- Bootstrap Icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
-    
-    <!-- AOS CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    
-    <!-- Custom CSS -->
     <link href="assets/css/styles.css" rel="stylesheet">
-
-    <!-- Ribbon CSS -->
-    <link rel="stylesheet" href="assets/css/ribbon.css">
+    <link href="assets/css/ribbon.css" rel="stylesheet">
 
     <style>
-        /* Base Styles */
         :root {
+            --primary-color: #1a5f7a;
             --secondary-color: #3498db;
             --accent-color: #e74c3c;
             --success-color: #2ecc71;
@@ -40,6 +26,7 @@
         body {
             background-color: var(--light-gray);
             color: var(--dark-gray);
+            padding-top: 76px;
         }
 
         /* Header Styles */
@@ -49,16 +36,6 @@
             padding: 2rem 0;
             margin-bottom: 2rem;
             text-align: center;
-        }
-
-        .admission-header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .admission-header p {
-            font-size: 1.2rem;
-            opacity: 0.9;
         }
 
         /* Form Container Styles */
@@ -95,90 +72,12 @@
             margin-bottom: 0.5rem;
         }
 
-        .form-control {
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            padding: 0.75rem;
-            margin-bottom: 1rem;
+        .required::after {
+            content: " *";
+            color: var(--accent-color);
         }
 
-        .form-control:focus {
-            border-color: var(--secondary-color);
-            box-shadow: 0 0 0 0.2rem rgba(52, 152, 219, 0.25);
-        }
-
-        /* Select Boxes */
-        .custom-select {
-            width: 100%;
-            padding: 0.75rem;
-            border: 1px solid #ced4da;
-            border-radius: 5px;
-            margin-bottom: 1rem;
-            background-color: white;
-        }
-
-        /* Quota Cards */
-        .quota-card {
-            border: 2px solid #e0e0e0;
-            border-radius: 8px;
-            padding: 1.5rem;
-            margin-bottom: 1rem;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .quota-card:hover {
-            border-color: var(--secondary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        .quota-card.selected {
-            border-color: var(--secondary-color);
-            background-color: rgba(52, 152, 219, 0.1);
-        }
-
-        /* Icons */
-        .icon-feature {
-            font-size: 1.5rem;
-            color: var(--secondary-color);
-        }
-
-        /* Buttons */
-        .action-button {
-            background: var(--secondary-color);
-            color: white;
-            padding: 1rem 2rem;
-            border: none;
-            border-radius: 5px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
-        .action-button:hover {
-            background: var(--primary-color);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-        }
-
-        /* Responsive Design */
-        @media (max-width: 768px) {
-            .admission-header h1 {
-                font-size: 2rem;
-            }
-
-            .form-section {
-                padding: 1rem;
-            }
-
-            .action-button {
-                width: 100%;
-            }
-        }
-
-        /* Loading Spinner */
+        /* Toast and Spinner Styles */
         .spinner-overlay {
             position: fixed;
             top: 0;
@@ -192,21 +91,6 @@
             z-index: 1000;
         }
 
-        .spinner {
-            width: 50px;
-            height: 50px;
-            border: 5px solid var(--light-gray);
-            border-top: 5px solid var(--secondary-color);
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
-        /* Toast Notifications */
         .toast-container {
             position: fixed;
             top: 20px;
@@ -214,110 +98,126 @@
             z-index: 1000;
         }
 
-        .toast {
-            background: white;
-            border-radius: 5px;
-            padding: 1rem;
-            margin-bottom: 10px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            display: none;
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .admission-header h1 { font-size: 2rem; }
+            .form-section { padding: 1rem; }
+            .action-button { width: 100%; }
         }
 
-        .toast.success {
-            border-left: 4px solid var(--success-color);
+        /* Social Float Buttons */
+        .social-float {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
         }
 
-        .toast.error {
-            border-left: 4px solid var(--accent-color);
+        .social-btn {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 8px 0;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            transition: all 0.3s ease;
         }
 
-        .toast.warning {
-            border-left: 4px solid var(--warning-color);
+        .social-btn:hover {
+            transform: scale(1.1);
         }
+
+        /* Social Media Colors */
+        .whatsapp-float { background: #25D366; }
+        .telegram-float { background: #0088cc; }
+        .facebook-float { background: #3b5998; }
+        .instagram-float { background: #e1306c; }
+        .linkedin-float { background: #0077b5; }
+        .x-float { background: #000000; }
     </style>
 </head>
 <body>
-<!-- Navigation Bar -->
-<nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
-    <div class="container">
-        <!-- Logo -->
-        <a class="navbar-brand" href="index.html">
-            <img src="assets/images/logo.png" alt="Success Meets Logo" height="40">
-            Success Meets
-        </a>
-        
-        <!-- Mobile Toggle Button -->
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
-            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        
-        <!-- Navigation Links -->
-        <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="about.html">About Us</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="contact.html">Contact</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="blog.html">Blog</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="institutes.html">Institutes</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="study-abroad.html">Study Abroad</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="entrance-exams.html">Entrance Exams</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="admissions.html">Admissions</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="fees.html">Fees</a>
-                </li>
-                <li class="nav-item"></li>
-                    <a class="nav-link" href="referrals.html">Referral Program</a>
-                </li>
-            </ul>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.png" alt="Success Meets Logo" height="40">
+                Success Meets
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="institutes.html">Institutes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="study-abroad.html">Study Abroad</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="entrance-exams.html">Entrance Exams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admissions.html">Admissions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="fees.html">Fees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="referrals.html">Referral Program</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-    </div>
-</nav>
-
-
+    </nav>
 
     <!-- Ribbon Section -->
-<div class="ribbon-container">
-    <div class="ribbon" onclick="openRibbonModal()">
-        <div class="moving-text">
-            🚀 Get notified about our latest courses and exclusive offers! Click here to join our community. 🚀
+    <div class="ribbon-container">
+        <div class="ribbon" onclick="openRibbonModal()">
+            <div class="moving-text">
+                🚀 Get notified about our latest courses and exclusive offers! Click here to join our community. 🚀
+            </div>
         </div>
     </div>
-</div>
 
-<!-- Ribbon Modal -->
-<div id="ribbonModal" class="ribbon-modal">
-    <div class="ribbon-modal-content">
-        <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
-        <h2>Get Notified</h2>
-        <form id="ribbonForm" class="ribbon-form">
-            <label for="ribbonName">Name:</label>
-            <input type="text" id="ribbonName" required>
+    <!-- Ribbon Modal -->
+    <div id="ribbonModal" class="ribbon-modal">
+        <div class="ribbon-modal-content">
+            <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
+            <h2>Get Notified</h2>
+            <form id="ribbonForm" class="ribbon-form">
+                <label for="ribbonName">Name:</label>
+                <input type="text" id="ribbonName" required>
 
-            <label for="ribbonMobile">Mobile No:</label>
-            <input type="tel" id="ribbonMobile" required>
+                <label for="ribbonMobile">Mobile No:</label>
+                <input type="tel" id="ribbonMobile" required>
 
-            <label for="ribbonEmail">Email:</label>
-            <input type="email" id="ribbonEmail" required>
+                <label for="ribbonEmail">Email:</label>
+                <input type="email" id="ribbonEmail" required>
 
-            <button type="submit">Notify Me</button>
-        </form>
+                <button type="submit">Notify Me</button>
+            </form>
+        </div>
     </div>
-</div>
-
 
     <!-- Loading Spinner -->
     <div class="spinner-overlay">
@@ -326,375 +226,497 @@
 
     <!-- Toast Notifications Container -->
     <div class="toast-container"></div>
-
-    <!-- Header Section -->
-    <header class="admission-header">
-        <h1><i class="bi bi-mortarboard"></i> College Admissions Portal</h1>
-        <p>Your Gateway to Higher Education</p>
-    </header>
-
-    <!-- Main Content Container -->
-    <div class="admission-container">
-        <!-- Form content will be in Part 2 -->
-         <!-- Add this inside the "admission-container" div from Part 1 -->
-<form id="admissionForm" class="needs-validation" novalidate>
-    <!-- College Selection Section -->
-    <div class="form-section">
-        <h3 class="section-title">
-            <i class="bi bi-building icon-feature"></i>
-            Institution Selection
-        </h3>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Select College Type</label>
-                <select class="form-select" id="collegeType" required>
-                    <option value="">Choose Type</option>
-                    <option value="university">University</option>
-                    <option value="engineering">Engineering College</option>
-                    <option value="coimbatore">Coimbatore Zone</option>
-                    <option value="salem">Salem Zone</option>
-                </select>
-                <div class="invalid-feedback">Please select a college type.</div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Select Institution</label>
-                <select class="form-select" id="collegeName" required>
-                    <option value="">First select college type</option>
-                </select>
-                <div class="invalid-feedback">Please select an institution.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Program Selection Section -->
-    <div class="form-section">
-        <h3 class="section-title">
-            <i class="bi bi-book icon-feature"></i>
-            Program Selection
-        </h3>
-        <div class="row">
-            <div class="col-md-4 mb-3">
-                <label class="form-label">Degree Level</label>
-                <select class="form-select" id="degreeLevel" required>
-                    <option value="">Select Degree Level</option>
-                    <option value="ug">Undergraduate (UG)</option>
-                    <option value="pg">Postgraduate (PG)</option>
-                    <option value="diploma">Diploma</option>
-                </select>
-                <div class="invalid-feedback">Please select a degree level.</div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label class="form-label">Degree Program</label>
-                <select class="form-select" id="degreeProgram" required>
-                    <option value="">Select Degree Program</option>
-                </select>
-                <div class="invalid-feedback">Please select a program.</div>
-            </div>
-            <div class="col-md-4 mb-3">
-                <label class="form-label">Specialization</label>
-                <select class="form-select" id="specialization" required>
-                    <option value="">Select Specialization</option>
-                </select>
-                <div class="invalid-feedback">Please select a specialization.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Quota Selection Section -->
-    <div class="form-section">
-        <h3 class="section-title">
-            <i class="bi bi-person-badge icon-feature"></i>
-            Admission Quota
-        </h3>
-        <div class="row">
-            <div class="col-md-6">
-                <div class="quota-card" data-quota="government">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="quota" id="governmentQuota" required>
-                        <label class="form-check-label" for="governmentQuota">
-                            <h4><i class="bi bi-building"></i> Government Quota</h4>
-                            <p class="text-muted">Merit-based admission through government counseling</p>
-                            <ul class="small">
-                                <li>Based on entrance exam rank</li>
-                                <li>Merit-based seat allocation</li>
-                                <li>Government fee structure</li>
-                            </ul>
-                        </label>
+        <!-- Header Section -->
+        <header class="admission-header">
+            <h1><i class="bi bi-mortarboard"></i> College Admissions Portal</h1>
+            <p>Your Gateway to Higher Education</p>
+        </header>
+    
+        <!-- Main Content Container -->
+        <div class="admission-container">
+            <!-- Domain Selection Section -->
+            <div class="form-section">
+                <div class="domain-header text-center mb-4">
+                    <h3 class="section-title">
+                        <i class="bi bi-search-heart"></i>
+                        Explore Your Academic Path
+                    </h3>
+                    <p class="lead text-muted">
+                        If you're uncertain about your academic direction, explore our comprehensive domains below
+                    </p>
+                </div>
+                
+                <div class="row">
+                    <!-- Domain Selection -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label required">Select Domain</label>
+                        <select class="form-select" id="domainType" required>
+                            <option value="">Choose Domain</option>
+                            <option value="Medical & Healthcare">Medical & Healthcare</option>
+                            <option value="Engineering & Technology">Engineering & Technology</option>
+                            <option value="Arts & Science">Arts & Science</option>
+                        </select>
+                    </div>
+    
+                    <!-- Sub-Domain Selection -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label required">Select Category</label>
+                        <select class="form-select" id="subDomainType" required>
+                            <option value="">First select domain</option>
+                        </select>
+                    </div>
+    
+                    <!-- Course Selection -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label required">Select Course</label>
+                        <select class="form-select" id="courseType" required>
+                            <option value="">First select category</option>
+                        </select>
+                    </div>
+    
+                    <!-- Explore Button -->
+                    <div class="col-md-3 mb-3 d-flex align-items-end">
+                        <button id="exploreButton" class="btn w-100" disabled>
+                            <i class="bi bi-arrow-right-circle"></i> Explore Now
+                        </button>
                     </div>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="quota-card" data-quota="management">
-                    <div class="form-check">
-                        <input class="form-check-input" type="radio" name="quota" id="managementQuota" required>
-                        <label class="form-check-label" for="managementQuota">
-                            <h4><i class="bi bi-person-workspace"></i> Management Quota</h4>
-                            <p class="text-muted">Direct admission through institution</p>
-                            <ul class="small">
-                                <li>Direct admission process</li>
-                                <li>Institution-specific criteria</li>
-                                <li>Management fee structure</li>
-                            </ul>
-                        </label>
+                    <!-- Admission Form -->
+        <form id="admissionForm" class="needs-validation" novalidate>
+            <!-- College Selection Section -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="bi bi-building icon-feature"></i>
+                    Institution Selection
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Select College Type</label>
+                        <select class="form-select" id="collegeType" required>
+                            <option value="">Choose Type</option>
+                            <option value="TN Universities">TN Universities</option>
+                            <option value="TN Private Colleges">TN Private Colleges</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Select Institution</label>
+                        <select class="form-select" id="collegeName" required>
+                            <option value="">First select college type</option>
+                        </select>
                     </div>
                 </div>
             </div>
-        </div>
-    </div>
 
-    <!-- Personal Information Section -->
-    <div class="form-section">
-        <h3 class="section-title">
-            <i class="bi bi-person-circle icon-feature"></i>
-            Personal Information
-        </h3>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Full Name</label>
-                <input type="text" class="form-control" id="fullName" required>
-                <div class="invalid-feedback">Please enter your full name.</div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Date of Birth</label>
-                <input type="date" class="form-control" id="dob" required>
-                <div class="invalid-feedback">Please enter your date of birth.</div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Email Address</label>
-                <input type="email" class="form-control" id="email" required>
-                <div class="invalid-feedback">Please enter a valid email address.</div>
-            </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">Mobile Number</label>
-                <input type="tel" class="form-control" id="mobile" pattern="[0-9]{10}" required>
-                <div class="invalid-feedback">Please enter a valid 10-digit mobile number.</div>
-            </div>
-            <div class="col-md-12 mb-3">
-                <label class="form-label">Address</label>
-                <textarea class="form-control" id="address" rows="3" required></textarea>
-                <div class="invalid-feedback">Please enter your address.</div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Academic Information Section -->
-    <div class="form-section">
-        <h3 class="section-title">
-            <i class="bi bi-mortarboard icon-feature"></i>
-            Academic Information
-        </h3>
-        <div class="row">
-            <div class="col-md-6 mb-3">
-                <label class="form-label">10th Standard</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" id="tenthPercentage" 
-                           min="0" max="100" step="0.01" required>
-                    <span class="input-group-text">%</span>
-                    <div class="invalid-feedback">Please enter valid percentage (0-100).</div>
+            <!-- Personal Information Section -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="bi bi-person-circle icon-feature"></i>
+                    Personal Information
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Email Address</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Mobile Number</label>
+                        <input type="tel" class="form-control" id="mobile" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label required">Address</label>
+                        <textarea class="form-control" id="address" rows="3" required></textarea>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-6 mb-3">
-                <label class="form-label">12th Standard</label>
-                <div class="input-group">
-                    <input type="number" class="form-control" id="twelfthPercentage" 
-                           min="0" max="100" step="0.01" required>
-                    <span class="input-group-text">%</span>
-                    <div class="invalid-feedback">Please enter valid percentage (0-100).</div>
+
+            <!-- Academic Information Section -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="bi bi-mortarboard icon-feature"></i>
+                    Academic Information
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">10th Standard</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="tenthPercentage" 
+                                   min="0" max="100" step="0.01" required>
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">12th Standard</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="twelfthPercentage" 
+                                   min="0" max="100" step="0.01" required>
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Upload Documents</label>
+                        <input type="file" class="form-control" id="documents" multiple>
+                        <small class="text-muted">Upload 10th, 12th marksheets and other relevant documents (PDF/JPG)</small>
+                    </div>
                 </div>
             </div>
-            <div class="col-md-12 mb-3">
-                <label class="form-label">Upload Documents</label>
-                <input type="file" class="form-control" id="documents" multiple>
-                <small class="text-muted">Upload 10th, 12th marksheets and other relevant documents (PDF/JPG)</small>
-            </div>
-        </div>
-    </div>
 
-    <!-- Submit Button -->
-    <div class="text-center mt-4">
-        <button type="submit" class="action-button">
-            <i class="bi bi-send"></i> Submit Application
+            <!-- Submit Button -->
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi bi-send"></i> Submit Application
+                </button>
+            </div>
+        </form>
+    </div>
+        <!-- Footer Section -->
+        <footer class="footer bg-dark text-white py-5">
+            <div class="container">
+                <div class="row">
+                    <!-- Company Info -->
+                    <div class="col-md-4 mb-4">
+                        <h5>Success Meets</h5>
+                        <p>Transforming dreams into reality through expert educational guidance and career counseling.</p>
+                        <div class="social-links">
+                            <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="col-md-4 mb-4">
+                        <h5>Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="about.html" class="text-white">About Us</a></li>
+                            <li><a href="services.html" class="text-white">Services</a></li>
+                            <li><a href="blog.html" class="text-white">Blog</a></li>
+                            <li><a href="contact.html" class="text-white">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="col-md-4 mb-4">
+                        <h5>Newsletter</h5>
+                        <p>Subscribe to our newsletter for updates and insights.</p>
+                        <form class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Your Email">
+                                <button class="btn btn-primary" type="submit">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="text-center pt-4 border-top">
+                    <p>&copy; 2023 Success Meets Educational Consultancy. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    
+        <!-- Floating Social Media Buttons -->
+        <div class="social-float">
+            <a href="https://wa.me/9087442108" class="social-btn whatsapp-float" target="_blank">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="https://x.com/yourprofile" class="social-btn x-float" target="_blank">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/success-meets-technology-b0378734b/" class="social-btn linkedin-float" target="_blank">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/success_meets_foundation/" class="social-btn instagram-float" target="_blank">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://t.me/successmeets" class="social-btn telegram-float" target="_blank">
+                <i class="bi bi-telegram"></i>
+            </a>
+            <a href="https://www.facebook.com/share/19ryQbVNLp/" class="social-btn facebook-float" target="_blank">
+                <i class="bi bi-facebook"></i>
+            </a>
+        </div>
+    
+        <!-- Scroll to Top Button -->
+        <button id="scrollToTop" class="scroll-to-top">
+            <i class="bi bi-arrow-up"></i>
         </button>
-    </div>
-</form>
-    </div>
-
-    <!-- Add these script tags first -->
+        // Required Scripts
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
 <script>
-// College Data
-const collegeData = {
-    university: [
-        "VIT University, Vellore",
-        "SRM University, Chennai & Trichy",
-        "Hindustan University, Chennai",
-        "Vinayaka Missions University, Salem",
-        "Karpagam University, Coimbatore",
-        "Sathyabama University, Chennai",
-        "Dr. MGR University, Chennai",
-        "Meenakshi University, Chennai",
-        "Saveetha University, Chennai",
-        "Vel's University, Chennai",
-        "Amirtha University, Kovai"
-    ],
-    engineering: [
-        "PGP Group of Institutions",
-        "Kumaraguru College of Technology",
-        "Sri Krishna College of Engg & Technology",
-        "Sri Ramakrishna Engineering College",
-        "Dr. Mahalingam College of Engg. & Tech",
-        "SRM Group of Institutions",
-        "Sathyabama Group of Institutions",
-        "RMK & RMD Group of Institutions",
-        "Panimalar Group of Institutions",
-        "Kongu Engineering College",
-        "Sona College of Technology",
-        "Bannari Group of Institution"
-    ],
-    coimbatore: [
-        "Karpagam College of Engineering",
-        "Hindusthan College of Engineering",
-        "Maharaja Group of Institutions",
-        "Kathir College of Engineering",
-        "Nandha Group of Institutions",
-        "Dhanalakshmi Engineering College",
-        "Akshaya College of Engineering",
-        "Rathinam Engineering College",
-        "KPR Engineering College",
-        "KGISL Engineering College"
-    ],
-    salem: [
-        "Muthayammal Engineering College",
-        "Mahendra Group of Institutions",
-        "Paavai Group of Institutions",
-        "Ganamani Engineering College",
-        "Vivekananda Engineering College",
-        "Kumarasamy College of Engineering",
-        "Sengunthar Engineering College",
-        "Excel Engineering College"
-    ]
-};
+    // Domain and Course Mapping - Part 1: Medical & Healthcare
+const domainMapping = {
+    "Medical & Healthcare": {
+        "Medical": {
+            "MBBS": "medical.html#mbbs",
+            "BDS": "medical.html#bds",
+            "BHMS": "medical.html#bhms",
+            "BAMS": "medical.html#bams",
+            "BUMS": "medical.html#bums",
+            "BSMS": "medical.html#bsms",
+            "B.V.Sc": "medical.html#bvsc"
+        },
+        "Nursing": {
+            "B.Sc Nursing": "nursing.html#bsc",
+            "M.Sc Nursing": "nursing.html#msc",
+            "Diploma in Nursing": "nursing.html#diploma"
+        },
+        "Paramedical": {
+            "B.Sc Anesthesia Technology": "paramedical.html#anesthesia",
+            "B.Sc Cardiac Care Technology": "paramedical.html#cardiac",
+            "B.Sc Imaging Technology": "paramedical.html#imaging",
+            "B.Sc Laboratory Technology": "paramedical.html#laboratory",
+            "B.Sc Perfusion Technology": "paramedical.html#perfusion",
+            "B.Sc Emergency Care Technology": "paramedical.html#emergency",
+            "B.Sc Occupational Therapy": "paramedical.html#occupational"
+        },
+        "Pharmacy": {
+            "B.Pharm": "pharmacy.html#bpharm",
+            "M.Pharm": "pharmacy.html#mpharm",
+            "Pharm D": "pharmacy.html#pharmd",
+            "D.Pharm": "pharmacy.html#diploma"
+        },
+        "Physiotherapy": {
+            "BPT": "physiotherapy.html#bpt",
+            "DPT": "physiotherapy.html#dpt",
+            "B.Sc Physiotherapy": "physiotherapy.html#bsc",
+            "MPT": "physiotherapy.html#mpt"
+        }
+    },
+        "Engineering & Technology": {
+        "Engineering": {
+            "Mechanical": "engineering.html#mechanical",
+            "Civil": "engineering.html#civil",
+            "Electrical & Electronics (EEE)": "engineering.html#eee",
+            "Electronics & Communication (ECE)": "engineering.html#ece",
+            "Computer Science (CSE)": "engineering.html#cse",
+            "Information Technology (IT)": "engineering.html#it",
+            "Artificial Intelligence & Data Science (AI & DS)": "engineering.html#aids",
+            "Artificial Intelligence & Machine Learning (AI & ML)": "engineering.html#aiml",
+            "Computer Science & Business Systems (CS & BS)": "engineering.html#csbs",
+            "Internet of Things (IoT)": "engineering.html#iot",
+            "Cyber Security": "engineering.html#cyber",
+            "Chemical Engineering": "engineering.html#chemical",
+            "Biotechnology": "engineering.html#biotech",
+            "Automobile Engineering": "engineering.html#auto",
+            "Marine Engineering": "engineering.html#marine",
+            "Aeronautical Engineering": "engineering.html#aero",
+            "Agricultural Engineering": "engineering.html#agri",
+            "Food Technology": "engineering.html#food",
+            "Textile Engineering": "engineering.html#textile",
+            "Petroleum Engineering": "engineering.html#petroleum",
+            "Mining Engineering": "engineering.html#mining",
+            "Robotics Engineering": "engineering.html#robotics",
+            "Mechatronics": "engineering.html#mechatronics",
+            "Biomedical Engineering": "engineering.html#biomedical",
+            "Environmental Engineering": "engineering.html#environmental"
+        },
+        "Architecture & Planning": {
+            "B.Arch": "architecture.html#barch",
+            "B.Plan": "architecture.html#bplan",
+            "B.Tech Urban Planning": "architecture.html#btech-urban",
+            "M.Arch": "architecture.html#march",
+            "M.Tech Urban Planning": "architecture.html#mtech-urban"
+        },
+        "Computer Applications & IT": {
+            "BCA Cloud Computing": "computer.html#bca-cloud",
+            "BCA AI & Cloud": "computer.html#bca-ai",
+            "BCA Digital Arts": "computer.html#bca-digital",
+            "BCA Mobile Development": "computer.html#bca-mobile",
+            "MCA": "computer.html#mca",
+            "M.Sc Cloud Computing": "computer.html#msc-cloud",
+            "M.Sc Cybersecurity": "computer.html#msc-cyber",
+            "M.Sc AI & ML": "computer.html#msc-ai",
+            "M.Sc Data Science": "computer.html#msc-data",
+            "M.Sc IoT": "computer.html#msc-iot"
+        }
+    },
+        "Arts & Science": {
+        "Science": {
+            "Int. M.Sc Biotechnology": "science.html#int-biotech",
+            "Int. M.Sc Food Science": "science.html#int-food",
+            "Int. M.Sc Statistics": "science.html#int-stats",
+            "Int. M.Sc Physics": "science.html#int-physics",
+            "Int. M.Sc Chemistry": "science.html#int-chem",
+            "Int. M.Sc Mathematics": "science.html#int-math",
+            "M.Sc Food Technology": "science.html#msc-food-tech",
+            "M.Sc Anesthesia Technology": "science.html#msc-anesthesia",
+            "M.Sc Medical Imaging": "science.html#msc-imaging",
+            "M.Sc Laboratory Technology": "science.html#msc-lab",
+            "M.Sc Cardiac Technology": "science.html#msc-cardiac",
+            "MOT": "science.html#mot"
+        },
+        "Agriculture": {
+            "B.Sc Agriculture": "agriculture.html#bsc-agriculture",
+            "B.Sc Horticulture": "agriculture.html#bsc-horticulture",
+            "B.Sc Agri Business": "agriculture.html#bsc-agribusiness",
+            "B.Sc Forestry": "agriculture.html#bsc-forestry",
+            "B.Sc Sericulture": "agriculture.html#bsc-sericulture",
+            "B.Sc Food & Nutrition": "agriculture.html#bsc-food-nutrition",
+            "M.Sc Agricultural Economics": "agriculture.html#msc-agri-economics",
+            "M.Sc Agriculture": "agriculture.html#msc-agriculture",
+            "M.Sc Agronomy": "agriculture.html#msc-agronomy",
+            "M.Sc Seed Science": "agriculture.html#msc-seed-science"
+        },
+        "Business & Commerce": {
+            "BBA General": "management.html#bba-general",
+            "BBA Sports": "management.html#bba-sports",
+            "BBA Analytics": "management.html#bba-analytics",
+            "BBA Logistics": "management.html#bba-logistics",
+            "BBA Finance": "management.html#bba-finance",
+            "BBA Entrepreneurship": "management.html#bba-entrepreneurship",
+            "B.Com Business": "management.html#bcom-business",
+            "B.Com Banking": "management.html#bcom-banking",
+            "B.Com Financial": "management.html#bcom-financial"
+        },
+        "Design & Fashion": {
+            "B.Des Fashion Design": "design.html#bdes-fashion",
+            "B.Des Fashion Communication": "design.html#bdes-fashion-comm",
+            "B.Des Product Design": "design.html#bdes-product",
+            "B.Des Communication Design": "design.html#bdes-comm",
+            "B.Des Industrial Design": "design.html#bdes-industrial",
+            "B.Des Textile & Clothing": "design.html#bdes-textile"
+        }
+    }
+}; // End of domainMapping
 
-// Degree Programs Data
-const degreePrograms = {
-    ug: [
-        "B.E. - Bachelor of Engineering",
-        "B.Tech - Bachelor of Technology",
-        "B.Arch - Bachelor of Architecture",
-        "B.Sc - Bachelor of Science"
-    ],
-    pg: [
-        "M.E. - Master of Engineering",
-        "M.Tech - Master of Technology",
-        "MBA - Master of Business Administration",
-        "MCA - Master of Computer Applications"
-    ],
-    diploma: [
-        "Diploma in Engineering",
-        "Diploma in Technology",
-        "Advanced Diploma"
-    ]
-};
-
-// Specializations Data
-const specializations = {
-    "B.E. - Bachelor of Engineering": [
-        "Computer Science and Engineering",
-        "Mechanical Engineering",
-        "Electrical and Electronics Engineering",
-        "Civil Engineering",
-        "Electronics and Communication Engineering",
-        "Information Technology",
-        "Chemical Engineering",
-        "Biotechnology"
-    ],
-    "M.E. - Master of Engineering": [
-        "Computer Science and Engineering",
-        "Power Electronics",
-        "Structural Engineering",
-        "VLSI Design",
-        "Communication Systems",
-        "Industrial Engineering"
-    ]
-    // Add more specializations for other programs
-};
-
-// Form Handling
-document.addEventListener('DOMContentLoaded', function() {
-    const form = document.getElementById('admissionForm');
-    const spinner = document.querySelector('.spinner-overlay');
-
-    // Dynamic College Selection
-    const collegeTypeSelect = document.getElementById('collegeType');
-    const collegeNameSelect = document.getElementById('collegeName');
-
-    collegeTypeSelect.addEventListener('change', function() {
-        const selectedType = this.value;
-        collegeNameSelect.innerHTML = '<option value="">Select Institution</option>';
+    // Document Ready Event Handler
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Elements
+        const domainSelect = document.getElementById('domainType');
+        const subDomainSelect = document.getElementById('subDomainType');
+        const courseSelect = document.getElementById('courseType');
+        const exploreButton = document.getElementById('exploreButton');
+        const form = document.getElementById('admissionForm');
         
-        if(selectedType && collegeData[selectedType]) {
-            collegeData[selectedType].forEach(college => {
-                const option = document.createElement('option');
-                option.value = college;
-                option.textContent = college;
-                collegeNameSelect.appendChild(option);
-            });
-        }
-    });
-
-    // Dynamic Degree Program Selection
-    const degreeLevelSelect = document.getElementById('degreeLevel');
-    const degreeProgramSelect = document.getElementById('degreeProgram');
-    const specializationSelect = document.getElementById('specialization');
-
-    degreeLevelSelect.addEventListener('change', function() {
-        const selectedLevel = this.value;
-        degreeProgramSelect.innerHTML = '<option value="">Select Degree Program</option>';
-        specializationSelect.innerHTML = '<option value="">Select Specialization</option>';
-
-        if(selectedLevel && degreePrograms[selectedLevel]) {
-            degreePrograms[selectedLevel].forEach(program => {
-                const option = document.createElement('option');
-                option.value = program;
-                option.textContent = program;
-                degreeProgramSelect.appendChild(option);
-            });
-        }
-    });
-
-    degreeProgramSelect.addEventListener('change', function() {
-        const selectedProgram = this.value;
-        specializationSelect.innerHTML = '<option value="">Select Specialization</option>';
-
-        if(selectedProgram && specializations[selectedProgram]) {
-            specializations[selectedProgram].forEach(spec => {
-                const option = document.createElement('option');
-                option.value = spec;
-                option.textContent = spec;
-                specializationSelect.appendChild(option);
-            });
-        }
-    });
-
-    // Quota Card Selection
-    const quotaCards = document.querySelectorAll('.quota-card');
-    quotaCards.forEach(card => {
-        card.addEventListener('click', function() {
-            const radio = this.querySelector('input[type="radio"]');
-            radio.checked = true;
-            quotaCards.forEach(c => c.classList.remove('selected'));
-            this.classList.add('selected');
+        // Domain Selection Change Handler
+        domainSelect.addEventListener('change', function() {
+            const selectedDomain = this.value;
+            updateSubDomainOptions(selectedDomain);
+            resetCourseSelect();
+            updateExploreButton();
         });
+
+        // Sub-Domain Selection Change Handler
+        subDomainSelect.addEventListener('change', function() {
+            const selectedDomain = domainSelect.value;
+            const selectedSubDomain = this.value;
+            updateCourseOptions(selectedDomain, selectedSubDomain);
+            updateExploreButton();
+        });
+
+        // Course Selection Change Handler
+        courseSelect.addEventListener('change', function() {
+            updateExploreButton();
+        });
+
+        // Explore Button Click Handler
+        exploreButton.addEventListener('click', function() {
+            handleExploreButtonClick();
+        });
+
+        // Form Submission Handler
+        form.addEventListener('submit', function(e) {
+            handleFormSubmission(e);
+        });
+
+        // Helper Functions
+        function updateSubDomainOptions(selectedDomain) {
+            subDomainSelect.innerHTML = '<option value="">Select Category</option>';
+            if(selectedDomain && domainMapping[selectedDomain]) {
+                Object.keys(domainMapping[selectedDomain]).forEach(subDomain => {
+                    const option = document.createElement('option');
+                    option.value = subDomain;
+                    option.textContent = subDomain;
+                    subDomainSelect.appendChild(option);
+                });
+            }
+        }
+
+        function updateCourseOptions(selectedDomain, selectedSubDomain) {
+            courseSelect.innerHTML = '<option value="">Select Course</option>';
+            if(selectedDomain && selectedSubDomain && 
+               domainMapping[selectedDomain][selectedSubDomain]) {
+                Object.keys(domainMapping[selectedDomain][selectedSubDomain]).forEach(course => {
+                    const option = document.createElement('option');
+                    option.value = course;
+                    option.textContent = course;
+                    courseSelect.appendChild(option);
+                });
+            }
+        }
+
+        function resetCourseSelect() {
+            courseSelect.innerHTML = '<option value="">First select category</option>';
+            exploreButton.disabled = true;
+        }
+
+        function updateExploreButton() {
+            exploreButton.disabled = !courseSelect.value;
+        }
+
+        function handleExploreButtonClick() {
+            const selectedDomain = domainSelect.value;
+            const selectedSubDomain = subDomainSelect.value;
+            const selectedCourse = courseSelect.value;
+
+            if (selectedDomain && selectedSubDomain && selectedCourse) {
+                const redirectPath = domainMapping[selectedDomain][selectedSubDomain][selectedCourse];
+                if (redirectPath) {
+                    showSpinner();
+                    setTimeout(() => {
+                        window.location.href = redirectPath;
+                    }, 500);
+                } else {
+                    showToast('Path not found. Please try again.', 'error');
+                }
+            }
+        }
+
+        function handleFormSubmission(e) {
+            e.preventDefault();
+            if (form.checkValidity()) {
+                showSpinner();
+                // Simulate form submission
+                setTimeout(() => {
+                    hideSpinner();
+                    showToast('Application submitted successfully!', 'success');
+                    form.reset();
+                    form.classList.remove('was-validated');
+                }, 1500);
+            }
+            form.classList.add('was-validated');
+        }
     });
 
-    // Toast Notification Function
+    // Utility Functions
+    function showSpinner() {
+        document.querySelector('.spinner-overlay').style.display = 'flex';
+    }
+
+    function hideSpinner() {
+        document.querySelector('.spinner-overlay').style.display = 'none';
+    }
+
     function showToast(message, type = 'success') {
         const toastContainer = document.querySelector('.toast-container');
         const toast = document.createElement('div');
         toast.className = `toast ${type}`;
         toast.innerHTML = `
             <div class="toast-header">
-                <i class="bi ${type === 'success' ? 'bi-check-circle' : 'bi-exclamation-circle'}"></i>
+                <i class="bi bi-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
                 <strong class="me-auto">${type.charAt(0).toUpperCase() + type.slice(1)}</strong>
                 <button type="button" class="btn-close" onclick="this.parentElement.parentElement.remove()"></button>
             </div>
@@ -705,156 +727,42 @@ document.addEventListener('DOMContentLoaded', function() {
         setTimeout(() => toast.remove(), 5000);
     }
 
-    // File Upload Validation
-    const fileInput = document.getElementById('documents');
-    fileInput.addEventListener('change', function() {
-        const files = this.files;
-        const maxSize = 5 * 1024 * 1024; // 5MB
-        const allowedTypes = ['application/pdf', 'image/jpeg', 'image/jpg'];
+    // Ribbon Functions
+    function openRibbonModal() {
+        document.getElementById('ribbonModal').style.display = 'block';
+    }
 
-        for(let file of files) {
-            if(file.size > maxSize) {
-                showToast(`File ${file.name} is too large. Maximum size is 5MB.`, 'error');
-                this.value = '';
-                return;
-            }
-            if(!allowedTypes.includes(file.type)) {
-                showToast(`File ${file.name} is not supported. Please upload PDF or JPG files.`, 'error');
-                this.value = '';
-                return;
-            }
-        }
-    });
+    function closeRibbonModal() {
+        document.getElementById('ribbonModal').style.display = 'none';
+    }
 
-    // Form Submission
-    form.addEventListener('submit', function(e) {
-        e.preventDefault();
+    // Initialize AOS
+    AOS.init();
 
-        if (!form.checkValidity()) {
-            e.stopPropagation();
-            showToast('Please fill all required fields correctly.', 'error');
+    // Scroll to Top Functionality
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById('scrollToTop').style.display = 'block';
         } else {
-            spinner.style.display = 'flex';
-
-            // Simulate form submission
-            setTimeout(() => {
-                spinner.style.display = 'none';
-                showToast('Application submitted successfully! We will contact you soon.');
-                form.reset();
-                quotaCards.forEach(card => card.classList.remove('selected'));
-            }, 2000);
-
-            // In real implementation, you would send the data to a server:
-            /*
-            const formData = new FormData(form);
-            fetch('/submit-application', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.json())
-            .then(data => {
-                spinner.style.display = 'none';
-                showToast('Application submitted successfully!');
-                form.reset();
-            })
-            .catch(error => {
-                spinner.style.display = 'none';
-                showToast('Error submitting application. Please try again.', 'error');
-            });
-            */
+            document.getElementById('scrollToTop').style.display = 'none';
         }
+    };
 
-        form.classList.add('was-validated');
+    document.getElementById('scrollToTop').onclick = function() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+
+    // Ribbon Form Handler
+    document.getElementById('ribbonForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        showSpinner();
+        setTimeout(() => {
+            hideSpinner();
+            closeRibbonModal();
+            showToast('Thank you for subscribing!', 'success');
+            this.reset();
+        }, 1000);
     });
-});
 </script>
-<!-- Footer -->
-<footer class="footer bg-dark text-white py-5">
-    <div class="container">
-        <div class="row">
-            <!-- Company Info -->
-            <div class="col-md-4 mb-4">
-                <h5>Success Meets</h5>
-                <p>Transforming dreams into reality through expert educational guidance and career counseling.</p>
-                <div class="social-links">
-                    <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                    <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
-                    <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
-                    <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
-                </div>
-            </div>
-            
-            <!-- Quick Links -->
-            <div class="col-md-4 mb-4">
-                <h5>Quick Links</h5>
-                <ul class="list-unstyled">
-                    <li><a href="about.html" class="text-white">About Us</a></li>
-                    <li><a href="services.html" class="text-white">Services</a></li>
-                    <li><a href="blog.html" class="text-white">Blog</a></li>
-                    <li><a href="contact.html" class="text-white">Contact</a></li>
-                </ul>
-            </div>
-            
-            <!-- Newsletter -->
-            <div class="col-md-4 mb-4">
-                <h5>Newsletter</h5>
-                <p>Subscribe to our newsletter for updates and insights.</p>
-                <form class="newsletter-form">
-                    <div class="input-group">
-                        <input type="email" class="form-control" placeholder="Your Email">
-                        <button class="btn btn-primary" type="submit">Subscribe</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        
-        <!-- Copyright -->
-        <div class="text-center pt-4 border-top">
-            <p>&copy; 2023 Success Meets Educational Consultancy. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-
-<!-- Floating Social Media Buttons -->
-<div class="social-float">
-    <a href="https://wa.me/9087442108" class="social-btn whatsapp-float" target="_blank" aria-label="WhatsApp">
-        <i class="bi bi-whatsapp"></i>
-    </a>
-    <a href="https://x.com/yourprofile" class="social-btn x-float" target="_blank" aria-label="X">
-        <i class="bi bi-twitter"></i>
-    </a>
-    <a href="https://www.linkedin.com/in/success-meets-technology-b0378734b/" class="social-btn linkedin-float" target="_blank" aria-label="LinkedIn">
-        <i class="bi bi-linkedin"></i>
-    </a>
-    <a href="https://www.instagram.com/success_meets_foundation/" class="social-btn instagram-float" target="_blank" aria-label="Instagram">
-        <i class="bi bi-instagram"></i>
-    </a>
-    <a href="https://t.me/successmeets" class="social-btn telegram-float" target="_blank" aria-label="Telegram">
-        <i class="bi bi-telegram"></i>
-    </a>
-    <a href="https://www.facebook.com/share/19ryQbVNLp/" class="social-btn facebook-float" target="_blank" aria-label="Facebook">
-        <i class="bi bi-facebook"></i>
-    </a>
-</div>
-
-<!-- Scroll to Top Button -->
-<button id="scrollToTop" class="scroll-to-top">
-    <i class="bi bi-arrow-up"></i>
-</button>
-
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-
-<!-- AOS JS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-
-<!-- Custom JS -->
-<script src="assets/js/scripts.js"></script>
-
-<!-- Ribbon JS -->
-<script src="assets/js/ribbon.js"></script>
 </body>
 </html>

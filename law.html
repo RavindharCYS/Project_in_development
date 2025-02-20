@@ -284,36 +284,35 @@
     </div>
 
     <script>
-        // Same JavaScript code as before
         function showCourse(courseId, element) {
-            event.preventDefault();
-            
-            document.querySelectorAll('.course-section').forEach(section => {
-                section.classList.remove('active');
-                section.style.display = 'none';
-            });
-            
-            const selectedSection = document.getElementById(courseId);
-            if (selectedSection) {
-                selectedSection.style.display = 'block';
-                selectedSection.offsetHeight;
-                selectedSection.classList.add('active');
-            }
-            
-            document.querySelectorAll('.nav-menu a').forEach(link => {
-                link.classList.remove('active');
-            });
-            element.classList.add('active');
+    event.preventDefault();
+    
+    // First, hide all sections
+    document.querySelectorAll('.course-section').forEach(section => {
+        section.classList.remove('active');
+        section.style.display = 'none';
+    });
+    
+    // Show the selected section
+    const selectedSection = document.getElementById(courseId);
+    if (selectedSection) {
+        selectedSection.style.display = 'block';
+        selectedSection.offsetHeight; // Force reflow
+        selectedSection.classList.add('active');
+    }
+    
+    // Update active state in navigation
+    document.querySelectorAll('.nav-menu a').forEach(link => {
+        link.classList.remove('active');
+    });
+    element.classList.add('active');
 
-            window.scrollTo({
-                top: document.querySelector('.nav-container').offsetTop,
-                behavior: 'smooth'
-            });
-        }
-
-        window.addEventListener('load', function() {
-            document.querySelector('.course-section.active').style.display = 'block';
-        });
+    // Smooth scroll to the navigation container
+    window.scrollTo({
+        top: document.querySelector('.nav-container').offsetTop,
+        behavior: 'smooth'
+    });
+}
     </script>
 </body>
 </html>

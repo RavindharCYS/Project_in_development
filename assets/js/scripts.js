@@ -335,3 +335,235 @@ window.addEventListener('scroll', function() {
 window.addEventListener('beforeunload', function(e) {
     // Add any cleanup or warning messages here if needed
 });
+// Add this to your existing JavaScript file or in a <script> tag
+document.addEventListener('DOMContentLoaded', function() {
+    // Domain Mapping Data (Same as admission.html)
+    const domainMapping = {
+        "Medical & Healthcare": {
+            "Medical": {
+                "MBBS": "medical.html#mbbs",
+                "BDS": "medical.html#bds",
+                "BHMS": "medical.html#bhms",
+                "BAMS": "medical.html#bams",
+                "BUMS": "medical.html#bums",
+                "BSMS": "medical.html#bsms",
+                "B.V.Sc": "medical.html#bvsc"
+            },
+            "Nursing": {
+                "B.Sc Nursing": "nursing.html#bsc",
+                "M.Sc Nursing": "nursing.html#msc",
+                "Diploma in Nursing": "nursing.html#diploma"
+            },
+            "Paramedical": {
+                "B.Sc Anesthesia Technology": "paramedical.html#anesthesia",
+                "B.Sc Cardiac Care Technology": "paramedical.html#cardiac",
+                "B.Sc Imaging Technology": "paramedical.html#imaging",
+                "B.Sc Laboratory Technology": "paramedical.html#laboratory",
+                "B.Sc Perfusion Technology": "paramedical.html#perfusion",
+                "B.Sc Emergency Care Technology": "paramedical.html#emergency",
+                "B.Sc Occupational Therapy": "paramedical.html#occupational"
+            },
+            "Pharmacy": {
+                "B.Pharm": "pharmacy.html#bpharm",
+                "M.Pharm": "pharmacy.html#mpharm",
+                "Pharm D": "pharmacy.html#pharmd",
+                "D.Pharm": "pharmacy.html#diploma"
+            },
+            "Physiotherapy": {
+                "BPT": "physiotherapy.html#bpt",
+                "DPT": "physiotherapy.html#dpt",
+                "B.Sc Physiotherapy": "physiotherapy.html#bsc",
+                "MPT": "physiotherapy.html#mpt"
+            }
+        },
+            "Engineering & Technology": {
+            "Engineering": {
+                "Mechanical": "engineering.html#mechanical",
+                "Civil": "engineering.html#civil",
+                "Electrical & Electronics (EEE)": "engineering.html#eee",
+                "Electronics & Communication (ECE)": "engineering.html#ece",
+                "Computer Science (CSE)": "engineering.html#cse",
+                "Information Technology (IT)": "engineering.html#it",
+                "Artificial Intelligence & Data Science (AI & DS)": "engineering.html#aids",
+                "Artificial Intelligence & Machine Learning (AI & ML)": "engineering.html#aiml",
+                "Computer Science & Business Systems (CS & BS)": "engineering.html#csbs",
+                "Internet of Things (IoT)": "engineering.html#iot",
+                "Cyber Security": "engineering.html#cyber",
+                "Chemical Engineering": "engineering.html#chemical",
+                "Biotechnology": "engineering.html#biotech",
+                "Automobile Engineering": "engineering.html#auto",
+                "Marine Engineering": "engineering.html#marine",
+                "Aeronautical Engineering": "engineering.html#aero",
+                "Agricultural Engineering": "engineering.html#agri",
+                "Food Technology": "engineering.html#food",
+                "Textile Engineering": "engineering.html#textile",
+                "Petroleum Engineering": "engineering.html#petroleum",
+                "Mining Engineering": "engineering.html#mining",
+                "Robotics Engineering": "engineering.html#robotics",
+                "Mechatronics": "engineering.html#mechatronics",
+                "Biomedical Engineering": "engineering.html#biomedical",
+                "Environmental Engineering": "engineering.html#environmental"
+            },
+            "Architecture & Planning": {
+                "B.Arch": "architecture.html#barch",
+                "B.Plan": "architecture.html#bplan",
+                "B.Tech Urban Planning": "architecture.html#btech-urban",
+                "M.Arch": "architecture.html#march",
+                "M.Tech Urban Planning": "architecture.html#mtech-urban"
+            },
+        },
+            "Arts & Science": {
+            "Science": {
+                "Int. M.Sc Biotechnology": "science.html#int-biotech",
+                "Int. M.Sc Food Science": "science.html#int-food",
+                "Int. M.Sc Statistics": "science.html#int-stats",
+                "Int. M.Sc Physics": "science.html#int-physics",
+                "Int. M.Sc Chemistry": "science.html#int-chem",
+                "Int. M.Sc Mathematics": "science.html#int-math",
+                "M.Sc Food Technology": "science.html#msc-food-tech",
+                "M.Sc Anesthesia Technology": "science.html#msc-anesthesia",
+                "M.Sc Medical Imaging": "science.html#msc-imaging",
+                "M.Sc Laboratory Technology": "science.html#msc-lab",
+                "M.Sc Cardiac Technology": "science.html#msc-cardiac",
+                "MOT": "science.html#mot"
+            },
+            "Computer Applications & IT": {
+                "BCA Cloud Computing": "computer.html#bca-cloud",
+                "BCA AI & Cloud": "computer.html#bca-ai",
+                "BCA Digital Arts": "computer.html#bca-digital",
+                "BCA Mobile Development": "computer.html#bca-mobile",
+                "MCA": "computer.html#mca",
+                "M.Sc Cloud Computing": "computer.html#msc-cloud",
+                "M.Sc Cybersecurity": "computer.html#msc-cyber",
+                "M.Sc AI & ML": "computer.html#msc-ai",
+                "M.Sc Data Science": "computer.html#msc-data",
+                "M.Sc IoT": "computer.html#msc-iot"
+            },
+            "Agriculture": {
+                "B.Sc Agriculture": "agriculture.html#bsc-agriculture",
+                "B.Sc Horticulture": "agriculture.html#bsc-horticulture",
+                "B.Sc Agri Business": "agriculture.html#bsc-agribusiness",
+                "B.Sc Forestry": "agriculture.html#bsc-forestry",
+                "B.Sc Sericulture": "agriculture.html#bsc-sericulture",
+                "B.Sc Food & Nutrition": "agriculture.html#bsc-food-nutrition",
+                "M.Sc Agricultural Economics": "agriculture.html#msc-agri-economics",
+                "M.Sc Agriculture": "agriculture.html#msc-agriculture",
+                "M.Sc Agronomy": "agriculture.html#msc-agronomy",
+                "M.Sc Seed Science": "agriculture.html#msc-seed-science"
+            },
+            "Business & Commerce": {
+                "BBA General": "management.html#bba-general",
+                "BBA Sports": "management.html#bba-sports",
+                "BBA Analytics": "management.html#bba-analytics",
+                "BBA Logistics": "management.html#bba-logistics",
+                "BBA Finance": "management.html#bba-finance",
+                "BBA Entrepreneurship": "management.html#bba-entrepreneurship",
+                "B.Com Business": "management.html#bcom-business",
+                "B.Com Banking": "management.html#bcom-banking",
+                "B.Com Financial": "management.html#bcom-financial"
+            },
+            "Design & Fashion": {
+                "B.Des Fashion Design": "design.html#bdes-fashion",
+                "B.Des Fashion Communication": "design.html#bdes-fashion-comm",
+                "B.Des Product Design": "design.html#bdes-product",
+                "B.Des Communication Design": "design.html#bdes-comm",
+                "B.Des Industrial Design": "design.html#bdes-industrial",
+                "B.Des Textile & Clothing": "design.html#bdes-textile"
+            }
+        }
+    }; // End of domainMapping
+
+    // Mobile domain selection handling
+    const mobileDomainSelect = document.getElementById('mobileDomainType');
+    const mobileSubDomainSelect = document.getElementById('mobileSubDomainType');
+    const mobileCourseSelect = document.getElementById('mobileCourseType');
+    const mobileExploreButton = document.getElementById('mobileExploreButton');
+
+    // Initialize domain select options
+    if (mobileDomainSelect) {
+        mobileDomainSelect.innerHTML = '<option value="">Choose Domain</option>';
+        Object.keys(domainMapping).forEach(domain => {
+            const option = document.createElement('option');
+            option.value = domain;
+            option.textContent = domain;
+            mobileDomainSelect.appendChild(option);
+        });
+    }
+
+    // Domain change handler
+    if (mobileDomainSelect) {
+        mobileDomainSelect.addEventListener('change', function() {
+            const selectedDomain = this.value;
+            updateMobileSubDomainOptions(selectedDomain);
+            resetMobileCourseSelect();
+            updateMobileExploreButton();
+        });
+    }
+
+    // Sub-domain change handler
+    if (mobileSubDomainSelect) {
+        mobileSubDomainSelect.addEventListener('change', function() {
+            const selectedDomain = mobileDomainSelect.value;
+            const selectedSubDomain = this.value;
+            updateMobileCourseOptions(selectedDomain, selectedSubDomain);
+            updateMobileExploreButton();
+        });
+    }
+
+    // Course change handler
+    if (mobileCourseSelect) {
+        mobileCourseSelect.addEventListener('change', function() {
+            updateMobileExploreButton();
+        });
+    }
+
+    // Explore button handler
+    if (mobileExploreButton) {
+        mobileExploreButton.addEventListener('click', function() {
+            const selectedDomain = mobileDomainSelect.value;
+            const selectedSubDomain = mobileSubDomainSelect.value;
+            const selectedCourse = mobileCourseSelect.value;
+
+            if (selectedDomain && selectedSubDomain && selectedCourse) {
+                const url = domainMapping[selectedDomain][selectedSubDomain][selectedCourse];
+                if (url) {
+                    window.location.href = url;
+                }
+            }
+        });
+    }
+
+    function updateMobileSubDomainOptions(selectedDomain) {
+        mobileSubDomainSelect.innerHTML = '<option value="">Select Category</option>';
+        if(selectedDomain && domainMapping[selectedDomain]) {
+            Object.keys(domainMapping[selectedDomain]).forEach(subDomain => {
+                const option = document.createElement('option');
+                option.value = subDomain;
+                option.textContent = subDomain;
+                mobileSubDomainSelect.appendChild(option);
+            });
+        }
+    }
+
+    function updateMobileCourseOptions(selectedDomain, selectedSubDomain) {
+        mobileCourseSelect.innerHTML = '<option value="">Select Course</option>';
+        if(selectedDomain && selectedSubDomain && 
+           domainMapping[selectedDomain][selectedSubDomain]) {
+            Object.keys(domainMapping[selectedDomain][selectedSubDomain]).forEach(course => {
+                const option = document.createElement('option');
+                option.value = course;
+                option.textContent = course;
+                mobileCourseSelect.appendChild(option);
+            });
+        }
+    }
+
+    function resetMobileCourseSelect() {
+        mobileCourseSelect.innerHTML = '<option value="">First select category</option>';
+        mobileExploreButton.disabled = true;
+    }
+
+    function updateMobileExploreButton() {
+        mobileExploreButton.disabled = !mobileCourseSelect.value;
+    }
+});

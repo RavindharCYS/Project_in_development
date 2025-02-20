@@ -41,6 +41,29 @@
         
         <!-- Navigation Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="mobile-domain-selection d-lg-none">
+                <div class="domain-selectors">
+                    <select class="form-select mb-2" id="mobileDomainType">
+                        <option value="">Choose Domain</option>
+                        <option value="Medical & Healthcare">Medical & Healthcare</option>
+                        <option value="Engineering & Technology">Engineering & Technology</option>
+                        <option value="Arts & Science">Arts & Science</option>
+                    </select>
+                    
+                    <select class="form-select mb-2" id="mobileSubDomainType">
+                        <option value="">Select Category</option>
+                    </select>
+                    
+                    <select class="form-select mb-2" id="mobileCourseType">
+                        <option value="">Select Course</option>
+                    </select>
+                    
+                    <button id="mobileExploreButton" class="btn btn-primary w-100 mb-3" disabled>
+                        <i class="bi bi-arrow-right-circle"></i> Explore Now
+                    </button>
+                </div>
+            </div>
+
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">About Us</a>
@@ -106,7 +129,7 @@
 </div>
     <div class="referral-container">
         <div class="referral-header">
-            <h2>Refer a Friend</h2>
+            <h2>Refer a Student</h2>
             <p>Help your friends discover great opportunities</p>
         </div>
 
@@ -151,38 +174,16 @@
 
             <!-- Referral Details Section -->
             <div class="form-section">
-                <h3 class="section-title">Referral's Details</h3>
+                <h3 class="section-title">Consultant Details</h3>
                 
                 <div class="form-group">
-                    <label class="required" for="referralName">Referral's Name</label>
+                    <label class="required" for="referralName">Consultant Name</label>
                     <input 
                         type="text" 
                         id="referralName" 
                         name="referralName" 
                         required
-                        placeholder="Enter Referral's full name"
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label class="required" for="referralMobile">Referral's Mobile Number</label>
-                    <input 
-                        type="tel" 
-                        id="referralMobile" 
-                        name="referralMobile" 
-                        required
-                        placeholder="Enter Referral's mobile number"
-                    >
-                </div>
-
-                <div class="form-group">
-                    <label class="required" for="referralEmail">Referral's Email Address</label>
-                    <input 
-                        type="email" 
-                        id="referralEmail" 
-                        name="referralEmail" 
-                        required
-                        placeholder="Enter Referral's email address"
+                        placeholder="Enter Consultant Full Name"
                     >
                 </div>
             </div>

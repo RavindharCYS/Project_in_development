@@ -185,6 +185,28 @@
         
         <!-- Navigation Links -->
         <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="mobile-domain-selection d-lg-none">
+                <div class="domain-selectors">
+                    <select class="form-select mb-2" id="mobileDomainType">
+                        <option value="">Choose Domain</option>
+                        <option value="Medical & Healthcare">Medical & Healthcare</option>
+                        <option value="Engineering & Technology">Engineering & Technology</option>
+                        <option value="Arts & Science">Arts & Science</option>
+                    </select>
+                    
+                    <select class="form-select mb-2" id="mobileSubDomainType">
+                        <option value="">Select Category</option>
+                    </select>
+                    
+                    <select class="form-select mb-2" id="mobileCourseType">
+                        <option value="">Select Course</option>
+                    </select>
+                    
+                    <button id="mobileExploreButton" class="btn btn-primary w-100 mb-3" disabled>
+                        <i class="bi bi-arrow-right-circle"></i> Explore Now
+                    </button>
+                </div>
+            </div>
             <ul class="navbar-nav ms-auto">
                 <li class="nav-item">
                     <a class="nav-link" href="about.html">About Us</a>

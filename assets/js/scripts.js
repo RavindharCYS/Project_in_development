@@ -412,6 +412,13 @@ document.addEventListener('DOMContentLoaded', function() {
                 "M.Tech Urban Planning": "architecture.html#mtech-urban"
             },
         },
+            "Law": {
+                "Law Courses": {
+                "BA LLB": "law.html#ballb",
+                "BBA LLB": "law.html#bballb",
+                "B.Com LLB": "law.html#bcomllb"
+                },
+        },
             "Arts & Science": {
             "Science": {
                 "Int. M.Sc Biotechnology": "science.html#int-biotech",

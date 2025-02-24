@@ -288,7 +288,7 @@ body {
     position: relative;
     height: 100vh;
     min-height: 600px;
-    background: url('../images/hero-background.jpg') center/cover no-repeat;
+    background: url('../images/hero-background.webp') center/cover no-repeat;
     display: flex;
     align-items: center;
     color: var(--white-color);

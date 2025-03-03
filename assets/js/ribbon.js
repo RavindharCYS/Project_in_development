@@ -1,5 +1,13 @@
 // assets/js/ribbon.js
+
+// Initialize EmailJS
+// Add this in your HTML file:
+// <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
 document.addEventListener('DOMContentLoaded', function() {
+    // Initialize EmailJS with your user ID
+    emailjs.init("YOUR_USER_ID_HERE");
+
     const modal = document.getElementById('ribbonModal');
     
     window.openRibbonModal = function() {
@@ -25,11 +33,46 @@ document.addEventListener('DOMContentLoaded', function() {
         const userMobile = document.getElementById('ribbonMobile').value;
         const userEmail = document.getElementById('ribbonEmail').value;
 
-        // You can add your form processing logic here
-        alert('Thank you, ' + userName + '! We will notify you soon.');
+        // Prepare template parameters
+        const templateParams = {
+            from_name: userName,
+            from_email: userEmail,
+            mobile_number: userMobile,
+            to_name: 'Admin', // Change this to your preferred recipient name
+            message: `New form submission:
+                Name: ${userName}
+                Email: ${userEmail}
+                Mobile: ${userMobile}`
+        };
 
-        // Reset form and close modal
-        this.reset();
-        closeRibbonModal();
+        // Show loading state
+        const submitButton = this.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton.innerHTML;
+        submitButton.innerHTML = 'Sending...';
+        submitButton.disabled = true;
+
+        // Send email using EmailJS
+        emailjs.send(
+            'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+            'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+            templateParams
+        )
+        .then(function(response) {
+            console.log('SUCCESS!', response.status, response.text);
+            alert('Thank you, ' + userName + '! Your message has been sent successfully.');
+            
+            // Reset form and close modal
+            document.getElementById('ribbonForm').reset();
+            closeRibbonModal();
+        })
+        .catch(function(error) {
+            console.log('FAILED...', error);
+            alert('Sorry, there was an error sending your message. Please try again.');
+        })
+        .finally(function() {
+            // Reset button state
+            submitButton.innerHTML = originalButtonText;
+            submitButton.disabled = false;
+        });
     });
 });

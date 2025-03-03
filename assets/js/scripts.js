@@ -1,3 +1,6 @@
+// Initialize EmailJS
+emailjs.init("YOUR_USER_ID_HERE");
+
 // Wait for the document to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize AOS (Animate On Scroll)
@@ -16,24 +19,24 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 
     // Scroll to Top Button
-const scrollToTopBtn = document.getElementById('scrollToTop');
+    const scrollToTopBtn = document.getElementById('scrollToTop');
 
-if (scrollToTopBtn) {
-    window.addEventListener('scroll', function() {
-        if (window.pageYOffset > 300) {
-            scrollToTopBtn.classList.add('show'); // Changed from 'active' to 'show'
-        } else {
-            scrollToTopBtn.classList.remove('show'); // Changed from 'active' to 'show'
-        }
-    });
-
-    scrollToTopBtn.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
+    if (scrollToTopBtn) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.classList.add('show');
+            } else {
+                scrollToTopBtn.classList.remove('show');
+            }
         });
-    });
-}
+
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 
     // Navbar Scroll Effect
     const navbar = document.querySelector('.navbar');
@@ -47,93 +50,127 @@ if (scrollToTopBtn) {
             }
         });
     }
-
-    // Form Validation and Submission
-    const contactForm = document.getElementById('contactForm');
+        // Contact Form with EmailJS Integration
+        const contactForm = document.getElementById('contactForm');
     
-    if (contactForm) {
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
-            // Basic form validation
-            const name = document.getElementById('name');
-            const email = document.getElementById('email');
-            const message = document.getElementById('message');
-            let isValid = true;
-
-            // Reset error states
-            removeErrorState(name);
-            removeErrorState(email);
-            removeErrorState(message);
-
-            // Validate name
-            if (!name.value.trim()) {
-                addErrorState(name, 'Name is required');
-                isValid = false;
-            }
-
-            // Validate email
-            if (!isValidEmail(email.value)) {
-                addErrorState(email, 'Please enter a valid email');
-                isValid = false;
-            }
-
-            // Validate message
-            if (!message.value.trim()) {
-                addErrorState(message, 'Message is required');
-                isValid = false;
-            }
-
-            if (isValid) {
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+    
+                // Basic form validation
+                const name = document.getElementById('name');
+                const email = document.getElementById('email');
+                const message = document.getElementById('message');
+                let isValid = true;
+    
+                // Reset error states
+                removeErrorState(name);
+                removeErrorState(email);
+                removeErrorState(message);
+    
+                // Validate name
+                if (!name.value.trim()) {
+                    addErrorState(name, 'Name is required');
+                    isValid = false;
+                }
+    
+                // Validate email
+                if (!isValidEmail(email.value)) {
+                    addErrorState(email, 'Please enter a valid email');
+                    isValid = false;
+                }
+    
+                // Validate message
+                if (!message.value.trim()) {
+                    addErrorState(message, 'Message is required');
+                    isValid = false;
+                }
+    
+                if (isValid) {
+                    // Show loading state
+                    const submitBtn = contactForm.querySelector('button[type="submit"]');
+                    submitBtn.disabled = true;
+                    submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+    
+                    // Prepare EmailJS template parameters
+                    const templateParams = {
+                        from_name: name.value,
+                        from_email: email.value,
+                        message: message.value,
+                        to_name: 'Admin'
+                    };
+    
+                    // Send email using EmailJS
+                    emailjs.send(
+                        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+                        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+                        templateParams
+                    )
+                    .then(function(response) {
+                        console.log('SUCCESS!', response.status, response.text);
+                        contactForm.reset();
+                        showAlert('Message sent successfully!', 'success');
+                    })
+                    .catch(function(error) {
+                        console.log('FAILED...', error);
+                        showAlert('Failed to send message. Please try again.', 'danger');
+                    })
+                    .finally(function() {
+                        submitBtn.disabled = false;
+                        submitBtn.innerHTML = 'Send Message';
+                    });
+                }
+            });
+        }
+    
+        // Newsletter Form with EmailJS Integration
+        const newsletterForm = document.querySelector('.newsletter-form');
+        
+        if (newsletterForm) {
+            newsletterForm.addEventListener('submit', function(e) {
+                e.preventDefault();
+                
+                const emailInput = newsletterForm.querySelector('input[type="email"]');
+                const submitBtn = newsletterForm.querySelector('button[type="submit"]');
+    
+                if (!isValidEmail(emailInput.value)) {
+                    showAlert('Please enter a valid email address', 'error');
+                    return;
+                }
+    
                 // Show loading state
-                const submitBtn = contactForm.querySelector('button[type="submit"]');
                 submitBtn.disabled = true;
-                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
-
-                // Simulate form submission (replace with actual form submission)
-                setTimeout(function() {
-                    // Reset form
-                    contactForm.reset();
-                    submitBtn.disabled = false;
-                    submitBtn.innerHTML = 'Send Message';
-
-                    // Show success message
-                    showAlert('Message sent successfully!', 'success');
-                }, 2000);
-            }
-        });
-    }
-
-    // Newsletter Form Submission
-    const newsletterForm = document.querySelector('.newsletter-form');
+                submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Subscribing...';
     
-    if (newsletterForm) {
-        newsletterForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            const emailInput = newsletterForm.querySelector('input[type="email"]');
-            const submitBtn = newsletterForm.querySelector('button[type="submit"]');
-
-            if (!isValidEmail(emailInput.value)) {
-                showAlert('Please enter a valid email address', 'error');
-                return;
-            }
-
-            // Show loading state
-            submitBtn.disabled = true;
-            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Subscribing...';
-
-            // Simulate newsletter subscription (replace with actual subscription logic)
-            setTimeout(function() {
-                newsletterForm.reset();
-                submitBtn.disabled = false;
-                submitBtn.innerHTML = 'Subscribe';
-                showAlert('Thank you for subscribing!', 'success');
-            }, 2000);
-        });
-    }
-
-    // Counter Animation
+                // Prepare EmailJS template parameters
+                const templateParams = {
+                    subscriber_email: emailInput.value,
+                    to_name: 'Admin',
+                    subscription_type: 'Newsletter'
+                };
+    
+                // Send email using EmailJS
+                emailjs.send(
+                    'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
+                    'YOUR_NEWSLETTER_TEMPLATE_ID', // Replace with your newsletter template ID
+                    templateParams
+                )
+                .then(function(response) {
+                    console.log('SUCCESS!', response.status, response.text);
+                    newsletterForm.reset();
+                    showAlert('Thank you for subscribing!', 'success');
+                })
+                .catch(function(error) {
+                    console.log('FAILED...', error);
+                    showAlert('Failed to subscribe. Please try again.', 'error');
+                })
+                .finally(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = 'Subscribe';
+                });
+            });
+        }
+            // Counter Animation
     const counters = document.querySelectorAll('.counter');
     
     if (counters.length > 0) {
@@ -232,112 +269,111 @@ if (scrollToTopBtn) {
             alertDiv.remove();
         }, 5000);
     }
-
-    // Mobile Menu Toggle
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-    
-    if (navbarToggler && navbarCollapse) {
-        document.addEventListener('click', function(e) {
-            if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
-                navbarCollapse.classList.remove('show');
-            }
-        });
-    }
-
-    // Smooth Scroll for Anchor Links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
-
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                targetElement.scrollIntoView({
-                    behavior: 'smooth',
-                    block: 'start'
-                });
-
-                // Close mobile menu if open
-                if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+        // Mobile Menu Toggle
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+        
+        if (navbarToggler && navbarCollapse) {
+            document.addEventListener('click', function(e) {
+                if (!navbarCollapse.contains(e.target) && !navbarToggler.contains(e.target)) {
                     navbarCollapse.classList.remove('show');
                 }
-            }
-        });
-    });
-
-    // Initialize Tooltips
-    const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
-    tooltipTriggerList.map(function(tooltipTriggerEl) {
-        return new bootstrap.Tooltip(tooltipTriggerEl);
-    });
-
-    // Initialize Popovers
-    const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-    popoverTriggerList.map(function(popoverTriggerEl) {
-        return new bootstrap.Popover(popoverTriggerEl);
-    });
-
-    // Custom File Input
-    const customFileInput = document.querySelector('.custom-file-input');
-    if (customFileInput) {
-        customFileInput.addEventListener('change', function(e) {
-            const fileName = e.target.files[0]?.name || 'Choose file';
-            const nextSibling = e.target.nextElementSibling;
-            if (nextSibling) {
-                nextSibling.innerText = fileName;
-            }
-        });
-    }
-
-    // Lazy Loading Images
-    const lazyImages = document.querySelectorAll('img[data-src]');
-    if (lazyImages.length > 0) {
-        const imageObserver = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const img = entry.target;
-                    img.src = img.dataset.src;
-                    img.removeAttribute('data-src');
-                    observer.unobserve(img);
+            });
+        }
+    
+        // Smooth Scroll for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+    
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+    
+                    // Close mobile menu if open
+                    if (navbarCollapse && navbarCollapse.classList.contains('show')) {
+                        navbarCollapse.classList.remove('show');
+                    }
                 }
             });
         });
-
-        lazyImages.forEach(img => imageObserver.observe(img));
-    }
-});
-
-// Window Load Event
-window.addEventListener('load', function() {
-    // Hide Preloader
-    const preloader = document.getElementById('preloader');
-    if (preloader) {
-        preloader.style.opacity = '0';
-        setTimeout(() => {
-            preloader.style.display = 'none';
-        }, 500);
-    }
-});
-
-// Window Resize Event
-window.addEventListener('resize', function() {
-    // Add any resize-specific functionality here
-});
-
-// Window Scroll Event
-window.addEventListener('scroll', function() {
-    // Add any scroll-specific functionality here
-});
-
-// Window Before Unload Event
-window.addEventListener('beforeunload', function(e) {
-    // Add any cleanup or warning messages here if needed
-});
-// Add this to your existing JavaScript file or in a <script> tag
+    
+        // Initialize Tooltips
+        const tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function(tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    
+        // Initialize Popovers
+        const popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
+        popoverTriggerList.map(function(popoverTriggerEl) {
+            return new bootstrap.Popover(popoverTriggerEl);
+        });
+    
+        // Custom File Input
+        const customFileInput = document.querySelector('.custom-file-input');
+        if (customFileInput) {
+            customFileInput.addEventListener('change', function(e) {
+                const fileName = e.target.files[0]?.name || 'Choose file';
+                const nextSibling = e.target.nextElementSibling;
+                if (nextSibling) {
+                    nextSibling.innerText = fileName;
+                }
+            });
+        }
+    
+        // Lazy Loading Images
+        const lazyImages = document.querySelectorAll('img[data-src]');
+        if (lazyImages.length > 0) {
+            const imageObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src;
+                        img.removeAttribute('data-src');
+                        observer.unobserve(img);
+                    }
+                });
+            });
+    
+            lazyImages.forEach(img => imageObserver.observe(img));
+        }
+    });
+    
+    // Window Load Event
+    window.addEventListener('load', function() {
+        // Hide Preloader
+        const preloader = document.getElementById('preloader');
+        if (preloader) {
+            preloader.style.opacity = '0';
+            setTimeout(() => {
+                preloader.style.display = 'none';
+            }, 500);
+        }
+    });
+    
+    // Window Resize Event
+    window.addEventListener('resize', function() {
+        // Add any resize-specific functionality here
+    });
+    
+    // Window Scroll Event
+    window.addEventListener('scroll', function() {
+        // Add any scroll-specific functionality here
+    });
+    
+    // Window Before Unload Event
+    window.addEventListener('beforeunload', function(e) {
+        // Add any cleanup or warning messages here if needed
+    });
+    // Domain Mapping and Course Selection
 document.addEventListener('DOMContentLoaded', function() {
-    // Domain Mapping Data (Same as admission.html)
+    // Domain Mapping Data
     const domainMapping = {
         "Medical & Healthcare": {
             "Medical": {
@@ -417,7 +453,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 "BA LLB": "law.html#ballb",
                 "BBA LLB": "law.html#bballb",
                 "B.Com LLB": "law.html#bcomllb"
-                },
+            },
         },
             "Arts & Science": {
             "Science": {
@@ -540,6 +576,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
 
+    // Helper functions for domain selection
     function updateMobileSubDomainOptions(selectedDomain) {
         mobileSubDomainSelect.innerHTML = '<option value="">Select Category</option>';
         if(selectedDomain && domainMapping[selectedDomain]) {

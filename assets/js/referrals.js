@@ -2,7 +2,7 @@
 // Initialize EmailJS
 (function() {
     // Replace with your EmailJS public key
-    emailjs.init("YOUR_PUBLIC_KEY");
+    emailjs.init("1EhhJ0VwoJLPSdP5J");
 })();
 
 document.getElementById('referralForm').addEventListener('submit', function(e) {
@@ -51,8 +51,8 @@ document.getElementById('referralForm').addEventListener('submit', function(e) {
 
     // Send email using EmailJS
     emailjs.send(
-        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+        'service_mjpss3c', // Replace with your EmailJS service ID
+        'template_drq9m83', // Replace with your EmailJS template ID
         {
             // Student details
             student_name: formData.studentName,

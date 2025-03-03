@@ -1,5 +1,5 @@
 // Initialize EmailJS
-emailjs.init("YOUR_USER_ID_HERE");
+emailjs.init("1EhhJ0VwoJLPSdP5J");
 
 // Wait for the document to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
@@ -102,8 +102,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
                     // Send email using EmailJS
                     emailjs.send(
-                        'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-                        'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+                        'service_mjpss3c', // Replace with your EmailJS service ID
+                        'template_drq9m83', // Replace with your EmailJS template ID
                         templateParams
                     )
                     .then(function(response) {

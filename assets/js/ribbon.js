@@ -2,7 +2,7 @@
 
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize EmailJS with your user ID
-    emailjs.init("YOUR_USER_ID_HERE");
+    emailjs.init("1EhhJ0VwoJLPSdP5J");
 
     const modal = document.getElementById('ribbonModal');
     
@@ -49,8 +49,8 @@ document.addEventListener('DOMContentLoaded', function() {
 
         // Send email using EmailJS
         emailjs.send(
-            'YOUR_SERVICE_ID', // Replace with your EmailJS service ID
-            'YOUR_TEMPLATE_ID', // Replace with your EmailJS template ID
+            'service_mjpss3c', // Replace with your EmailJS service ID
+            'template_drq9m83', // Replace with your EmailJS template ID
             templateParams
         )
         .then(function(response) {

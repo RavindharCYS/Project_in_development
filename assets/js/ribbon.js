@@ -1,9 +1,5 @@
 // assets/js/ribbon.js
 
-// Initialize EmailJS
-// Add this in your HTML file:
-// <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize EmailJS with your user ID
     emailjs.init("YOUR_USER_ID_HERE");

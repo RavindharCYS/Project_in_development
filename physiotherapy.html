@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physiotherapy Programs | Healthcare Education Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #60a5fa;
+            --accent-color: #f59e0b;
+            --text-color: #1f2937;
+            --light-bg: #f0f9ff;
+            --white: #ffffff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .nav-container {
+            background: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .course-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .course-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .course-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 2em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .course-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .info-box {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .eligibility-box {
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .scope-box {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .list-custom {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list-custom li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .list-custom li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .nav-menu li a {
+                padding: 6px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* [Previous CSS styles remain the same] */
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Physiotherapy Programs</h1>
+        <p>Excellence in Physical Therapy Education for Healthcare Professionals</p>
+    </div>
+
+    <div class="nav-container">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" class="active" onclick="showCourse('bpt', this)">BPT</a></li>
+                <li><a href="#" onclick="showCourse('dpt', this)">DPT</a></li>
+                <li><a href="#" onclick="showCourse('bsc', this)">B.Sc Physiotherapy</a></li>
+                <li><a href="#" onclick="showCourse('mpt', this)">MPT</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- BPT Section -->
+        <div id="bpt" class="course-section active">
+            <h2 class="course-title">Bachelor of Physiotherapy (BPT)</h2>
+            <p class="course-description">
+                A comprehensive 4.5-year UG degree program in Physiotherapy with an additional 6-month internship program. 
+                The course focuses on rehabilitation techniques, therapeutic exercises, and physical medicine.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 with Biology/Life Science as core subject</li>
+                    <li>Minimum 50% marks in each subject (60% in some colleges)</li>
+                    <li>Physics, Chemistry as mandatory subjects</li>
+                    <li>Valid entrance exam score (as applicable)</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Own Private Physiotherapy Practice</li>
+                    <li>Health & Fitness Centre Professional</li>
+                    <li>Rehabilitation & Recovery Tools Manufacturing</li>
+                    <li>Employ in Boarding School as Physiotherapist</li>
+                    <li>Sports Team Physiotherapist</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- DPT Section -->
+        <div id="dpt" class="course-section">
+            <h2 class="course-title">Diploma in Physiotherapy (DPT)</h2>
+            <p class="course-description">
+                A 2-year diploma program providing foundational knowledge in physiotherapy techniques and rehabilitation 
+                practices. Ideal for quick entry into the physiotherapy profession.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 with Science stream</li>
+                    <li>Minimum 45% aggregate marks</li>
+                    <li>Biology as a mandatory subject</li>
+                    <li>State-level diploma entrance exam</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Assistant Physiotherapist</li>
+                    <li>Rehabilitation Centre Assistant</li>
+                    <li>Fitness Centre Therapist</li>
+                    <li>Sports Club Therapist</li>
+                    <li>Clinical Setup Assistant</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- B.Sc Physiotherapy Section -->
+        <div id="bsc" class="course-section">
+            <h2 class="course-title">B.Sc in Physiotherapy</h2>
+            <p class="course-description">
+                A 3-year bachelor's program focusing on scientific principles of physiotherapy, human anatomy, and 
+                rehabilitation techniques. Includes practical training and clinical exposure.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 with Physics, Chemistry, Biology</li>
+                    <li>Minimum 50% aggregate marks</li>
+                    <li>Entrance exam qualification</li>
+                    <li>Age: 17 years minimum</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Clinical Physiotherapist</li>
+                    <li>Research Assistant</li>
+                    <li>Healthcare Facility Therapist</li>
+                    <li>Rehabilitation Specialist</li>
+                    <li>Sports Physiotherapist</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MPT Section -->
+        <div id="mpt" class="course-section">
+            <h2 class="course-title">Master of Physiotherapy (MPT)</h2>
+            <p class="course-description">
+                A 2-year postgraduate program offering advanced specialization in various areas of physiotherapy such as 
+                Sports, Neurology, Orthopedics, and Cardiopulmonary rehabilitation.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>BPT or equivalent degree</li>
+                    <li>Minimum 55% aggregate marks</li>
+                    <li>Completion of internship</li>
+                    <li>Entrance exam qualification</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Senior Physiotherapist</li>
+                    <li>Academic Professor</li>
+                    <li>Research Scientist</li>
+                    <li>Clinical Specialist</li>
+                    <li>Rehabilitation Center Head</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCourse(courseId, element) {
+            event.preventDefault();
+            
+            document.querySelectorAll('.course-section').forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+            
+            const selectedSection = document.getElementById(courseId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+                selectedSection.offsetHeight;
+                selectedSection.classList.add('active');
+            }
+            
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            window.scrollTo({
+                top: document.querySelector('.nav-container').offsetTop,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('load', function() {
+            document.querySelector('.course-section.active').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

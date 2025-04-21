@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- Existing Meta Tags -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Courses - Success Meets Educational Consultancy</title>
+    
+    <!-- Meta Tags for SEO -->
+    <meta name="description" content="Discover the courses and training offered by Success Meets Educational Consultancy. Achieve your goals with our team's guidance.">
+    <meta name="keywords" content="courses, training, educational consultancy, Success Meets, career guidance, placement trainings, aptitude training, technical training">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="assets/images/favicon.ico">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    
+    <!-- AOS CSS (if used elsewhere in your site) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    
+    <!-- Custom CSS -->
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+
+    <!-- Ribbon CSS -->
+    <link rel="stylesheet" href="assets/css/ribbon.css">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Additional Custom Styles (optional) -->
+    <style>
+        /* Custom styles specific to the Courses page */
+        .course-header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 60px 0;
+            text-align: center;
+        }
+        .course-header h1 {
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+        .course-header p {
+            font-size: 20px;
+        }
+        .course-item {
+            margin-bottom: 30px;
+        }
+        .route-map {
+            background-color: #f8f9fa;
+            padding: 40px;
+            margin-top: 60px;
+            border-radius: 8px;
+        }
+        #goal-output ol {
+            margin-top: 20px;
+        }
+        /* Star Rating Styles */
+        .star-rating {
+            color: #ffc107;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .course-header h1 {
+                font-size: 32px;
+            }
+            .course-header p {
+                font-size: 16px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation Bar (if your site uses one) -->
+     <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.png" alt="Success Meets Logo" height="40">
+                Success Meets
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="index.html">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" href="Courses.html">Courses</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="fees.html">Fees Structure</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    
+    <!-- Ribbon Section -->
+    <div class="ribbon-container">
+        <div class="ribbon" onclick="openRibbonModal()">
+            <div class="moving-text">
+                🚀 Get notified about our latest courses and exclusive offers! Click here to join our community. 🚀
+            </div>
+        </div>
+    </div>
+    
+    <!-- Ribbon Modal -->
+    <div id="ribbonModal" class="ribbon-modal">
+        <div class="ribbon-modal-content">
+            <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
+            <h2>Get Notified</h2>
+            <form id="ribbonForm" class="ribbon-form">
+                <label for="ribbonName">Name:</label>
+                <input type="text" id="ribbonName" required>
+    
+                <label for="ribbonMobile">Mobile No:</label>
+                <input type="tel" id="ribbonMobile" required>
+    
+                <label for="ribbonEmail">Email:</label>
+                <input type="email" id="ribbonEmail" required>
+    
+                <button type="submit">Notify Me</button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Header Section -->
+    <header class="course-header">
+        <div class="container">
+            <h1>Our Courses and Training</h1>
+            <p>Achieve your goals in a smart way with our team's guidance</p>
+        </div>
+    </header>
+    
+    <!-- Main Content -->
+    <main class="container my-5">
+        <!-- Courses Offered -->
+        <section>
+            <h2 class="mb-4">Courses We Offer</h2>
+            <div class="row">
+                <!-- Course Item 1 -->
+                <div class="col-md-4 course-item">
+                    <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/cyber.png" class="card-img-top" alt="Cyber Security Essentials">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Cyber Security Essentials</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span class="ms-2">4.5</span>
+                            </div>
+                            <p class="card-text">Learn the fundamentals of Cyber Security, including threat assessment, risk management, and protection strategies.</p>
+                            <!-- Updated Enroll Now Button -->
+                            <a href="#" class="btn btn-primary mt-auto enroll-btn" data-bs-toggle="modal" data-bs-target="#enrollModal" data-course="Cyber Security Essentials">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Course Item 2 -->
+                <div class="col-md-4 course-item">
+                    <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/linux.png" class="card-img-top" alt="Linux Administration Essentials">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Linux Administration Essentials</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span class="ms-2">4.5</span>
+                            </div>
+                            <p class="card-text">Master data analysis, visualization, and machine learning with Python.</p>
+                            <!-- Updated Enroll Now Button -->
+                            <a href="#" class="btn btn-primary mt-auto enroll-btn" data-bs-toggle="modal" data-bs-target="#enrollModal" data-course="Linux Administration Essentials">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Course Item 3 -->
+                <div class="col-md-4 course-item">
+                    <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/web.png" class="card-img-top" alt="Web Application Development">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Web Application Development</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star"></i>
+                                <span class="ms-2">4.0</span>
+                            </div>
+                            <p class="card-text">Learn HTML, CSS, JavaScript, and more to build modern, responsive websites.</p>
+                            <!-- Updated Enroll Now Button -->
+                            <a href="#" class="btn btn-primary mt-auto enroll-btn" data-bs-toggle="modal" data-bs-target="#enrollModal" data-course="Web Application Development">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Additional Courses -->
+                <section class="mt-5">
+                    <h2 class="mb-4">Additional Training We Provide</h2>
+                </section>
+                <!-- Placement Trainings -->
+                <div class="col-md-4 course-item">
+                    <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/Soft.png" class="card-img-top" alt="Soft Skill Trainings">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Soft Skill Trainings</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <span class="ms-2">4.5</span>
+                            </div>
+                            <p class="card-text">Prepare for your career with our comprehensive placement training programs.</p>
+                            <!-- Updated Enroll Now Button -->
+                            <a href="#" class="btn btn-primary mt-auto enroll-btn" data-bs-toggle="modal" data-bs-target="#enrollModal" data-course="Soft Skill Trainings">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Aptitude Training -->
+                <div class="col-md-4 course-item">
+                    <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/aptitude.png" class="card-img-top" alt="Aptitude Training">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Aptitude Training</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star"></i>
+                                <span class="ms-2">3.5</span>
+                            </div>
+                            <p class="card-text">Enhance your problem-solving skills with our aptitude training courses.</p>
+                            <!-- Updated Enroll Now Button -->
+                            <a href="#" class="btn btn-primary mt-auto enroll-btn" data-bs-toggle="modal" data-bs-target="#enrollModal" data-course="Aptitude Training">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Technical Training -->
+                <div class="col-md-4 course-item">
+                    <div class="card h-100">
+                        <!-- Course Image -->
+                        <img src="assets/images/courses/technical.png" class="card-img-top" alt="Technical Training">
+                        <div class="card-body d-flex flex-column">
+                            <h3 class="card-title">Technical Training</h3>
+                            <!-- Star Rating -->
+                            <div class="mb-2 star-rating">
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-fill"></i>
+                                <i class="bi bi-star-half"></i>
+                                <i class="bi bi-star"></i>
+                                <span class="ms-2">3.5</span>
+                            </div>
+                            <p class="card-text">Gain in-depth technical knowledge in your field of interest.</p>
+                            <!-- Updated Enroll Now Button -->
+                            <a href="#" class="btn btn-primary mt-auto enroll-btn" data-bs-toggle="modal" data-bs-target="#enrollModal" data-course="Technical Training">Enroll Now</a>
+                        </div>
+                    </div>
+                </div>
+                <!-- Add more course items as needed -->
+            </div>
+        </section>
+        
+        
+        
+        <!-- Route Map to Achieve Goals -->
+        <section class="route-map">
+            <h2 class="mb-3">Route Map to Achieve Your Goals</h2>
+            <p>Enter your goal below to see how our courses can help you achieve it:</p>
+            <form id="goal-form" class="d-flex flex-column flex-md-row">
+                <input type="text" id="goal-input" class="form-control me-md-2 mb-2 mb-md-0" placeholder="Enter your goal here">
+                <button type="button" class="btn btn-primary" onclick="showRoute()">Show Route Map</button>
+            </form>
+            <div id="goal-output" class="mt-4"></div>
+        </section>
+    </main>
+    
+    <!-- Enrollment Modal -->
+    <div class="modal fade" id="enrollModal" tabindex="-1" aria-labelledby="enrollModalLabel" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="enrollModalLabel">Enroll in <span id="modalCourseTitle"></span></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+            <form id="enrollForm">
+              <div class="mb-3">
+                <label for="studentName" class="form-label">Name</label>
+                <input type="text" class="form-control" id="studentName" placeholder="Enter your name" required>
+              </div>
+              <div class="mb-3">
+                <label for="studentEmail" class="form-label">Email</label>
+                <input type="email" class="form-control" id="studentEmail" placeholder="Enter your email" required>
+              </div>
+              <div class="mb-3">
+                <label for="studentMobile" class="form-label">Mobile Number</label>
+                <input type="tel" class="form-control" id="studentMobile" placeholder="Enter your mobile number" required>
+              </div>
+              <div class="mb-3">
+                <label for="selectedCourse" class="form-label">Course</label>
+                <input type="text" class="form-control" id="selectedCourse" readonly>
+              </div>
+              <button type="submit" class="btn btn-primary">Submit Enrollment</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Footer (if your site uses one) -->
+     <!-- Footer -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <!-- Company Info -->
+                <div class="col-md-4 mb-4">
+                    <h5>Success Meets</h5>
+                    <p>Transforming dreams into reality through expert educational guidance and career counseling.</p>
+                    <div class="social-links">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+                    </div>
+                </div>
+                
+                <!-- Quick Links -->
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white">About Us</a></li>
+                        <li><a href="services.html" class="text-white">Services</a></li>
+                        <li><a href="blog.html" class="text-white">Blog</a></li>
+                        <li><a href="contact.html" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <!-- Newsletter -->
+                <div class="col-md-4 mb-4">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for updates and insights.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            
+            <!-- Copyright -->
+            <div class="text-center pt-4 border-top">
+                <p>&copy; 2023 Success Meets Educational Consultancy. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Include your footer here -->
+     <!-- Floating Social Media Buttons -->
+     <div class="social-float">
+        <a href="https://wa.me/9087442108" class="social-btn whatsapp-float" target="_blank" aria-label="WhatsApp">
+            <i class="bi bi-whatsapp"></i>
+        </a>
+        <a href="https://x.com/yourprofile" class="social-btn x-float" target="_blank" aria-label="X">
+            <i class="bi bi-twitter"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/success-meets-technology-b0378734b/" class="social-btn linkedin-float" target="_blank" aria-label="LinkedIn">
+            <i class="bi bi-linkedin"></i>
+        </a>
+        <a href="https://www.instagram.com/success_meets_foundation/" class="social-btn instagram-float" target="_blank" aria-label="Instagram">
+            <i class="bi bi-instagram"></i>
+        </a>
+        <a href="https://t.me/successmeets" class="social-btn telegram-float" target="_blank" aria-label="Telegram">
+            <i class="bi bi-telegram"></i>
+        </a>
+        <a href="https://www.facebook.com/share/19ryQbVNLp/" class="social-btn facebook-float" target="_blank" aria-label="Facebook">
+            <i class="bi bi-facebook"></i>
+        </a>
+    </div>
+
+    <!-- Scroll to Top Button -->
+    <button id="scrollToTop" class="scroll-to-top">
+        <i class="bi bi-arrow-up"></i>
+    </button>
+    
+    <!-- Example: <?php include 'footer.php'; ?> -->
+    
+    <!-- Bootstrap JS (necessary for Bootstrap components) -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
+    <!-- AOS JS (if used elsewhere in your site) -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+    <!-- Ribbon JS -->
+    <script src="assets/js/ribbon.js"></script>
+    
+    <!-- Custom JavaScript -->
+    <script>
+        // Initialize AOS (if used)
+        AOS.init();
+
+        // Function to display the route map based on user's goal
+        function showRoute() {
+            var goal = document.getElementById('goal-input').value;
+            var output = document.getElementById('goal-output');
+
+            if (goal.trim() !== '') {
+                output.innerHTML = `
+                    <p>To achieve <strong>'${goal}'</strong>, we recommend the following path:</p>
+                    <ol>
+                        <li><strong>Enroll</strong> in the relevant courses that align with your goal.</li>
+                        <li><strong>Participate</strong> actively in all training sessions.</li>
+                        <li><strong>Complete</strong> projects and assignments to gain practical experience.</li>
+                        <li><strong>Engage</strong> with our community through discussions and networking events.</li>
+                        <li><strong>Receive</strong> personalized guidance from our expert team.</li>
+                        <li><strong>Achieve</strong> your goal with newfound skills and confidence!</li>
+                    </ol>`;
+            } else {
+                output.innerHTML = `<p class="text-danger">Please enter a goal to see the route map.</p>`;
+            }
+        }
+
+        // JavaScript to handle modal population and form submission
+        document.addEventListener('DOMContentLoaded', function () {
+            // Get the enroll modal element
+            var enrollModal = document.getElementById('enrollModal');
+
+            // Add an event listener for when the modal is about to be shown
+            enrollModal.addEventListener('show.bs.modal', function (event) {
+                // Button that triggered the modal
+                var button = event.relatedTarget;
+
+                // Extract course information from data-* attributes
+                var course = button.getAttribute('data-course');
+
+                // Update the modal's content
+                var modalTitle = enrollModal.querySelector('#enrollModalLabel');
+                var selectedCourseInput = enrollModal.querySelector('#selectedCourse');
+                modalTitle.innerHTML = 'Enroll in <span>' + course + '</span>';
+                selectedCourseInput.value = course;
+            });
+
+            // Handle the enrollment form submission
+            document.getElementById('enrollForm').addEventListener('submit', function (e) {
+                e.preventDefault(); // Prevent the default form submission
+
+                // Retrieve form data
+                var name = document.getElementById('studentName').value.trim();
+                var email = document.getElementById('studentEmail').value.trim();
+                var mobile = document.getElementById('studentMobile').value.trim();
+                var course = document.getElementById('selectedCourse').value;
+
+                // Simple validation
+                if (name === '' || email === '' || mobile === '') {
+                    alert('Please fill in all required fields.');
+                    return;
+                }
+
+                // TODO: Integrate with backend API or form handler to process the enrollment
+                // For demonstration, we'll display an alert
+                alert('Thank you, ' + name + '! You have successfully enrolled in the "' + course + '" course. We will contact you shortly at ' + email + ' or ' + mobile + '.');
+
+                // Optionally, reset the form and hide the modal
+                document.getElementById('enrollForm').reset();
+                var bootstrapModal = bootstrap.Modal.getInstance(enrollModal);
+                bootstrapModal.hide();
+            });
+        });
+    </script>
+</body>
+</html>

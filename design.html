@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Programs | Academic Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Root Variables */
+        :root {
+            --primary-color: #2b6cb0;
+            --secondary-color: #4299e1;
+            --accent-color: #f6ad55;
+            --text-color: #2d3748;
+            --light-bg: #f0f9ff;
+            --white: #ffffff;
+            --gray-50: #f8fafc;
+            --gray-100: #f1f5f9;
+            --gray-200: #e2e8f0;
+            --success: #48bb78;
+            --warning: #ed8936;
+            --error: #f56565;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+            --shadow-md: 0 4px 6px rgba(0,0,0,0.1);
+            --shadow-lg: 0 10px 15px rgba(0,0,0,0.1);
+            --transition-normal: all 0.3s ease;
+        }
+
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: var(--shadow-lg);
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .header p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        /* Category Header */
+        .category-header {
+            background: var(--primary-color);
+            color: var(--white);
+            padding: 15px 20px;
+            margin: 30px 0 20px;
+            border-radius: 8px;
+            font-weight: 500;
+            box-shadow: var(--shadow-md);
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Design Programs</h1>
+        <p>Excellence in Design Education and Creative Innovation</p>
+    </div>
+
+    <div id="categoryHeaderContainer" class="category-header">
+        <h2 id="currentCategory">Bachelor of Design Programs</h2>
+    </div>
+
+    <div class="nav-container">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" class="active" onclick="showCourse('bdes-fashion', this, event)">B.Des Fashion Design</a></li>
+                <li><a href="#" onclick="showCourse('bdes-fashion-comm', this, event)">B.Des Fashion Communication</a></li>
+                <li><a href="#" onclick="showCourse('bdes-product', this, event)">B.Des Product Design</a></li>
+                <li><a href="#" onclick="showCourse('bdes-comm', this, event)">B.Des Communication Design</a></li>
+                <li><a href="#" onclick="showCourse('bdes-industrial', this, event)">B.Des Industrial Design</a></li>
+                <li><a href="#" onclick="showCourse('bdes-textile', this, event)">B.Des Textile & Clothing</a></li>
+            </ul>
+        </div>
+    </div>
+    <style>
+        /* Navigation Styles */
+        .nav-container {
+            background: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow-md);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 12px;
+            list-style: none;
+            padding: 10px;
+        }
+
+        .nav-menu li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 8px 15px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            font-weight: 500;
+            transition: var(--transition-normal);
+            border: 1px solid transparent;
+        }
+
+        .nav-menu li a:hover {
+            background: var(--gray-50);
+            border-color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        .nav-menu li a.active {
+            background: var(--primary-color);
+            color: var(--white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        /* Course Section Styles */
+        .course-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: var(--transition-normal);
+            background: var(--white);
+            padding: 25px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .course-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Info Box Styles */
+        .info-box {
+            background: var(--gray-50);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition-normal);
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        .course-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 2em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .program-type {
+            display: inline-block;
+            padding: 6px 15px;
+            background: var(--accent-color);
+            color: var(--white);
+            border-radius: 20px;
+            font-size: 0.85em;
+            margin-bottom: 15px;
+            font-weight: 500;
+        }
+    </style>
+
+    <div class="container">
+        <!-- B.Des Fashion Design Section -->
+        <div id="bdes-fashion" class="course-section active">
+            <h2 class="course-title">Bachelor of Design in Fashion Design</h2>
+            <span class="program-type">4-Year Professional Program</span>
+            <p class="course-description">
+                A comprehensive program that provides the fundamentals of design and fashion for training competent and 
+                professional designers and managers. The course offers an integrative approach to design, developing versatile 
+                skills applicable across various design fields.
+            </p>
+            <div class="info-box program-structure">
+                <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                <ul class="list-custom">
+                    <li>Fashion Design Fundamentals</li>
+                    <li>Pattern Making and Garment Construction</li>
+                    <li>Textile Science and Technology</li>
+                    <li>Fashion Illustration and Digital Design</li>
+                    <li>Fashion Merchandising and Marketing</li>
+                    <li>Trend Forecasting and Analysis</li>
+                    <li>Portfolio Development</li>
+                    <li>Fashion Show Production</li>
+                </ul>
+            </div>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 from any recognized board</li>
+                    <li>Minimum 50% aggregate marks</li>
+                    <li>Design aptitude test clearance</li>
+                    <li>Portfolio submission</li>
+                    <li>Personal interview</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Fashion Designer</li>
+                    <li>Clothing Designer</li>
+                    <li>Costume Designer</li>
+                    <li>Fashion Show Coordinator</li>
+                    <li>Stylist</li>
+                    <li>Fashion Critic</li>
+                    <li>Fashion Entrepreneur</li>
+                    <li>Fashion Consultant</li>
+                </ul>
+            </div>
+            <div class="info-box highlights-box">
+                <h3 class="h5"><i class="fas fa-lightbulb"></i> Program Highlights</h3>
+                <ul class="list-custom">
+                    <li>Industry-integrated curriculum</li>
+                    <li>Hands-on practical training</li>
+                    <li>Fashion show experience</li>
+                    <li>Industry internships</li>
+                    <li>International exposure</li>
+                    <li>State-of-the-art design labs</li>
+                </ul>
+            </div>
+        </div>
+                <!-- B.Des Fashion Communication Section -->
+                <div id="bdes-fashion-comm" class="course-section">
+                    <h2 class="course-title">Bachelor of Design in Fashion Communication</h2>
+                    <span class="program-type">4-Year Professional Program</span>
+                    <p class="course-description">
+                        A specialized program focusing on the communication aspects of fashion, including fashion journalism, 
+                        styling, photography, and digital media. Students learn to create and manage fashion content across various platforms.
+                    </p>
+                    <div class="info-box program-structure">
+                        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                        <ul class="list-custom">
+                            <li>Fashion Journalism</li>
+                            <li>Fashion Photography</li>
+                            <li>Digital Media and Communication</li>
+                            <li>Visual Merchandising</li>
+                            <li>Fashion Styling</li>
+                            <li>Brand Management</li>
+                            <li>Fashion Marketing</li>
+                            <li>Content Creation and Strategy</li>
+                        </ul>
+                    </div>
+                    <div class="info-box eligibility-box">
+                        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                        <ul class="list-custom">
+                            <li>10+2 in any stream</li>
+                            <li>Minimum 50% aggregate marks</li>
+                            <li>Design aptitude test</li>
+                            <li>Creative portfolio</li>
+                            <li>Communication skills assessment</li>
+                        </ul>
+                    </div>
+                    <div class="info-box scope-box">
+                        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                        <ul class="list-custom">
+                            <li>Fashion Journalist</li>
+                            <li>Fashion Photographer</li>
+                            <li>Social Media Manager</li>
+                            <li>Fashion Stylist</li>
+                            <li>Brand Manager</li>
+                            <li>Visual Merchandiser</li>
+                            <li>Content Creator</li>
+                            <li>Fashion PR Specialist</li>
+                        </ul>
+                    </div>
+                </div>
+        
+                <!-- B.Des Product Design Section -->
+                <div id="bdes-product" class="course-section">
+                    <h2 class="course-title">Bachelor of Design in Product Design</h2>
+                    <span class="program-type">4-Year Professional Program</span>
+                    <p class="course-description">
+                        A comprehensive program that teaches students to design and develop innovative products, combining 
+                        functionality with aesthetics. Focus on user-centered design principles and sustainable practices.
+                    </p>
+                    <div class="info-box program-structure">
+                        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                        <ul class="list-custom">
+                            <li>Design Fundamentals</li>
+                            <li>Material Studies</li>
+                            <li>3D Modeling and Prototyping</li>
+                            <li>User Interface Design</li>
+                            <li>Ergonomics</li>
+                            <li>Sustainable Design</li>
+                            <li>Design Research Methods</li>
+                            <li>Manufacturing Processes</li>
+                        </ul>
+                    </div>
+                    <div class="info-box eligibility-box">
+                        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                        <ul class="list-custom">
+                            <li>10+2 with any stream</li>
+                            <li>Minimum 50% aggregate marks</li>
+                            <li>Design aptitude test clearance</li>
+                            <li>Technical drawing skills</li>
+                            <li>Interview round</li>
+                        </ul>
+                    </div>
+                    <div class="info-box scope-box">
+                        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                        <ul class="list-custom">
+                            <li>Product Designer</li>
+                            <li>Industrial Designer</li>
+                            <li>UX Designer</li>
+                            <li>Design Consultant</li>
+                            <li>Design Researcher</li>
+                            <li>Product Development Manager</li>
+                            <li>Design Strategist</li>
+                        </ul>
+                    </div>
+                </div>
+        
+                <!-- B.Des Communication Design Section -->
+                <div id="bdes-comm" class="course-section">
+                    <h2 class="course-title">Bachelor of Design in Communication Design</h2>
+                    <span class="program-type">4-Year Professional Program</span>
+                    <p class="course-description">
+                        A program focused on visual communication and digital media design. Students learn to create effective 
+                        communication solutions across various media platforms.
+                    </p>
+                    <div class="info-box program-structure">
+                        <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                        <ul class="list-custom">
+                            <li>Graphic Design</li>
+                            <li>Typography</li>
+                            <li>Digital Media Design</li>
+                            <li>Motion Graphics</li>
+                            <li>User Experience Design</li>
+                            <li>Brand Identity Design</li>
+                            <li>Web Design</li>
+                            <li>Interactive Media</li>
+                        </ul>
+                    </div>
+                    <div class="info-box eligibility-box">
+                        <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                        <ul class="list-custom">
+                            <li>10+2 from any stream</li>
+                            <li>Minimum 50% aggregate marks</li>
+                            <li>Design aptitude test</li>
+                            <li>Digital portfolio</li>
+                            <li>Creative ability assessment</li>
+                        </ul>
+                    </div>
+                    <div class="info-box scope-box">
+                        <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                        <ul class="list-custom">
+                            <li>Graphic Designer</li>
+                            <li>UI/UX Designer</li>
+                            <li>Motion Graphics Designer</li>
+                            <li>Brand Designer</li>
+                            <li>Web Designer</li>
+                            <li>Art Director</li>
+                            <li>Creative Director</li>
+                        </ul>
+                    </div>
+                </div>
+                        <!-- B.Des Industrial Design Section -->
+        <div id="bdes-industrial" class="course-section">
+            <h2 class="course-title">Bachelor of Design in Industrial Design</h2>
+            <span class="program-type">4-Year Professional Program</span>
+            <p class="course-description">
+                A specialized program that combines engineering principles with design aesthetics to create innovative 
+                industrial products and solutions. Focus on manufacturing processes and technological integration.
+            </p>
+            <div class="info-box program-structure">
+                <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                <ul class="list-custom">
+                    <li>Industrial Design Fundamentals</li>
+                    <li>Engineering Drawing</li>
+                    <li>CAD/CAM Technologies</li>
+                    <li>Manufacturing Processes</li>
+                    <li>Materials and Processes</li>
+                    <li>Product Development</li>
+                    <li>Design for Manufacturing</li>
+                    <li>Ergonomics and Human Factors</li>
+                    <li>Sustainable Design Practices</li>
+                </ul>
+            </div>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 with Physics, Chemistry, Mathematics</li>
+                    <li>Minimum 50% aggregate marks</li>
+                    <li>Design aptitude test clearance</li>
+                    <li>Technical drawing skills</li>
+                    <li>Portfolio submission</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Industrial Designer</li>
+                    <li>Product Development Engineer</li>
+                    <li>Manufacturing Designer</li>
+                    <li>Design Engineer</li>
+                    <li>CAD Specialist</li>
+                    <li>Production Designer</li>
+                    <li>Design Consultant</li>
+                </ul>
+            </div>
+            <div class="info-box highlights-box">
+                <h3 class="h5"><i class="fas fa-lightbulb"></i> Program Highlights</h3>
+                <ul class="list-custom">
+                    <li>Industry-integrated curriculum</li>
+                    <li>Advanced design labs</li>
+                    <li>Industry partnerships</li>
+                    <li>Practical training</li>
+                    <li>Live projects</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- B.Des Textile and Clothing Design Section -->
+        <div id="bdes-textile" class="course-section">
+            <h2 class="course-title">Bachelor of Design in Textile and Clothing Design</h2>
+            <span class="program-type">4-Year Professional Program</span>
+            <p class="course-description">
+                A comprehensive program focusing on textile design, fabric development, and clothing construction. 
+                Students learn both traditional and contemporary approaches to textile and garment design.
+            </p>
+            <div class="info-box program-structure">
+                <h3 class="h5"><i class="fas fa-book"></i> Program Structure</h3>
+                <ul class="list-custom">
+                    <li>Textile Design Fundamentals</li>
+                    <li>Fabric Structure and Properties</li>
+                    <li>Surface Design Techniques</li>
+                    <li>Weaving and Knitting</li>
+                    <li>Digital Textile Design</li>
+                    <li>Garment Construction</li>
+                    <li>Textile Testing and Quality Control</li>
+                    <li>Sustainable Textile Practices</li>
+                </ul>
+            </div>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 from any stream</li>
+                    <li>Minimum 50% aggregate marks</li>
+                    <li>Design aptitude test</li>
+                    <li>Creative portfolio</li>
+                    <li>Interview round</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Textile Designer</li>
+                    <li>Fabric Developer</li>
+                    <li>Print Designer</li>
+                    <li>Clothing Designer</li>
+                    <li>Textile Consultant</li>
+                    <li>Quality Control Manager</li>
+                    <li>Production Manager</li>
+                    <li>Design Entrepreneur</li>
+                </ul>
+            </div>
+            <div class="info-box highlights-box">
+                <h3 class="h5"><i class="fas fa-lightbulb"></i> Program Highlights</h3>
+                <ul class="list-custom">
+                    <li>State-of-the-art textile labs</li>
+                    <li>Industry collaborations</li>
+                    <li>Traditional and modern techniques</li>
+                    <li>Sustainable design focus</li>
+                    <li>Exhibition opportunities</li>
+                    <li>International exposure</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Category Management
+        const categoryMap = {
+            'bdes-fashion': 'Bachelor of Design in Fashion Design',
+            'bdes-fashion-comm': 'Bachelor of Design in Fashion Communication',
+            'bdes-product': 'Bachelor of Design in Product Design',
+            'bdes-comm': 'Bachelor of Design in Communication Design',
+            'bdes-industrial': 'Bachelor of Design in Industrial Design',
+            'bdes-textile': 'Bachelor of Design in Textile and Clothing Design'
+        };
+
+        // Mobile-specific styles
+        const mobileStyles = `
+            @media (max-width: 768px) {
+                .course-title {
+                    font-size: 1.8em;
+                }
+
+                .program-type {
+                    font-size: 0.8em;
+                }
+
+                .info-box {
+                    padding: 15px;
+                }
+
+                .nav-menu {
+                    padding: 5px;
+                    gap: 8px;
+                    overflow-x: auto;
+                    -webkit-overflow-scrolling: touch;
+                    scrollbar-width: none;
+                }
+
+                .nav-menu::-webkit-scrollbar {
+                    display: none;
+                }
+
+                .nav-menu li a {
+                    padding: 6px 12px;
+                    font-size: 0.85em;
+                    white-space: nowrap;
+                }
+
+                .header h1 {
+                    font-size: 2em;
+                }
+
+                .header p {
+                    font-size: 1em;
+                }
+            }
+
+            .scroll-indicator {
+                position: absolute;
+                top: 50%;
+                transform: translateY(-50%);
+                width: 40px;
+                height: 40px;
+                background: rgba(43, 108, 176, 0.9);
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                cursor: pointer;
+                border-radius: 50%;
+                opacity: 0;
+                transition: opacity 0.3s ease;
+                z-index: 1000;
+            }
+
+            .scroll-left {
+                left: 10px;
+            }
+
+            .scroll-right {
+                right: 10px;
+            }
+
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(20px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+
+            .fade-in {
+                animation: fadeIn 0.5s ease-out forwards;
+            }
+        `;
+
+        // Add mobile styles to document
+        const styleSheet = document.createElement("style");
+        styleSheet.textContent = mobileStyles;
+        document.head.appendChild(styleSheet);
+
+        function updateCategory(courseId) {
+            const categoryHeader = document.getElementById('currentCategory');
+            if (categoryHeader && categoryMap[courseId]) {
+                categoryHeader.textContent = categoryMap[courseId];
+                animateCategoryChange();
+            }
+        }
+
+        function animateCategoryChange() {
+            const header = document.querySelector('.category-header');
+            header.classList.remove('animate');
+            void header.offsetHeight; // Trigger reflow
+            header.classList.add('animate');
+        }
+
+        function showCourse(courseId, element, event) {
+            event.preventDefault();
+            
+            updateCategory(courseId);
+            
+            const sections = document.querySelectorAll('.course-section');
+            sections.forEach(section => {
+                section.style.opacity = '0';
+                section.classList.remove('active');
+                setTimeout(() => {
+                    section.style.display = 'none';
+                }, 300);
+            });
+            
+            const selectedSection = document.getElementById(courseId);
+            if (selectedSection) {
+                setTimeout(() => {
+                    selectedSection.style.display = 'block';
+                    selectedSection.offsetHeight; // Trigger reflow
+                    selectedSection.style.opacity = '1';
+                    selectedSection.classList.add('active');
+                }, 300);
+            }
+            
+            updateNavigation(element);
+            scrollToContent();
+        }
+
+        function updateNavigation(element) {
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            
+            if (element) {
+                element.classList.add('active');
+            }
+        }
+
+        function scrollToContent() {
+            const navContainer = document.querySelector('.nav-container');
+            if (navContainer) {
+                window.scrollTo({
+                    top: navContainer.offsetTop,
+                    behavior: 'smooth'
+                });
+            }
+        }
+
+        // Mobile Navigation
+        function initMobileNav() {
+            const navContainer = document.querySelector('.nav-container');
+            let isScrolling;
+
+            if (navContainer) {
+                navContainer.addEventListener('scroll', function() {
+                    window.clearTimeout(isScrolling);
+                    
+                    isScrolling = setTimeout(function() {
+                        navContainer.style.overflow = 'hidden';
+                    }, 66);
+                    
+                    navContainer.style.overflow = 'auto';
+                });
+
+                if (window.innerWidth <= 768) {
+                    addScrollIndicators();
+                }
+
+                window.addEventListener('resize', function() {
+                    if (window.innerWidth <= 768) {
+                        addScrollIndicators();
+                    } else {
+                        removeScrollIndicators();
+                    }
+                });
+            }
+        }
+
+        function addScrollIndicators() {
+            const navContainer = document.querySelector('.nav-container');
+            if (!document.querySelector('.scroll-indicator')) {
+                const leftIndicator = document.createElement('div');
+                leftIndicator.className = 'scroll-indicator scroll-left';
+                leftIndicator.innerHTML = '<i class="fas fa-chevron-left"></i>';
+                
+                const rightIndicator = document.createElement('div');
+                rightIndicator.className = 'scroll-indicator scroll-right';
+                rightIndicator.innerHTML = '<i class="fas fa-chevron-right"></i>';
+                
+                navContainer.appendChild(leftIndicator);
+                navContainer.appendChild(rightIndicator);
+
+                leftIndicator.addEventListener('click', () => {
+                    navContainer.scrollBy({ left: -100, behavior: 'smooth' });
+                });
+
+                rightIndicator.addEventListener('click', () => {
+                    navContainer.scrollBy({ left: 100, behavior: 'smooth' });
+                });
+                
+                updateScrollIndicators();
+            }
+        }
+        function removeScrollIndicators() {
+            document.querySelectorAll('.scroll-indicator').forEach(indicator => {
+                indicator.remove();
+            });
+        }
+
+        function updateScrollIndicators() {
+            const navContainer = document.querySelector('.nav-container');
+            const leftIndicator = document.querySelector('.scroll-left');
+            const rightIndicator = document.querySelector('.scroll-right');
+            
+            if (navContainer && leftIndicator && rightIndicator) {
+                const showLeft = navContainer.scrollLeft > 0;
+                const showRight = navContainer.scrollLeft < (navContainer.scrollWidth - navContainer.clientWidth);
+                
+                leftIndicator.style.opacity = showLeft ? '1' : '0';
+                rightIndicator.style.opacity = showRight ? '1' : '0';
+            }
+        }
+
+        // Keyboard Navigation
+        function initKeyboardNav() {
+            document.addEventListener('keydown', function(e) {
+                const activeSection = document.querySelector('.course-section.active');
+                if (!activeSection) return;
+
+                const sections = Array.from(document.querySelectorAll('.course-section'));
+                const currentIndex = sections.indexOf(activeSection);
+
+                if (e.key === 'ArrowRight' && currentIndex < sections.length - 1) {
+                    const nextSection = sections[currentIndex + 1];
+                    const nextLink = document.querySelector(`[onclick*="${nextSection.id}"]`);
+                    if (nextLink) nextLink.click();
+                } else if (e.key === 'ArrowLeft' && currentIndex > 0) {
+                    const prevSection = sections[currentIndex - 1];
+                    const prevLink = document.querySelector(`[onclick*="${prevSection.id}"]`);
+                    if (prevLink) prevLink.click();
+                }
+            });
+        }
+
+        // Accessibility Enhancements
+        function addAccessibility() {
+            const navLinks = document.querySelectorAll('.nav-menu a');
+            navLinks.forEach(link => {
+                link.setAttribute('role', 'tab');
+                link.setAttribute('aria-selected', link.classList.contains('active'));
+            });
+
+            const sections = document.querySelectorAll('.course-section');
+            sections.forEach(section => {
+                section.setAttribute('role', 'tabpanel');
+                section.setAttribute('aria-hidden', !section.classList.contains('active'));
+            });
+        }
+
+        // Error Handling
+        function handleError(error, message = 'An error occurred') {
+            console.error(error);
+            const errorDiv = document.createElement('div');
+            errorDiv.className = 'error-message';
+            errorDiv.innerHTML = `
+                <div class="error-content">
+                    <i class="fas fa-exclamation-circle"></i>
+                    <p>${message}</p>
+                    <button onclick="this.parentElement.parentElement.remove()">Dismiss</button>
+                </div>
+            `;
+            document.body.appendChild(errorDiv);
+            setTimeout(() => {
+                errorDiv.remove();
+            }, 5000);
+        }
+
+        // Loading State
+        function showLoading() {
+            const loader = document.createElement('div');
+            loader.className = 'loading-overlay';
+            loader.innerHTML = `
+                <div class="loader-spinner"></div>
+                <p>Loading content...</p>
+            `;
+            document.body.appendChild(loader);
+        }
+
+        function hideLoading() {
+            const loader = document.querySelector('.loading-overlay');
+            if (loader) {
+                loader.remove();
+            }
+        }
+
+        // Print Handling
+        function setupPrintHandling() {
+            window.addEventListener('beforeprint', function() {
+                document.querySelectorAll('.course-section').forEach(section => {
+                    section.style.display = 'block';
+                    section.style.opacity = '1';
+                });
+            });
+
+            window.addEventListener('afterprint', function() {
+                showCourse(document.querySelector('.course-section.active').id);
+            });
+        }
+
+        // Initialize Everything
+        document.addEventListener('DOMContentLoaded', function() {
+            try {
+                // Initialize first section
+                document.querySelector('.course-section.active').style.display = 'block';
+                
+                // Initialize mobile navigation
+                initMobileNav();
+                
+                // Add keyboard navigation
+                initKeyboardNav();
+                
+                // Add accessibility attributes
+                addAccessibility();
+
+                // Setup print handling
+                setupPrintHandling();
+
+                // Add intersection observer for animations
+                const observer = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.classList.add('fade-in');
+                            observer.unobserve(entry.target);
+                        }
+                    });
+                }, {
+                    threshold: 0.1,
+                    rootMargin: '50px'
+                });
+
+                document.querySelectorAll('.info-box').forEach(box => {
+                    observer.observe(box);
+                });
+
+            } catch (error) {
+                handleError(error, 'Error initializing page');
+            }
+        });
+
+        // Cleanup Function
+        function cleanup() {
+            window.removeEventListener('scroll', updateScrollIndicators);
+            window.removeEventListener('resize', initMobileNav);
+        }
+
+        // Add cleanup on page unload
+        window.addEventListener('unload', cleanup);
+
+        
+    </script>
+</body>
+</html>

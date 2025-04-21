@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Admissions Portal</title>
+    
+    <!-- External CSS Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet">
+    <link href="assets/css/ribbon.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <style>
+        :root {
+            --primary-color: #1a5f7a;
+            --secondary-color: #3498db;
+            --accent-color: #e74c3c;
+            --success-color: #2ecc71;
+            --warning-color: #f1c40f;
+            --light-gray: #f5f8fa;
+            --dark-gray: #34495e;
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--dark-gray);
+            padding-top: 76px;
+        }
+
+        /* Header Styles */
+        .admission-header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+
+        /* Form Container Styles */
+        .admission-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .form-section {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Section Headers */
+        .section-title {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--secondary-color);
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* Form Elements */
+        .form-label {
+            font-weight: 600;
+            color: var(--primary-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .required::after {
+            content: " *";
+            color: var(--accent-color);
+        }
+
+        /* Toast and Spinner Styles */
+        .spinner-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255,255,255,0.9);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .toast-container {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .admission-header h1 { font-size: 2rem; }
+            .form-section { padding: 1rem; }
+            .action-button { width: 100%; }
+        }
+
+        /* Social Float Buttons */
+        .social-float {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 999;
+        }
+
+        .social-btn {
+            display: block;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin: 8px 0;
+            color: white;
+            text-align: center;
+            line-height: 40px;
+            transition: all 0.3s ease;
+        }
+
+        .social-btn:hover {
+            transform: scale(1.1);
+        }
+
+        /* Social Media Colors */
+        .whatsapp-float { background: #25D366; }
+        .telegram-float { background: #0088cc; }
+        .facebook-float { background: #3b5998; }
+        .instagram-float { background: #e1306c; }
+        .linkedin-float { background: #0077b5; }
+        .x-float { background: #000000; }
+    </style>
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" href="index.html">
+                <img src="assets/images/logo.png" alt="Success Meets Logo" height="40">
+                Success Meets
+            </a>
+            
+            <!-- Mobile Toggle Button -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Navigation Links -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <div class="mobile-domain-selection d-lg-none">
+                    <div class="domain-selectors">
+                        <select class="form-select mb-2" id="mobileDomainType">
+                            <option value="">Choose Domain</option>
+                            <option value="Medical & Healthcare">Medical & Healthcare</option>
+                            <option value="Engineering & Technology">Engineering & Technology</option>
+                            <option value="Arts & Science">Arts & Science</option>
+                            <option value="Law">Law</option>
+                        </select>
+                        
+                        <select class="form-select mb-2" id="mobileSubDomainType">
+                            <option value="">Select Category</option>
+                        </select>
+                        
+                        <select class="form-select mb-2" id="mobileCourseType">
+                            <option value="">Select Course</option>
+                        </select>
+                        
+                        <button id="mobileExploreButton" class="btn btn-primary w-100 mb-3" disabled>
+                            <i class="bi bi-arrow-right-circle"></i> Explore Now
+                        </button>
+                    </div>
+                </div>
+
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="institutes.html">Institutes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="study-abroad.html">Study Abroad</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="entrance-exams.html">Entrance Exams</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="admissions.html">Admissions</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="fees.html">Fees</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="referrals.html">Referral Program</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Ribbon Section -->
+    <div class="ribbon-container">
+        <div class="ribbon" onclick="openRibbonModal()">
+            <div class="moving-text">
+                🚀 2025 - 26 Admissions Open ✨ Register Now 🚀
+            </div>
+        </div>
+    </div>
+
+    <!-- Ribbon Modal -->
+    <div id="ribbonModal" class="ribbon-modal">
+        <div class="ribbon-modal-content">
+            <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
+            <h2>Get Notified</h2>
+            <form id="ribbonForm" class="ribbon-form">
+                <label for="ribbonName">Name:</label>
+                <input type="text" id="ribbonName" required>
+
+                <label for="ribbonMobile">Mobile No:</label>
+                <input type="tel" id="ribbonMobile" required>
+
+                <label for="ribbonEmail">Email:</label>
+                <input type="email" id="ribbonEmail" required>
+
+                <button type="submit">Notify Me</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Loading Spinner -->
+    <div class="spinner-overlay">
+        <div class="spinner"></div>
+    </div>
+
+    <!-- Toast Notifications Container -->
+    <div class="toast-container"></div>
+        <!-- Header Section -->
+        <header class="admission-header">
+            <h1><i class="bi bi-mortarboard"></i> College Admissions Portal</h1>
+            <p>Your Gateway to Higher Education</p>
+        </header>
+    
+        <!-- Main Content Container -->
+        <div class="admission-container">
+            <!-- Domain Selection Section -->
+            <div class="form-section">
+                <div class="domain-header text-center mb-4">
+                    <h3 class="section-title">
+                        <i class="bi bi-search-heart"></i>
+                        Explore Your Academic Path
+                    </h3>
+                    <p class="lead text-muted">
+                        If you're uncertain about your academic direction, explore our comprehensive domains below
+                    </p>
+                </div>
+                
+                <div class="row">
+                    <!-- Domain Selection -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label required">Select Domain</label>
+                        <select class="form-select" id="domainType" required>
+                            <option value="">Choose Domain</option>
+                            <option value="Medical & Healthcare">Medical & Healthcare</option>
+                            <option value="Engineering & Technology">Engineering & Technology</option>
+                            <option value="Arts & Science">Arts & Science</option>
+                            <option value="Law">Law</option>
+                        </select>
+                    </div>
+    
+                    <!-- Sub-Domain Selection -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label required">Select Category</label>
+                        <select class="form-select" id="subDomainType" required>
+                            <option value="">First select domain</option>
+                        </select>
+                    </div>
+    
+                    <!-- Course Selection -->
+                    <div class="col-md-3 mb-3">
+                        <label class="form-label required">Select Course</label>
+                        <select class="form-select" id="courseType" required>
+                            <option value="">First select category</option>
+                        </select>
+                    </div>
+    
+                    <!-- Explore Button -->
+                    <div class="col-md-3 mb-3 d-flex align-items-end">
+                        <button id="exploreButton" class="btn w-100" disabled>
+                            <i class="bi bi-arrow-right-circle"></i> Explore Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+                    <!-- Admission Form -->
+        <form id="admissionForm" class="needs-validation" novalidate>
+            <!-- College Selection Section -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="bi bi-building icon-feature"></i>
+                    Institution Selection
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Select College Type</label>
+                        <select class="form-select" id="collegeType" required>
+                            <option value="">Choose Type</option>
+                            <option value="TN Universities">TN Universities</option>
+                            <option value="TN Private Colleges">TN Private Colleges</option>
+                        </select>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Select Institution</label>
+                        <select class="form-select" id="collegeName" required>
+                            <option value="">First select college type</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Personal Information Section -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="bi bi-person-circle icon-feature"></i>
+                    Personal Information
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Full Name</label>
+                        <input type="text" class="form-control" id="fullName" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Date of Birth</label>
+                        <input type="date" class="form-control" id="dob" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Email Address</label>
+                        <input type="email" class="form-control" id="email" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">Mobile Number</label>
+                        <input type="tel" class="form-control" id="mobile" pattern="[0-9]{10}" required>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label required">Address</label>
+                        <textarea class="form-control" id="address" rows="3" required></textarea>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Academic Information Section -->
+            <div class="form-section">
+                <h3 class="section-title">
+                    <i class="bi bi-mortarboard icon-feature"></i>
+                    Academic Information
+                </h3>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">10th Standard</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="tenthPercentage" 
+                                   min="0" max="100" step="0.01" required>
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required">12th Standard</label>
+                        <div class="input-group">
+                            <input type="number" class="form-control" id="twelfthPercentage" 
+                                   min="0" max="100" step="0.01" required>
+                            <span class="input-group-text">%</span>
+                        </div>
+                    </div>
+                    <div class="col-md-12 mb-3">
+                        <label class="form-label">Upload Documents</label>
+                        <input type="file" class="form-control" id="documents" multiple>
+                        <small class="text-muted">Upload 10th, 12th marksheets and other relevant documents (PDF/JPG)</small>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="text-center mt-4">
+                <button type="submit" class="btn btn-primary btn-lg">
+                    <i class="bi bi-send"></i> Submit Application
+                </button>
+            </div>
+        </form>
+    </div>
+        <!-- Footer Section -->
+        <footer class="footer bg-dark text-white py-5">
+            <div class="container">
+                <div class="row">
+                    <!-- Company Info -->
+                    <div class="col-md-4 mb-4">
+                        <h5>Success Meets</h5>
+                        <p>Transforming dreams into reality through expert educational guidance and career counseling.</p>
+                        <div class="social-links">
+                            <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
+                            <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
+                            <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
+                            <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
+                        </div>
+                    </div>
+                    
+                    <!-- Quick Links -->
+                    <div class="col-md-4 mb-4">
+                        <h5>Quick Links</h5>
+                        <ul class="list-unstyled">
+                            <li><a href="about.html" class="text-white">About Us</a></li>
+                            <li><a href="services.html" class="text-white">Services</a></li>
+                            <li><a href="blog.html" class="text-white">Blog</a></li>
+                            <li><a href="contact.html" class="text-white">Contact</a></li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Newsletter -->
+                    <div class="col-md-4 mb-4">
+                        <h5>Newsletter</h5>
+                        <p>Subscribe to our newsletter for updates and insights.</p>
+                        <form class="newsletter-form">
+                            <div class="input-group">
+                                <input type="email" class="form-control" placeholder="Your Email">
+                                <button class="btn btn-primary" type="submit">Subscribe</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                
+                <!-- Copyright -->
+                <div class="text-center pt-4 border-top">
+                    <p>&copy; 2023 Success Meets Educational Consultancy. All rights reserved.</p>
+                </div>
+            </div>
+        </footer>
+    
+        <!-- Floating Social Media Buttons -->
+        <div class="social-float">
+            <a href="https://wa.me/9087442108" class="social-btn whatsapp-float" target="_blank">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="https://x.com/yourprofile" class="social-btn x-float" target="_blank">
+                <i class="bi bi-twitter"></i>
+            </a>
+            <a href="https://www.linkedin.com/in/success-meets-technology-b0378734b/" class="social-btn linkedin-float" target="_blank">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://www.instagram.com/success_meets_foundation/" class="social-btn instagram-float" target="_blank">
+                <i class="bi bi-instagram"></i>
+            </a>
+            <a href="https://t.me/successmeets" class="social-btn telegram-float" target="_blank">
+                <i class="bi bi-telegram"></i>
+            </a>
+            <a href="https://www.facebook.com/share/19ryQbVNLp/" class="social-btn facebook-float" target="_blank">
+                <i class="bi bi-facebook"></i>
+            </a>
+        </div>
+    
+        <!-- Scroll to Top Button -->
+        <button id="scrollToTop" class="scroll-to-top">
+            <i class="bi bi-arrow-up"></i>
+        </button>
+
+        // Required Scripts
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+const domainMapping = {
+    "Medical & Healthcare": {
+        "Medical": {
+            "MBBS": "medical.html#mbbs",
+            "BDS": "medical.html#bds",
+            "BHMS": "medical.html#bhms",
+            "BAMS": "medical.html#bams",
+            "BUMS": "medical.html#bums",
+            "BSMS": "medical.html#bsms",
+            "B.V.Sc": "medical.html#bvsc"
+        },
+        "Nursing": {
+            "B.Sc Nursing": "nursing.html#bsc",
+            "M.Sc Nursing": "nursing.html#msc",
+            "Diploma in Nursing": "nursing.html#diploma"
+        },
+        "Paramedical": {
+            "B.Sc Anesthesia Technology": "paramedical.html#anesthesia",
+            "B.Sc Cardiac Care Technology": "paramedical.html#cardiac",
+            "B.Sc Imaging Technology": "paramedical.html#imaging",
+            "B.Sc Laboratory Technology": "paramedical.html#laboratory",
+            "B.Sc Perfusion Technology": "paramedical.html#perfusion",
+            "B.Sc Emergency Care Technology": "paramedical.html#emergency",
+            "B.Sc Occupational Therapy": "paramedical.html#occupational"
+        },
+        "Pharmacy": {
+            "B.Pharm": "pharmacy.html#bpharm",
+            "M.Pharm": "pharmacy.html#mpharm",
+            "Pharm D": "pharmacy.html#pharmd",
+            "D.Pharm": "pharmacy.html#diploma"
+        },
+        "Physiotherapy": {
+            "BPT": "physiotherapy.html#bpt",
+            "DPT": "physiotherapy.html#dpt",
+            "B.Sc Physiotherapy": "physiotherapy.html#bsc",
+            "MPT": "physiotherapy.html#mpt"
+        }
+    },
+        "Engineering & Technology": {
+        "Engineering": {
+            "Mechanical": "engineering.html#mechanical",
+            "Civil": "engineering.html#civil",
+            "Electrical & Electronics (EEE)": "engineering.html#eee",
+            "Electronics & Communication (ECE)": "engineering.html#ece",
+            "Computer Science (CSE)": "engineering.html#cse",
+            "Information Technology (IT)": "engineering.html#it",
+            "Artificial Intelligence & Data Science (AI & DS)": "engineering.html#aids",
+            "Artificial Intelligence & Machine Learning (AI & ML)": "engineering.html#aiml",
+            "Computer Science & Business Systems (CS & BS)": "engineering.html#csbs",
+            "Internet of Things (IoT)": "engineering.html#iot",
+            "Cyber Security": "engineering.html#cyber",
+            "Chemical Engineering": "engineering.html#chemical",
+            "Biotechnology": "engineering.html#biotech",
+            "Automobile Engineering": "engineering.html#auto",
+            "Marine Engineering": "engineering.html#marine",
+            "Aeronautical Engineering": "engineering.html#aero",
+            "Agricultural Engineering": "engineering.html#agri",
+            "Food Technology": "engineering.html#food",
+            "Textile Engineering": "engineering.html#textile",
+            "Petroleum Engineering": "engineering.html#petroleum",
+            "Mining Engineering": "engineering.html#mining",
+            "Robotics Engineering": "engineering.html#robotics",
+            "Mechatronics": "engineering.html#mechatronics",
+            "Biomedical Engineering": "engineering.html#biomedical",
+            "Environmental Engineering": "engineering.html#environmental"
+        },
+        "Architecture & Planning": {
+            "B.Arch": "architecture.html#barch",
+            "B.Plan": "architecture.html#bplan",
+            "B.Tech Urban Planning": "architecture.html#btech-urban",
+            "M.Arch": "architecture.html#march",
+            "M.Tech Urban Planning": "architecture.html#mtech-urban"
+        },
+    },
+        "Law": {
+            "Law Courses": {
+            "BA LLB": "law.html#ballb",
+            "BBA LLB": "law.html#bballb",
+            "B.Com LLB": "law.html#bcomllb"
+        },
+    },
+        "Arts & Science": {
+        "Science": {
+            "Int. M.Sc Biotechnology": "science.html#int-biotech",
+            "Int. M.Sc Food Science": "science.html#int-food",
+            "Int. M.Sc Statistics": "science.html#int-stats",
+            "Int. M.Sc Physics": "science.html#int-physics",
+            "Int. M.Sc Chemistry": "science.html#int-chem",
+            "Int. M.Sc Mathematics": "science.html#int-math",
+            "M.Sc Food Technology": "science.html#msc-food-tech",
+            "M.Sc Anesthesia Technology": "science.html#msc-anesthesia",
+            "M.Sc Medical Imaging": "science.html#msc-imaging",
+            "M.Sc Laboratory Technology": "science.html#msc-lab",
+            "M.Sc Cardiac Technology": "science.html#msc-cardiac",
+            "MOT": "science.html#mot"
+        },
+        "Computer Applications & IT": {
+            "BCA Cloud Computing": "computer.html#bca-cloud",
+            "BCA AI & Cloud": "computer.html#bca-ai",
+            "BCA Digital Arts": "computer.html#bca-digital",
+            "BCA Mobile Development": "computer.html#bca-mobile",
+            "MCA": "computer.html#mca",
+            "M.Sc Cloud Computing": "computer.html#msc-cloud",
+            "M.Sc Cybersecurity": "computer.html#msc-cyber",
+            "M.Sc AI & ML": "computer.html#msc-ai",
+            "M.Sc Data Science": "computer.html#msc-data",
+            "M.Sc IoT": "computer.html#msc-iot"
+        },
+        "Agriculture": {
+            "B.Sc Agriculture": "agriculture.html#bsc-agriculture",
+            "B.Sc Horticulture": "agriculture.html#bsc-horticulture",
+            "B.Sc Agri Business": "agriculture.html#bsc-agribusiness",
+            "B.Sc Forestry": "agriculture.html#bsc-forestry",
+            "B.Sc Sericulture": "agriculture.html#bsc-sericulture",
+            "B.Sc Food & Nutrition": "agriculture.html#bsc-food-nutrition",
+            "M.Sc Agricultural Economics": "agriculture.html#msc-agri-economics",
+            "M.Sc Agriculture": "agriculture.html#msc-agriculture",
+            "M.Sc Agronomy": "agriculture.html#msc-agronomy",
+            "M.Sc Seed Science": "agriculture.html#msc-seed-science"
+        },
+        "Business & Commerce": {
+            "BBA General": "management.html#bba-general",
+            "BBA Sports": "management.html#bba-sports",
+            "BBA Analytics": "management.html#bba-analytics",
+            "BBA Logistics": "management.html#bba-logistics",
+            "BBA Finance": "management.html#bba-finance",
+            "BBA Entrepreneurship": "management.html#bba-entrepreneurship",
+            "B.Com Business": "management.html#bcom-business",
+            "B.Com Banking": "management.html#bcom-banking",
+            "B.Com Financial": "management.html#bcom-financial"
+        },
+        "Design & Fashion": {
+            "B.Des Fashion Design": "design.html#bdes-fashion",
+            "B.Des Fashion Communication": "design.html#bdes-fashion-comm",
+            "B.Des Product Design": "design.html#bdes-product",
+            "B.Des Communication Design": "design.html#bdes-comm",
+            "B.Des Industrial Design": "design.html#bdes-industrial",
+            "B.Des Textile & Clothing": "design.html#bdes-textile"
+        }
+    }
+}; // End of domainMapping
+
+    // Document Ready Event Handler
+    document.addEventListener('DOMContentLoaded', function() {
+        // Initialize Elements
+        const domainSelect = document.getElementById('domainType');
+        const subDomainSelect = document.getElementById('subDomainType');
+        const courseSelect = document.getElementById('courseType');
+        const exploreButton = document.getElementById('exploreButton');
+        const form = document.getElementById('admissionForm');
+        
+        // Domain Selection Change Handler
+        domainSelect.addEventListener('change', function() {
+            const selectedDomain = this.value;
+            updateSubDomainOptions(selectedDomain);
+            resetCourseSelect();
+            updateExploreButton();
+        });
+
+        // Sub-Domain Selection Change Handler
+        subDomainSelect.addEventListener('change', function() {
+            const selectedDomain = domainSelect.value;
+            const selectedSubDomain = this.value;
+            updateCourseOptions(selectedDomain, selectedSubDomain);
+            updateExploreButton();
+        });
+
+        // Course Selection Change Handler
+        courseSelect.addEventListener('change', function() {
+            updateExploreButton();
+        });
+
+        // Explore Button Click Handler
+        exploreButton.addEventListener('click', function() {
+            handleExploreButtonClick();
+        });
+
+        // Form Submission Handler
+        form.addEventListener('submit', function(e) {
+            handleFormSubmission(e);
+        });
+
+        // Helper Functions
+        function updateSubDomainOptions(selectedDomain) {
+            subDomainSelect.innerHTML = '<option value="">Select Category</option>';
+            if(selectedDomain && domainMapping[selectedDomain]) {
+                Object.keys(domainMapping[selectedDomain]).forEach(subDomain => {
+                    const option = document.createElement('option');
+                    option.value = subDomain;
+                    option.textContent = subDomain;
+                    subDomainSelect.appendChild(option);
+                });
+            }
+        }
+
+        function updateCourseOptions(selectedDomain, selectedSubDomain) {
+            courseSelect.innerHTML = '<option value="">Select Course</option>';
+            if(selectedDomain && selectedSubDomain && 
+               domainMapping[selectedDomain][selectedSubDomain]) {
+                Object.keys(domainMapping[selectedDomain][selectedSubDomain]).forEach(course => {
+                    const option = document.createElement('option');
+                    option.value = course;
+                    option.textContent = course;
+                    courseSelect.appendChild(option);
+                });
+            }
+        }
+
+        function resetCourseSelect() {
+            courseSelect.innerHTML = '<option value="">First select category</option>';
+            exploreButton.disabled = true;
+        }
+
+        function updateExploreButton() {
+            exploreButton.disabled = !courseSelect.value;
+        }
+
+        function handleExploreButtonClick() {
+            const selectedDomain = domainSelect.value;
+            const selectedSubDomain = subDomainSelect.value;
+            const selectedCourse = courseSelect.value;
+
+            if (selectedDomain && selectedSubDomain && selectedCourse) {
+                const redirectPath = domainMapping[selectedDomain][selectedSubDomain][selectedCourse];
+                if (redirectPath) {
+                    showSpinner();
+                    setTimeout(() => {
+                        window.location.href = redirectPath;
+                    }, 500);
+                } else {
+                    showToast('Path not found. Please try again.', 'error');
+                }
+            }
+        }
+
+        function handleFormSubmission(e) {
+            e.preventDefault();
+            if (form.checkValidity()) {
+                showSpinner();
+                // Simulate form submission
+                setTimeout(() => {
+                    hideSpinner();
+                    showToast('Application submitted successfully!', 'success');
+                    form.reset();
+                    form.classList.remove('was-validated');
+                }, 1500);
+            }
+            form.classList.add('was-validated');
+        }
+    });
+
+    // Utility Functions
+    function showSpinner() {
+        document.querySelector('.spinner-overlay').style.display = 'flex';
+    }
+
+    function hideSpinner() {
+        document.querySelector('.spinner-overlay').style.display = 'none';
+    }
+
+    function showToast(message, type = 'success') {
+        const toastContainer = document.querySelector('.toast-container');
+        const toast = document.createElement('div');
+        toast.className = `toast ${type}`;
+        toast.innerHTML = `
+            <div class="toast-header">
+                <i class="bi bi-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
+                <strong class="me-auto">${type.charAt(0).toUpperCase() + type.slice(1)}</strong>
+                <button type="button" class="btn-close" onclick="this.parentElement.parentElement.remove()"></button>
+            </div>
+            <div class="toast-body">${message}</div>
+        `;
+        toastContainer.appendChild(toast);
+        toast.style.display = 'block';
+        setTimeout(() => toast.remove(), 5000);
+    }
+
+    // Ribbon Functions
+    function openRibbonModal() {
+        document.getElementById('ribbonModal').style.display = 'block';
+    }
+
+    function closeRibbonModal() {
+        document.getElementById('ribbonModal').style.display = 'none';
+    }
+
+    // Initialize AOS
+    AOS.init();
+
+    // Scroll to Top Functionality
+    window.onscroll = function() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+            document.getElementById('scrollToTop').style.display = 'block';
+        } else {
+            document.getElementById('scrollToTop').style.display = 'none';
+        }
+    };
+
+    document.getElementById('scrollToTop').onclick = function() {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    };
+
+    // Ribbon Form Handler
+    document.getElementById('ribbonForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        showSpinner();
+        setTimeout(() => {
+            hideSpinner();
+            closeRibbonModal();
+            showToast('Thank you for subscribing!', 'success');
+            this.reset();
+        }, 1000);
+    });
+</script>
+<!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<!-- AOS JS -->
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<!-- Custom JS -->
+<script src="assets/js/scripts.js"></script>
+
+<!-- Ribbon JS -->
+<script src="assets/js/ribbon.js"></script>
+</body>
+</html>

@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nursing Programs | Healthcare Education Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #3b82f6;
+            --accent-color: #ff6b6b;
+            --text-color: #1f2937;
+            --light-bg: #f0f9ff;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .nav-container {
+            background: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .course-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .course-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .course-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 2em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .course-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .info-box {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .eligibility-box {
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .scope-box {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .list-custom {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list-custom li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .list-custom li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .nav-menu li a {
+                padding: 6px 15px;
+                font-size: 0.9em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Nursing Programs</h1>
+        <p>Excellence in Nursing Education for Compassionate Healthcare Professionals</p>
+    </div>
+
+    <div class="nav-container">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" class="active" onclick="showCourse('bsc', this)">B.Sc Nursing</a></li>
+                <li><a href="#" onclick="showCourse('msc', this)">M.Sc Nursing</a></li>
+                <li><a href="#" onclick="showCourse('diploma', this)">Diploma in Nursing</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- B.Sc Nursing Section -->
+        <div id="bsc" class="course-section active">
+            <h2 class="course-title">B.Sc Nursing</h2>
+            <p class="course-description">
+                A comprehensive undergraduate program that enables students to serve humanity through medical treatment. 
+                The program covers essential topics in healthcare including physiology, anatomy, biochemistry, nutrition, 
+                dietetics, and psychology.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 with Physics, Chemistry, Biology, and English</li>
+                    <li>Minimum 45% aggregate marks</li>
+                    <li>Age: 17 years minimum</li>
+                    <li>Valid entrance exam score (as applicable)</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Staff Nurse in Hospitals</li>
+                    <li>Community Health Nurse</li>
+                    <li>School Health Nurse</li>
+                    <li>Industrial Nurse</li>
+                    <li>Private Practice</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- M.Sc Nursing Section -->
+        <div id="msc" class="course-section">
+            <h2 class="course-title">M.Sc Nursing</h2>
+            <p class="course-description">
+                An advanced program focusing on specialized nursing care and research. Students can specialize in various 
+                fields like Medical-Surgical Nursing, Pediatric Nursing, or Psychiatric Nursing.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>B.Sc Nursing with minimum 55% marks</li>
+                    <li>Registered with State Nursing Council</li>
+                    <li>One year work experience</li>
+                    <li>Entrance exam qualification</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Nursing Educator</li>
+                    <li>Clinical Specialist</li>
+                    <li>Nursing Administrator</li>
+                    <li>Research Nurse</li>
+                    <li>Nursing Supervisor</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Diploma in Nursing Section -->
+        <div id="diploma" class="course-section">
+            <h2 class="course-title">Diploma in General Nursing & Midwifery</h2>
+            <p class="course-description">
+                A three-year program providing fundamental nursing education and practical training in general nursing 
+                and midwifery care.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 with Physics, Chemistry, Biology</li>
+                    <li>Minimum 40% aggregate marks</li>
+                    <li>Age: 17-35 years</li>
+                    <li>Selection through merit/entrance test</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Staff Nurse in Hospitals</li>
+                    <li>Community Health Worker</li>
+                    <li>Maternal Care Specialist</li>
+                    <li>Primary Healthcare Centers</li>
+                    <li>Private Clinics</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCourse(courseId, element) {
+            event.preventDefault();
+            
+            document.querySelectorAll('.course-section').forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+            
+            const selectedSection = document.getElementById(courseId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+                selectedSection.offsetHeight;
+                selectedSection.classList.add('active');
+            }
+            
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            window.scrollTo({
+                top: document.querySelector('.nav-container').offsetTop,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('load', function() {
+            document.querySelector('.course-section.active').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

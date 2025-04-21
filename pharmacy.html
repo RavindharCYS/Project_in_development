@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pharmacy Programs | Healthcare Education Excellence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --secondary-color: #ff6b00;
+            --accent-color: #3b82f6;
+            --text-color: #1f2937;
+            --light-bg: #f0f9ff;
+            --white: #ffffff;
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--light-bg);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            padding: 60px 20px;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            font-weight: 600;
+        }
+
+        .header p {
+            font-size: 1.1em;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.9;
+        }
+
+        .nav-container {
+            background: var(--white);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .nav-menu {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            list-style: none;
+        }
+
+        .nav-menu li a {
+            color: var(--primary-color);
+            text-decoration: none;
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-menu li a:hover,
+        .nav-menu li a.active {
+            background: var(--primary-color);
+            color: var(--white);
+        }
+
+        .course-section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .course-section.active {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .course-title {
+            color: var(--primary-color);
+            margin-bottom: 25px;
+            font-size: 2em;
+            position: relative;
+            padding-bottom: 15px;
+        }
+
+        .course-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: var(--primary-color);
+        }
+
+        .info-box {
+            background: var(--white);
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .info-box:hover {
+            transform: translateY(-5px);
+        }
+
+        .eligibility-box {
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .scope-box {
+            border-left: 4px solid var(--accent-color);
+        }
+
+        .list-custom {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .list-custom li {
+            padding: 10px 0;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .list-custom li:before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px;
+            }
+
+            .header h1 {
+                font-size: 2em;
+            }
+
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+
+            .nav-menu li a {
+                padding: 6px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* [Previous CSS styles remain the same] */
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Pharmacy Programs</h1>
+        <p>Excellence in Pharmaceutical Education for Future Healthcare Professionals</p>
+    </div>
+
+    <div class="nav-container">
+        <div class="container">
+            <ul class="nav-menu">
+                <li><a href="#" class="active" onclick="showCourse('bpharm', this)">B.Pharm</a></li>
+                <li><a href="#" onclick="showCourse('mpharm', this)">M.Pharm</a></li>
+                <li><a href="#" onclick="showCourse('pharmd', this)">Pharm D</a></li>
+                <li><a href="#" onclick="showCourse('diploma', this)">D.Pharm</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="container">
+        <!-- B.Pharm Section -->
+        <div id="bpharm" class="course-section active">
+            <h2 class="course-title">Bachelor of Pharmacy (B.Pharm)</h2>
+            <p class="course-description">
+                A 4-year UG Degree Program in the Pharmacy field that provides both academic and practical training 
+                in the pharmaceutical field. Students learn about drug development, pharmaceutical chemistry, 
+                pharmacology, and healthcare management.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 with Physics and Chemistry as compulsory subjects</li>
+                    <li>Mathematics/Biology/Biotechnology/Computer Science as optional</li>
+                    <li>Minimum 45% aggregate marks in PCM/PCB</li>
+                    <li>Valid NEET or state-level entrance exam score</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Hospital Pharmacist</li>
+                    <li>Own Pharmacy Business</li>
+                    <li>Sales & Marketing in Pharmaceutical Companies</li>
+                    <li>Research & Development</li>
+                    <li>Drug Control Administration</li>
+                    <li>Quality & Assurance Manager</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- M.Pharm Section -->
+        <div id="mpharm" class="course-section">
+            <h2 class="course-title">Master of Pharmacy (M.Pharm)</h2>
+            <p class="course-description">
+                A 2-year postgraduate program offering specialization in various branches of pharmacy such as 
+                Pharmaceutics, Pharmacology, Pharmaceutical Chemistry, and Pharmaceutical Analysis.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>B.Pharm degree with minimum 55% marks</li>
+                    <li>Valid GPAT score</li>
+                    <li>State level PG entrance exam qualification</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Research Scientist</li>
+                    <li>Drug Safety Associate</li>
+                    <li>Clinical Research Coordinator</li>
+                    <li>Academic Positions</li>
+                    <li>Pharmaceutical Consultant</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Pharm D Section -->
+        <div id="pharmd" class="course-section">
+            <h2 class="course-title">Doctor of Pharmacy (Pharm D)</h2>
+            <p class="course-description">
+                A 6-year doctoral program focusing on clinical pharmacy practice and patient care. The program 
+                includes extensive clinical training and hospital internships.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 with Physics, Chemistry, and Biology/Mathematics</li>
+                    <li>Minimum 50% aggregate marks</li>
+                    <li>Valid entrance exam score</li>
+                    <li>B.Pharm graduates can enter directly into 4th year</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Clinical Pharmacist</li>
+                    <li>Hospital Drug Information Specialist</li>
+                    <li>Clinical Research Associate</li>
+                    <li>Regulatory Affairs Officer</li>
+                    <li>Healthcare Consultant</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- D.Pharm Section -->
+        <div id="diploma" class="course-section">
+            <h2 class="course-title">Diploma in Pharmacy (D.Pharm)</h2>
+            <p class="course-description">
+                A 2-year diploma program providing basic knowledge of pharmacy practice and pharmaceutical sciences. 
+                Ideal for those looking to enter the pharmacy profession quickly.
+            </p>
+            <div class="info-box eligibility-box">
+                <h3 class="h5"><i class="fas fa-check-circle"></i> Eligibility Criteria</h3>
+                <ul class="list-custom">
+                    <li>10+2 with Physics, Chemistry, and Biology/Mathematics</li>
+                    <li>Minimum 45% aggregate marks</li>
+                    <li>Age: 17 years minimum</li>
+                    <li>State level diploma entrance exam</li>
+                </ul>
+            </div>
+            <div class="info-box scope-box">
+                <h3 class="h5"><i class="fas fa-briefcase"></i> Career Opportunities</h3>
+                <ul class="list-custom">
+                    <li>Community Pharmacist</li>
+                    <li>Hospital Pharmacy Assistant</li>
+                    <li>Pharmaceutical Sales Representative</li>
+                    <li>Drug Store Manager</li>
+                    <li>Manufacturing Unit Assistant</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showCourse(courseId, element) {
+            event.preventDefault();
+            
+            document.querySelectorAll('.course-section').forEach(section => {
+                section.classList.remove('active');
+                section.style.display = 'none';
+            });
+            
+            const selectedSection = document.getElementById(courseId);
+            if (selectedSection) {
+                selectedSection.style.display = 'block';
+                selectedSection.offsetHeight;
+                selectedSection.classList.add('active');
+            }
+            
+            document.querySelectorAll('.nav-menu a').forEach(link => {
+                link.classList.remove('active');
+            });
+            element.classList.add('active');
+
+            window.scrollTo({
+                top: document.querySelector('.nav-container').offsetTop,
+                behavior: 'smooth'
+            });
+        }
+
+        window.addEventListener('load', function() {
+            document.querySelector('.course-section.active').style.display = 'block';
+        });
+    </script>
+</body>
+</html>

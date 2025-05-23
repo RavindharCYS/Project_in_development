@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>College Admissions Portal</title>
+    <title>College Admissions Portal - Firestore</title>
     
     <!-- External CSS Links -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <link href="assets/css/styles.css" rel="stylesheet">
-    <link href="assets/css/ribbon.css" rel="stylesheet">
+    <link href="assets/css/styles.css" rel="stylesheet"> <!-- CHECK PATH -->
+    <link href="assets/css/ribbon.css" rel="stylesheet"> <!-- CHECK PATH -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
     <style>
         :root {
@@ -88,14 +88,61 @@
             display: none;
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 10000; /* Ensure spinner is on top of modal */
+        }
+
+        .spinner-overlay .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid var(--light-gray);
+            border-top: 5px solid var(--primary-color);
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         .toast-container {
             position: fixed;
             top: 20px;
             right: 20px;
-            z-index: 1000;
+            z-index: 10000; /* Ensure toasts are on top */
+        }
+
+        .toast { /* Bootstrap 5 will handle display with .show */
+            background-color: white;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .toast.success .toast-header {
+            background-color: var(--success-color);
+            color: white;
+        }
+
+        .toast.error .toast-header {
+            background-color: var(--accent-color);
+            color: white;
+        }
+         .toast.warning .toast-header { /* Added warning style */
+            background-color: var(--warning-color);
+            color: var(--dark-gray);
+        }
+
+
+        .toast-header {
+            padding: 10px 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .toast-body {
+            padding: 15px;
         }
 
         /* Responsive Design */
@@ -137,28 +184,130 @@
         .instagram-float { background: #e1306c; }
         .linkedin-float { background: #0077b5; }
         .x-float { background: #000000; }
+
+        /* Ribbon Modal Styles */
+        .ribbon-modal {
+            display: none;
+            position: fixed;
+            z-index: 1001; /* Below spinner and toasts */
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+        }
+
+        .ribbon-modal-content {
+            background-color: #fefefe;
+            margin: 15% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 500px;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .ribbon-close {
+            color: #aaa;
+            font-size: 28px;
+            font-weight: bold;
+            position: absolute;
+            right: 15px;
+            top: 10px;
+        }
+
+        .ribbon-close:hover,
+        .ribbon-close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        .ribbon-form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .ribbon-form input {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .ribbon-form button {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .ribbon-form button:hover {
+            background-color: var(--secondary-color);
+        }
+
+        #scrollToTop {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 30px;
+            z-index: 99;
+            border: none;
+            outline: none;
+            background-color: var(--primary-color);
+            color: white;
+            cursor: pointer;
+            padding: 15px;
+            border-radius: 50%;
+            font-size: 18px;
+            transition: all 0.3s ease;
+        }
+
+        #scrollToTop:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Button Styles */
+        #exploreButton, #mobileExploreButton {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        #exploreButton:hover:not([disabled]), #mobileExploreButton:hover:not([disabled]) {
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        #exploreButton:disabled, #mobileExploreButton:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
     </style>
 </head>
 <body>
     <!-- Navigation Bar -->
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
-            <!-- Logo -->
             <a class="navbar-brand" href="index.html">
-                <img src="assets/images/logo.png" alt="Success Meets Logo" height="40">
+                <img src="assets/images/logo.png" alt="Success Meets Logo" height="40"> <!-- CHECK PATH -->
                 Success Meets
             </a>
-            
-            <!-- Mobile Toggle Button -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
                 aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            
-            <!-- Navigation Links -->
             <div class="collapse navbar-collapse" id="navbarNav">
                 <div class="mobile-domain-selection d-lg-none">
-                    <div class="domain-selectors">
+                    <div class="domain-selectors p-3 border-top">
+                        <h5 class="mb-2">Explore Courses</h5>
                         <select class="form-select mb-2" id="mobileDomainType">
                             <option value="">Choose Domain</option>
                             <option value="Medical & Healthcare">Medical & Healthcare</option>
@@ -166,49 +315,27 @@
                             <option value="Arts & Science">Arts & Science</option>
                             <option value="Law">Law</option>
                         </select>
-                        
                         <select class="form-select mb-2" id="mobileSubDomainType">
                             <option value="">Select Category</option>
                         </select>
-                        
                         <select class="form-select mb-2" id="mobileCourseType">
                             <option value="">Select Course</option>
                         </select>
-                        
-                        <button id="mobileExploreButton" class="btn btn-primary w-100 mb-3" disabled>
+                        <button id="mobileExploreButton" class="btn w-100 mb-3" disabled>
                             <i class="bi bi-arrow-right-circle"></i> Explore Now
                         </button>
                     </div>
                 </div>
-
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item">
-                        <a class="nav-link" href="about.html">About Us</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="contact.html">Contact</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="blog.html">Blog</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="institutes.html">Institutes</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="study-abroad.html">Study Abroad</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="entrance-exams.html">Entrance Exams</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="admissions.html">Admissions</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="fees.html">Fees</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="referrals.html">Referral Program</a>
-                    </li>
+                    <li class="nav-item"><a class="nav-link" href="about.html">About Us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="contact.html">Contact</a></li>
+                    <li class="nav-item"><a class="nav-link" href="blog.html">Blog</a></li>
+                    <li class="nav-item"><a class="nav-link" href="institutes.html">Institutes</a></li>
+                    <li class="nav-item"><a class="nav-link" href="study-abroad.html">Study Abroad</a></li>
+                    <li class="nav-item"><a class="nav-link" href="entrance-exams.html">Entrance Exams</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="admissions.html" aria-current="page">Admissions</a></li>
+                    <li class="nav-item"><a class="nav-link" href="fees.html">Fees</a></li>
+                    <li class="nav-item"><a class="nav-link" href="referrals.html">Referral Program</a></li>
                 </ul>
             </div>
         </div>
@@ -226,18 +353,15 @@
     <!-- Ribbon Modal -->
     <div id="ribbonModal" class="ribbon-modal">
         <div class="ribbon-modal-content">
-            <span class="ribbon-close" onclick="closeRibbonModal()">&times;</span>
+            <span class="ribbon-close" onclick="closeRibbonModal()">×</span>
             <h2>Get Notified</h2>
-            <form id="ribbonForm" class="ribbon-form">
+            <form id="ribbonForm" class="ribbon-form" novalidate>
                 <label for="ribbonName">Name:</label>
                 <input type="text" id="ribbonName" required>
-
                 <label for="ribbonMobile">Mobile No:</label>
-                <input type="tel" id="ribbonMobile" required>
-
+                <input type="tel" id="ribbonMobile" pattern="[0-9]{10}" required>
                 <label for="ribbonEmail">Email:</label>
                 <input type="email" id="ribbonEmail" required>
-
                 <button type="submit">Notify Me</button>
             </form>
         </div>
@@ -250,66 +374,59 @@
 
     <!-- Toast Notifications Container -->
     <div class="toast-container"></div>
-        <!-- Header Section -->
-        <header class="admission-header">
-            <h1><i class="bi bi-mortarboard"></i> College Admissions Portal</h1>
-            <p>Your Gateway to Higher Education</p>
-        </header>
     
-        <!-- Main Content Container -->
-        <div class="admission-container">
-            <!-- Domain Selection Section -->
-            <div class="form-section">
-                <div class="domain-header text-center mb-4">
-                    <h3 class="section-title">
-                        <i class="bi bi-search-heart"></i>
-                        Explore Your Academic Path
-                    </h3>
-                    <p class="lead text-muted">
-                        If you're uncertain about your academic direction, explore our comprehensive domains below
-                    </p>
+    <!-- Header Section -->
+    <header class="admission-header">
+        <h1><i class="bi bi-mortarboard"></i> College Admissions Portal (Firestore)</h1>
+        <p>Your Gateway to Higher Education</p>
+    </header>
+
+    <!-- Main Content Container -->
+    <div class="admission-container">
+        <!-- Domain Selection Section (Desktop) -->
+        <div class="form-section d-none d-lg-block">
+            <div class="domain-header text-center mb-4">
+                <h3 class="section-title justify-content-center">
+                    <i class="bi bi-search-heart"></i>
+                    Explore Your Academic Path
+                </h3>
+                <p class="lead text-muted">
+                    If you're uncertain about your academic direction, explore our comprehensive domains below
+                </p>
+            </div>
+            <div class="row">
+                <div class="col-md-3 mb-3">
+                    <label class="form-label required">Select Domain</label>
+                    <select class="form-select" id="domainType" required>
+                        <option value="">Choose Domain</option>
+                        <option value="Medical & Healthcare">Medical & Healthcare</option>
+                        <option value="Engineering & Technology">Engineering & Technology</option>
+                        <option value="Arts & Science">Arts & Science</option>
+                        <option value="Law">Law</option>
+                    </select>
                 </div>
-                
-                <div class="row">
-                    <!-- Domain Selection -->
-                    <div class="col-md-3 mb-3">
-                        <label class="form-label required">Select Domain</label>
-                        <select class="form-select" id="domainType" required>
-                            <option value="">Choose Domain</option>
-                            <option value="Medical & Healthcare">Medical & Healthcare</option>
-                            <option value="Engineering & Technology">Engineering & Technology</option>
-                            <option value="Arts & Science">Arts & Science</option>
-                            <option value="Law">Law</option>
-                        </select>
-                    </div>
-    
-                    <!-- Sub-Domain Selection -->
-                    <div class="col-md-3 mb-3">
-                        <label class="form-label required">Select Category</label>
-                        <select class="form-select" id="subDomainType" required>
-                            <option value="">First select domain</option>
-                        </select>
-                    </div>
-    
-                    <!-- Course Selection -->
-                    <div class="col-md-3 mb-3">
-                        <label class="form-label required">Select Course</label>
-                        <select class="form-select" id="courseType" required>
-                            <option value="">First select category</option>
-                        </select>
-                    </div>
-    
-                    <!-- Explore Button -->
-                    <div class="col-md-3 mb-3 d-flex align-items-end">
-                        <button id="exploreButton" class="btn w-100" disabled>
-                            <i class="bi bi-arrow-right-circle"></i> Explore Now
-                        </button>
-                    </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label required">Select Category</label>
+                    <select class="form-select" id="subDomainType" required>
+                        <option value="">First select domain</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3">
+                    <label class="form-label required">Select Course</label>
+                    <select class="form-select" id="courseType" required>
+                        <option value="">First select category</option>
+                    </select>
+                </div>
+                <div class="col-md-3 mb-3 d-flex align-items-end">
+                    <button id="exploreButton" class="btn w-100" disabled>
+                        <i class="bi bi-arrow-right-circle"></i> Explore Now
+                    </button>
                 </div>
             </div>
-                    <!-- Admission Form -->
+        </div>
+        
+        <!-- Admission Form -->
         <form id="admissionForm" class="needs-validation" novalidate>
-            <!-- College Selection Section -->
             <div class="form-section">
                 <h3 class="section-title">
                     <i class="bi bi-building icon-feature"></i>
@@ -333,7 +450,6 @@
                 </div>
             </div>
 
-            <!-- Personal Information Section -->
             <div class="form-section">
                 <h3 class="section-title">
                     <i class="bi bi-person-circle icon-feature"></i>
@@ -363,7 +479,6 @@
                 </div>
             </div>
 
-            <!-- Academic Information Section -->
             <div class="form-section">
                 <h3 class="section-title">
                     <i class="bi bi-mortarboard icon-feature"></i>
@@ -371,7 +486,7 @@
                 </h3>
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <label class="form-label required">10th Standard</label>
+                        <label class="form-label required">10th Standard Percentage</label>
                         <div class="input-group">
                             <input type="number" class="form-control" id="tenthPercentage" 
                                    min="0" max="100" step="0.01" required>
@@ -379,22 +494,16 @@
                         </div>
                     </div>
                     <div class="col-md-6 mb-3">
-                        <label class="form-label required">12th Standard</label>
+                        <label class="form-label required">12th Standard Percentage</label>
                         <div class="input-group">
                             <input type="number" class="form-control" id="twelfthPercentage" 
                                    min="0" max="100" step="0.01" required>
                             <span class="input-group-text">%</span>
                         </div>
                     </div>
-                    <div class="col-md-12 mb-3">
-                        <label class="form-label">Upload Documents</label>
-                        <input type="file" class="form-control" id="documents" multiple>
-                        <small class="text-muted">Upload 10th, 12th marksheets and other relevant documents (PDF/JPG)</small>
-                    </div>
                 </div>
             </div>
-
-            <!-- Submit Button -->
+            
             <div class="text-center mt-4">
                 <button type="submit" class="btn btn-primary btn-lg">
                     <i class="bi bi-send"></i> Submit Application
@@ -402,413 +511,393 @@
             </div>
         </form>
     </div>
-        <!-- Footer Section -->
-        <footer class="footer bg-dark text-white py-5">
-            <div class="container">
-                <div class="row">
-                    <!-- Company Info -->
-                    <div class="col-md-4 mb-4">
-                        <h5>Success Meets</h5>
-                        <p>Transforming dreams into reality through expert educational guidance and career counseling.</p>
-                        <div class="social-links">
-                            <a href="#" class="text-white me-3"><i class="bi bi-facebook"></i></a>
-                            <a href="#" class="text-white me-3"><i class="bi bi-twitter"></i></a>
-                            <a href="#" class="text-white me-3"><i class="bi bi-instagram"></i></a>
-                            <a href="#" class="text-white"><i class="bi bi-linkedin"></i></a>
-                        </div>
-                    </div>
-                    
-                    <!-- Quick Links -->
-                    <div class="col-md-4 mb-4">
-                        <h5>Quick Links</h5>
-                        <ul class="list-unstyled">
-                            <li><a href="about.html" class="text-white">About Us</a></li>
-                            <li><a href="services.html" class="text-white">Services</a></li>
-                            <li><a href="blog.html" class="text-white">Blog</a></li>
-                            <li><a href="contact.html" class="text-white">Contact</a></li>
-                        </ul>
-                    </div>
-                    
-                    <!-- Newsletter -->
-                    <div class="col-md-4 mb-4">
-                        <h5>Newsletter</h5>
-                        <p>Subscribe to our newsletter for updates and insights.</p>
-                        <form class="newsletter-form">
-                            <div class="input-group">
-                                <input type="email" class="form-control" placeholder="Your Email">
-                                <button class="btn btn-primary" type="submit">Subscribe</button>
-                            </div>
-                        </form>
+
+    <!-- Footer Section -->
+    <footer class="footer bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <h5>Success Meets</h5>
+                    <p>Transforming dreams into reality through expert educational guidance and career counseling.</p>
+                    <div class="social-links">
+                        <a href="https://www.facebook.com/share/19ryQbVNLp/" class="text-white me-3" target="_blank"><i class="bi bi-facebook"></i></a>
+                        <a href="https://x.com/yourprofile" class="text-white me-3" target="_blank"><i class="bi bi-twitter"></i></a>
+                        <a href="https://www.instagram.com/success_meets_foundation/" class="text-white me-3" target="_blank"><i class="bi bi-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/success-meets-technology-b0378734b/" class="text-white" target="_blank"><i class="bi bi-linkedin"></i></a>
                     </div>
                 </div>
-                
-                <!-- Copyright -->
-                <div class="text-center pt-4 border-top">
-                    <p>&copy; 2023 Success Meets Educational Consultancy. All rights reserved.</p>
+                <div class="col-md-4 mb-4">
+                    <h5>Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="about.html" class="text-white">About Us</a></li>
+                        <li><a href="services.html" class="text-white">Services</a></li>
+                        <li><a href="blog.html" class="text-white">Blog</a></li>
+                        <li><a href="contact.html" class="text-white">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <h5>Newsletter</h5>
+                    <p>Subscribe to our newsletter for updates and insights.</p>
+                    <form class="newsletter-form">
+                        <div class="input-group">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                            <button class="btn btn-primary" type="submit">Subscribe</button>
+                        </div>
+                    </form>
                 </div>
             </div>
-        </footer>
-    
-        <!-- Floating Social Media Buttons -->
-        <div class="social-float">
-            <a href="https://wa.me/9087442108" class="social-btn whatsapp-float" target="_blank">
-                <i class="bi bi-whatsapp"></i>
-            </a>
-            <a href="https://x.com/yourprofile" class="social-btn x-float" target="_blank">
-                <i class="bi bi-twitter"></i>
-            </a>
-            <a href="https://www.linkedin.com/in/success-meets-technology-b0378734b/" class="social-btn linkedin-float" target="_blank">
-                <i class="bi bi-linkedin"></i>
-            </a>
-            <a href="https://www.instagram.com/success_meets_foundation/" class="social-btn instagram-float" target="_blank">
-                <i class="bi bi-instagram"></i>
-            </a>
-            <a href="https://t.me/successmeets" class="social-btn telegram-float" target="_blank">
-                <i class="bi bi-telegram"></i>
-            </a>
-            <a href="https://www.facebook.com/share/19ryQbVNLp/" class="social-btn facebook-float" target="_blank">
-                <i class="bi bi-facebook"></i>
-            </a>
+            <div class="text-center pt-4 border-top">
+                <p>© 2024 Success Meets Educational Consultancy. All rights reserved.</p>
+            </div>
         </div>
+    </footer>
+
+    <!-- Floating Social Media Buttons -->
+    <div class="social-float">
+        <a href="https://wa.me/9087442108" class="social-btn whatsapp-float" target="_blank"><i class="bi bi-whatsapp"></i></a>
+        <a href="https://x.com/yourprofile" class="social-btn x-float" target="_blank"><i class="bi bi-twitter"></i></a>
+        <a href="https://www.linkedin.com/in/success-meets-technology-b0378734b/" class="social-btn linkedin-float" target="_blank"><i class="bi bi-linkedin"></i></a>
+        <a href="https://www.instagram.com/success_meets_foundation/" class="social-btn instagram-float" target="_blank"><i class="bi bi-instagram"></i></a>
+        <a href="https://t.me/successmeets" class="social-btn telegram-float" target="_blank"><i class="bi bi-telegram"></i></a>
+        <a href="https://www.facebook.com/share/19ryQbVNLp/" class="social-btn facebook-float" target="_blank"><i class="bi bi-facebook"></i></a>
+    </div>
+
+    <button id="scrollToTop" class="scroll-to-top"><i class="bi bi-arrow-up"></i></button>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     
-        <!-- Scroll to Top Button -->
-        <button id="scrollToTop" class="scroll-to-top">
-            <i class="bi bi-arrow-up"></i>
-        </button>
+    <script type="module">
+        // Firebase SDK Imports
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js"; // For Cloud Firestore
+        import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-analytics.js";
 
-        // Required Scripts
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+        const firebaseConfig = {
+          apiKey: "AIzaSyDTYPgN_HRHCsG1eQAlUo5fbfqMaPXVPFQ", // DOUBLE CHECK YOUR API KEY
+          authDomain: "smconsultancydata.firebaseapp.com",
+          // databaseURL is NOT needed for Cloud Firestore
+          projectId: "smconsultancydata",
+          storageBucket: "smconsultancydata.firebasestorage.app", // VERIFY THIS URL (usually .appspot.com)
+          messagingSenderId: "485346109247",
+          appId: "1:485346109247:web:2d1cbde93c2149f274d58a",
+          measurementId: "G-N5BPMBNWL7" // Optional
+        };
 
-<script>
-const domainMapping = {
-    "Medical & Healthcare": {
-        "Medical": {
-            "MBBS": "medical.html#mbbs",
-            "BDS": "medical.html#bds",
-            "BHMS": "medical.html#bhms",
-            "BAMS": "medical.html#bams",
-            "BUMS": "medical.html#bums",
-            "BSMS": "medical.html#bsms",
-            "B.V.Sc": "medical.html#bvsc"
-        },
-        "Nursing": {
-            "B.Sc Nursing": "nursing.html#bsc",
-            "M.Sc Nursing": "nursing.html#msc",
-            "Diploma in Nursing": "nursing.html#diploma"
-        },
-        "Paramedical": {
-            "B.Sc Anesthesia Technology": "paramedical.html#anesthesia",
-            "B.Sc Cardiac Care Technology": "paramedical.html#cardiac",
-            "B.Sc Imaging Technology": "paramedical.html#imaging",
-            "B.Sc Laboratory Technology": "paramedical.html#laboratory",
-            "B.Sc Perfusion Technology": "paramedical.html#perfusion",
-            "B.Sc Emergency Care Technology": "paramedical.html#emergency",
-            "B.Sc Occupational Therapy": "paramedical.html#occupational"
-        },
-        "Pharmacy": {
-            "B.Pharm": "pharmacy.html#bpharm",
-            "M.Pharm": "pharmacy.html#mpharm",
-            "Pharm D": "pharmacy.html#pharmd",
-            "D.Pharm": "pharmacy.html#diploma"
-        },
-        "Physiotherapy": {
-            "BPT": "physiotherapy.html#bpt",
-            "DPT": "physiotherapy.html#dpt",
-            "B.Sc Physiotherapy": "physiotherapy.html#bsc",
-            "MPT": "physiotherapy.html#mpt"
-        }
-    },
-        "Engineering & Technology": {
-        "Engineering": {
-            "Mechanical": "engineering.html#mechanical",
-            "Civil": "engineering.html#civil",
-            "Electrical & Electronics (EEE)": "engineering.html#eee",
-            "Electronics & Communication (ECE)": "engineering.html#ece",
-            "Computer Science (CSE)": "engineering.html#cse",
-            "Information Technology (IT)": "engineering.html#it",
-            "Artificial Intelligence & Data Science (AI & DS)": "engineering.html#aids",
-            "Artificial Intelligence & Machine Learning (AI & ML)": "engineering.html#aiml",
-            "Computer Science & Business Systems (CS & BS)": "engineering.html#csbs",
-            "Internet of Things (IoT)": "engineering.html#iot",
-            "Cyber Security": "engineering.html#cyber",
-            "Chemical Engineering": "engineering.html#chemical",
-            "Biotechnology": "engineering.html#biotech",
-            "Automobile Engineering": "engineering.html#auto",
-            "Marine Engineering": "engineering.html#marine",
-            "Aeronautical Engineering": "engineering.html#aero",
-            "Agricultural Engineering": "engineering.html#agri",
-            "Food Technology": "engineering.html#food",
-            "Textile Engineering": "engineering.html#textile",
-            "Petroleum Engineering": "engineering.html#petroleum",
-            "Mining Engineering": "engineering.html#mining",
-            "Robotics Engineering": "engineering.html#robotics",
-            "Mechatronics": "engineering.html#mechatronics",
-            "Biomedical Engineering": "engineering.html#biomedical",
-            "Environmental Engineering": "engineering.html#environmental"
-        },
-        "Architecture & Planning": {
-            "B.Arch": "architecture.html#barch",
-            "B.Plan": "architecture.html#bplan",
-            "B.Tech Urban Planning": "architecture.html#btech-urban",
-            "M.Arch": "architecture.html#march",
-            "M.Tech Urban Planning": "architecture.html#mtech-urban"
-        },
-    },
-        "Law": {
-            "Law Courses": {
-            "BA LLB": "law.html#ballb",
-            "BBA LLB": "law.html#bballb",
-            "B.Com LLB": "law.html#bcomllb"
-        },
-    },
-        "Arts & Science": {
-        "Science": {
-            "Int. M.Sc Biotechnology": "science.html#int-biotech",
-            "Int. M.Sc Food Science": "science.html#int-food",
-            "Int. M.Sc Statistics": "science.html#int-stats",
-            "Int. M.Sc Physics": "science.html#int-physics",
-            "Int. M.Sc Chemistry": "science.html#int-chem",
-            "Int. M.Sc Mathematics": "science.html#int-math",
-            "M.Sc Food Technology": "science.html#msc-food-tech",
-            "M.Sc Anesthesia Technology": "science.html#msc-anesthesia",
-            "M.Sc Medical Imaging": "science.html#msc-imaging",
-            "M.Sc Laboratory Technology": "science.html#msc-lab",
-            "M.Sc Cardiac Technology": "science.html#msc-cardiac",
-            "MOT": "science.html#mot"
-        },
-        "Computer Applications & IT": {
-            "BCA Cloud Computing": "computer.html#bca-cloud",
-            "BCA AI & Cloud": "computer.html#bca-ai",
-            "BCA Digital Arts": "computer.html#bca-digital",
-            "BCA Mobile Development": "computer.html#bca-mobile",
-            "MCA": "computer.html#mca",
-            "M.Sc Cloud Computing": "computer.html#msc-cloud",
-            "M.Sc Cybersecurity": "computer.html#msc-cyber",
-            "M.Sc AI & ML": "computer.html#msc-ai",
-            "M.Sc Data Science": "computer.html#msc-data",
-            "M.Sc IoT": "computer.html#msc-iot"
-        },
-        "Agriculture": {
-            "B.Sc Agriculture": "agriculture.html#bsc-agriculture",
-            "B.Sc Horticulture": "agriculture.html#bsc-horticulture",
-            "B.Sc Agri Business": "agriculture.html#bsc-agribusiness",
-            "B.Sc Forestry": "agriculture.html#bsc-forestry",
-            "B.Sc Sericulture": "agriculture.html#bsc-sericulture",
-            "B.Sc Food & Nutrition": "agriculture.html#bsc-food-nutrition",
-            "M.Sc Agricultural Economics": "agriculture.html#msc-agri-economics",
-            "M.Sc Agriculture": "agriculture.html#msc-agriculture",
-            "M.Sc Agronomy": "agriculture.html#msc-agronomy",
-            "M.Sc Seed Science": "agriculture.html#msc-seed-science"
-        },
-        "Business & Commerce": {
-            "BBA General": "management.html#bba-general",
-            "BBA Sports": "management.html#bba-sports",
-            "BBA Analytics": "management.html#bba-analytics",
-            "BBA Logistics": "management.html#bba-logistics",
-            "BBA Finance": "management.html#bba-finance",
-            "BBA Entrepreneurship": "management.html#bba-entrepreneurship",
-            "B.Com Business": "management.html#bcom-business",
-            "B.Com Banking": "management.html#bcom-banking",
-            "B.Com Financial": "management.html#bcom-financial"
-        },
-        "Design & Fashion": {
-            "B.Des Fashion Design": "design.html#bdes-fashion",
-            "B.Des Fashion Communication": "design.html#bdes-fashion-comm",
-            "B.Des Product Design": "design.html#bdes-product",
-            "B.Des Communication Design": "design.html#bdes-comm",
-            "B.Des Industrial Design": "design.html#bdes-industrial",
-            "B.Des Textile & Clothing": "design.html#bdes-textile"
-        }
-    }
-}; // End of domainMapping
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const analytics = getAnalytics(app); 
+        const db = getFirestore(app); // Initialize Cloud Firestore
 
-    // Document Ready Event Handler
-    document.addEventListener('DOMContentLoaded', function() {
-        // Initialize Elements
-        const domainSelect = document.getElementById('domainType');
-        const subDomainSelect = document.getElementById('subDomainType');
-        const courseSelect = document.getElementById('courseType');
-        const exploreButton = document.getElementById('exploreButton');
-        const form = document.getElementById('admissionForm');
-        
-        // Domain Selection Change Handler
-        domainSelect.addEventListener('change', function() {
-            const selectedDomain = this.value;
-            updateSubDomainOptions(selectedDomain);
-            resetCourseSelect();
-            updateExploreButton();
-        });
+        // --- Domain Mapping and College Mapping (remains the same) ---
+        const domainMapping = {
+            "Medical & Healthcare": {"Medical": {"MBBS": "medical.html#mbbs", "BDS": "medical.html#bds", "BHMS": "medical.html#bhms", "BAMS": "medical.html#bams", "BUMS": "medical.html#bums", "BSMS": "medical.html#bsms", "B.V.Sc": "medical.html#bvsc"}, "Nursing": {"B.Sc Nursing": "nursing.html#bsc", "M.Sc Nursing": "nursing.html#msc", "Diploma in Nursing": "nursing.html#diploma"}, "Paramedical": {"B.Sc Anesthesia Technology": "paramedical.html#anesthesia", "B.Sc Cardiac Care Technology": "paramedical.html#cardiac", "B.Sc Imaging Technology": "paramedical.html#imaging", "B.Sc Laboratory Technology": "paramedical.html#laboratory", "B.Sc Perfusion Technology": "paramedical.html#perfusion", "B.Sc Emergency Care Technology": "paramedical.html#emergency", "B.Sc Occupational Therapy": "paramedical.html#occupational"}, "Pharmacy": {"B.Pharm": "pharmacy.html#bpharm", "M.Pharm": "pharmacy.html#mpharm", "Pharm D": "pharmacy.html#pharmd", "D.Pharm": "pharmacy.html#diploma"}, "Physiotherapy": {"BPT": "physiotherapy.html#bpt", "DPT": "physiotherapy.html#dpt", "B.Sc Physiotherapy": "physiotherapy.html#bsc", "MPT": "physiotherapy.html#mpt"}},
+            "Engineering & Technology": {"Engineering": {"Mechanical": "engineering.html#mechanical", "Civil": "engineering.html#civil", "Electrical & Electronics (EEE)": "engineering.html#eee", "Electronics & Communication (ECE)": "engineering.html#ece", "Computer Science (CSE)": "engineering.html#cse", "Information Technology (IT)": "engineering.html#it", "Artificial Intelligence & Data Science (AI & DS)": "engineering.html#aids", "Artificial Intelligence & Machine Learning (AI & ML)": "engineering.html#aiml", "Computer Science & Business Systems (CS & BS)": "engineering.html#csbs", "Internet of Things (IoT)": "engineering.html#iot", "Cyber Security": "engineering.html#cyber", "Chemical Engineering": "engineering.html#chemical", "Biotechnology": "engineering.html#biotech", "Automobile Engineering": "engineering.html#auto", "Marine Engineering": "engineering.html#marine", "Aeronautical Engineering": "engineering.html#aero", "Agricultural Engineering": "engineering.html#agri", "Food Technology": "engineering.html#food", "Textile Engineering": "engineering.html#textile", "Petroleum Engineering": "engineering.html#petroleum", "Mining Engineering": "engineering.html#mining", "Robotics Engineering": "engineering.html#robotics", "Mechatronics": "engineering.html#mechatronics", "Biomedical Engineering": "engineering.html#biomedical", "Environmental Engineering": "engineering.html#environmental"}, "Architecture & Planning": {"B.Arch": "architecture.html#barch", "B.Plan": "architecture.html#bplan", "B.Tech Urban Planning": "architecture.html#btech-urban", "M.Arch": "architecture.html#march", "M.Tech Urban Planning": "architecture.html#mtech-urban"}},
+            "Law": {"Law Courses": {"BA LLB": "law.html#ballb", "BBA LLB": "law.html#bballb", "B.Com LLB": "law.html#bcomllb"}},
+            "Arts & Science": {"Science": {"Int. M.Sc Biotechnology": "science.html#int-biotech", "Int. M.Sc Food Science": "science.html#int-food", "Int. M.Sc Statistics": "science.html#int-stats", "Int. M.Sc Physics": "science.html#int-physics", "Int. M.Sc Chemistry": "science.html#int-chem", "Int. M.Sc Mathematics": "science.html#int-math", "M.Sc Food Technology": "science.html#msc-food-tech", "M.Sc Anesthesia Technology": "science.html#msc-anesthesia", "M.Sc Medical Imaging": "science.html#msc-imaging", "M.Sc Laboratory Technology": "science.html#msc-lab", "M.Sc Cardiac Technology": "science.html#msc-cardiac", "MOT": "science.html#mot"}, "Computer Applications & IT": {"BCA Cloud Computing": "computer.html#bca-cloud", "BCA AI & Cloud": "computer.html#bca-ai", "BCA Digital Arts": "computer.html#bca-digital", "BCA Mobile Development": "computer.html#bca-mobile", "MCA": "computer.html#mca", "M.Sc Cloud Computing": "computer.html#msc-cloud", "M.Sc Cybersecurity": "computer.html#msc-cyber", "M.Sc AI & ML": "computer.html#msc-ai", "M.Sc Data Science": "computer.html#msc-data", "M.Sc IoT": "computer.html#msc-iot"}, "Agriculture": {"B.Sc Agriculture": "agriculture.html#bsc-agriculture", "B.Sc Horticulture": "agriculture.html#bsc-horticulture", "B.Sc Agri Business": "agriculture.html#bsc-agribusiness", "B.Sc Forestry": "agriculture.html#bsc-forestry", "B.Sc Sericulture": "agriculture.html#bsc-sericulture", "B.Sc Food & Nutrition": "agriculture.html#bsc-food-nutrition", "M.Sc Agricultural Economics": "agriculture.html#msc-agri-economics", "M.Sc Agriculture": "agriculture.html#msc-agriculture", "M.Sc Agronomy": "agriculture.html#msc-agronomy", "M.Sc Seed Science": "agriculture.html#msc-seed-science"}, "Business & Commerce": {"BBA General": "management.html#bba-general", "BBA Sports": "management.html#bba-sports", "BBA Analytics": "management.html#bba-analytics", "BBA Logistics": "management.html#bba-logistics", "BBA Finance": "management.html#bba-finance", "BBA Entrepreneurship": "management.html#bba-entrepreneurship", "B.Com Business": "management.html#bcom-business", "B.Com Banking": "management.html#bcom-banking", "B.Com Financial": "management.html#bcom-financial"}, "Design & Fashion": {"B.Des Fashion Design": "design.html#bdes-fashion", "B.Des Fashion Communication": "design.html#bdes-fashion-comm", "B.Des Product Design": "design.html#bdes-product", "B.Des Communication Design": "design.html#bdes-comm", "B.Des Industrial Design": "design.html#bdes-industrial", "B.Des Textile & Clothing": "design.html#bdes-textile"}}
+        };
+        const collegeMapping = {
+            "TN Universities": ["VIT University, Vellore", "SRM University, Chennai & Trichy", "Hindustan University, Chennai", "Vinayaka Missions University, Salem", "Karpagam University, Coimbatore", "Sathyabama University, Chennai", "Dr. MGR University, Chennai", "Meenakshi University, Chennai", "Saveetha University, Chennai", "Vel's University, Chennai", "Amirtha University, Kovai"],
+            "TN Private Colleges": ["PGP Group of Institutions", "Kumaraguru College of Technology", "Sri Krishna College of Engg & Technology", "Sri Ramakrishna Engineering College", "Dr. Mahalingam College of Engg. & Tech", "SRM Group of Institutions", "Sathyabama Group of Institutions", "RMK & RMD Group of Institutions", "Panimalar Group of Institutions", "Kongu Engineering College", "Sona College of Technology", "Bannari Group of Institution", "Karpagam College of Engineering", "Hindusthan College of Engineering", "Maharaja Group of Institutions", "Kathir College of Engineering", "Nandha Group of Institutions", "Dhanalakshmi Engineering College", "Akshaya College of Engineering", "Rathinam Engineering College", "Kalaignar Karunanithi Engineering College", "KPR Engineering College", "KGISL Engineering College", "Sri Sakthi Engineering College", "Park College of Engineering", "RVS Engineering College", "Sasuri Group of Institutions", "Nehru Group of Institutes", "Adithiya Institute of Technology", "Muthayammal Engineering College", "Mahendra Group of Institutions", "Paavai Group of Institutions", "Ganamani Engineering College", "Vivekananda Engineering College", "Kumarasamy College of Engineering", "Kongunadu Engineering College", "Sengunthar Engineering College", "Excel Engineering College", "AVS Engineering College", "The Kavery Engineering College", "KSR Group of Institutions", "Dr. Dhirajlal Engineering College", "Knowledge Institute of Technology", "Shanmuga Group of Colleges", "Venkateshwara Group of Institutions", "Tagore Engineering College", "Bharathiyar Engineering College", "Salem College of Technology", "Ganesh Engineering College", "SSM College of Engineering"]
+        };
 
-        // Sub-Domain Selection Change Handler
-        subDomainSelect.addEventListener('change', function() {
-            const selectedDomain = domainSelect.value;
-            const selectedSubDomain = this.value;
-            updateCourseOptions(selectedDomain, selectedSubDomain);
-            updateExploreButton();
-        });
+        document.addEventListener('DOMContentLoaded', function() {
+            // --- Get DOM Elements (remains mostly the same) ---
+            const domainSelect = document.getElementById('domainType');
+            const subDomainSelect = document.getElementById('subDomainType');
+            const courseSelect = document.getElementById('courseType');
+            const exploreButton = document.getElementById('exploreButton');
+            const form = document.getElementById('admissionForm');
+            const collegeTypeSelect = document.getElementById('collegeType');
+            const collegeNameSelect = document.getElementById('collegeName');
+            
+            const mobileDomainSelect = document.getElementById('mobileDomainType');
+            const mobileSubDomainSelect = document.getElementById('mobileSubDomainType');
+            const mobileCourseSelect = document.getElementById('mobileCourseType');
+            const mobileExploreButton = document.getElementById('mobileExploreButton');
 
-        // Course Selection Change Handler
-        courseSelect.addEventListener('change', function() {
-            updateExploreButton();
-        });
-
-        // Explore Button Click Handler
-        exploreButton.addEventListener('click', function() {
-            handleExploreButtonClick();
-        });
-
-        // Form Submission Handler
-        form.addEventListener('submit', function(e) {
-            handleFormSubmission(e);
-        });
-
-        // Helper Functions
-        function updateSubDomainOptions(selectedDomain) {
-            subDomainSelect.innerHTML = '<option value="">Select Category</option>';
-            if(selectedDomain && domainMapping[selectedDomain]) {
-                Object.keys(domainMapping[selectedDomain]).forEach(subDomain => {
-                    const option = document.createElement('option');
-                    option.value = subDomain;
-                    option.textContent = subDomain;
-                    subDomainSelect.appendChild(option);
-                });
-            }
-        }
-
-        function updateCourseOptions(selectedDomain, selectedSubDomain) {
-            courseSelect.innerHTML = '<option value="">Select Course</option>';
-            if(selectedDomain && selectedSubDomain && 
-               domainMapping[selectedDomain][selectedSubDomain]) {
-                Object.keys(domainMapping[selectedDomain][selectedSubDomain]).forEach(course => {
-                    const option = document.createElement('option');
-                    option.value = course;
-                    option.textContent = course;
-                    courseSelect.appendChild(option);
-                });
-            }
-        }
-
-        function resetCourseSelect() {
-            courseSelect.innerHTML = '<option value="">First select category</option>';
-            exploreButton.disabled = true;
-        }
-
-        function updateExploreButton() {
-            exploreButton.disabled = !courseSelect.value;
-        }
-
-        function handleExploreButtonClick() {
-            const selectedDomain = domainSelect.value;
-            const selectedSubDomain = subDomainSelect.value;
-            const selectedCourse = courseSelect.value;
-
-            if (selectedDomain && selectedSubDomain && selectedCourse) {
-                const redirectPath = domainMapping[selectedDomain][selectedSubDomain][selectedCourse];
-                if (redirectPath) {
-                    showSpinner();
-                    setTimeout(() => {
-                        window.location.href = redirectPath;
-                    }, 500);
-                } else {
-                    showToast('Path not found. Please try again.', 'error');
+            // --- UI Helper Functions (remain the same) ---
+            function updateSubDomainOptions(selectedDomain, targetSubDomainSelect) {
+                targetSubDomainSelect.innerHTML = '<option value="">Select Category</option>';
+                if(selectedDomain && domainMapping[selectedDomain]) {
+                    Object.keys(domainMapping[selectedDomain]).forEach(subDomain => {
+                        const option = document.createElement('option');
+                        option.value = subDomain; option.textContent = subDomain;
+                        targetSubDomainSelect.appendChild(option);
+                    });
                 }
             }
-        }
 
-        function handleFormSubmission(e) {
-            e.preventDefault();
-            if (form.checkValidity()) {
-                showSpinner();
-                // Simulate form submission
-                setTimeout(() => {
-                    hideSpinner();
-                    showToast('Application submitted successfully!', 'success');
-                    form.reset();
-                    form.classList.remove('was-validated');
-                }, 1500);
+            function updateCourseOptions(selectedDomain, selectedSubDomain, targetCourseSelect) {
+                targetCourseSelect.innerHTML = '<option value="">Select Course</option>';
+                if(selectedDomain && selectedSubDomain && domainMapping[selectedDomain]?.[selectedSubDomain]) {
+                    Object.keys(domainMapping[selectedDomain][selectedSubDomain]).forEach(course => {
+                        const option = document.createElement('option');
+                        option.value = course; option.textContent = course;
+                        targetCourseSelect.appendChild(option);
+                    });
+                }
             }
-            form.classList.add('was-validated');
+            
+            function resetCourseSelect(targetCourseSelect, targetExploreButton) {
+                targetCourseSelect.innerHTML = '<option value="">First select category</option>';
+                targetExploreButton.disabled = true;
+            }
+
+            function updateExploreButtonState(targetExploreButton, targetCourseSelect) {
+                targetExploreButton.disabled = !targetCourseSelect.value;
+            }
+            
+            function handleExploreButtonClick(currentDomainSelect, currentSubDomainSelect, currentCourseSelect) {
+                const selectedDomain = currentDomainSelect.value;
+                const selectedSubDomain = currentSubDomainSelect.value;
+                const selectedCourse = currentCourseSelect.value;
+
+                if (selectedDomain && selectedSubDomain && selectedCourse) {
+                    const redirectPath = domainMapping[selectedDomain]?.[selectedSubDomain]?.[selectedCourse];
+                    if (redirectPath) {
+                        showSpinner();
+                        setTimeout(() => { window.location.href = redirectPath; }, 500);
+                    } else {
+                        showToast('Path not found for the selected course.', 'error');
+                    }
+                } else {
+                     showToast('Please select a domain, category, and course.', 'warning');
+                }
+            }
+
+            // --- Event Listeners for Domain/Course Selection (remain the same) ---
+             if(domainSelect) { // Desktop selects
+                domainSelect.addEventListener('change', function() {
+                    updateSubDomainOptions(this.value, subDomainSelect);
+                    resetCourseSelect(courseSelect, exploreButton);
+                });
+                subDomainSelect.addEventListener('change', function() {
+                    updateCourseOptions(domainSelect.value, this.value, courseSelect);
+                    updateExploreButtonState(exploreButton, courseSelect);
+                });
+                courseSelect.addEventListener('change', function() {
+                    updateExploreButtonState(exploreButton, courseSelect);
+                });
+                exploreButton.addEventListener('click', function() {
+                    handleExploreButtonClick(domainSelect, subDomainSelect, courseSelect);
+                });
+            }
+            
+            mobileDomainSelect.addEventListener('change', function() {
+                updateSubDomainOptions(this.value, mobileSubDomainSelect);
+                resetCourseSelect(mobileCourseSelect, mobileExploreButton);
+            });
+            mobileSubDomainSelect.addEventListener('change', function() {
+                updateCourseOptions(mobileDomainSelect.value, this.value, mobileCourseSelect);
+                updateExploreButtonState(mobileExploreButton, mobileCourseSelect);
+            });
+            mobileCourseSelect.addEventListener('change', function() {
+                updateExploreButtonState(mobileExploreButton, mobileCourseSelect);
+            });
+            mobileExploreButton.addEventListener('click', function() {
+                handleExploreButtonClick(mobileDomainSelect, mobileSubDomainSelect, mobileCourseSelect);
+            });
+
+            collegeTypeSelect.addEventListener('change', function() {
+                const selectedCollegeType = this.value;
+                collegeNameSelect.innerHTML = '<option value="">Select Institution</option>';
+                if(selectedCollegeType && collegeMapping[selectedCollegeType]) {
+                    collegeMapping[selectedCollegeType].forEach(college => {
+                        const option = document.createElement('option');
+                        option.value = college; option.textContent = college;
+                        collegeNameSelect.appendChild(option);
+                    });
+                }
+            });
+
+            // --- Firestore Data Saving Function ---
+            async function saveToFirestore(collectionName, data) {
+                try {
+                    const docRef = await addDoc(collection(db, collectionName), {
+                        ...data,
+                        createdAt: serverTimestamp() // Adds a server-side timestamp
+                    });
+                    console.log("Document written with ID: ", docRef.id);
+                    return docRef.id; // Return the new document's ID
+                } catch (e) {
+                    console.error("Error adding document: ", e);
+                    throw e; // Re-throw the error to be caught by the caller
+                }
+            }
+
+            function generateApplicationID() { // This can still be a client-side ID if you like
+                const ts = new Date().getTime().toString().slice(-6);
+                const rand = Math.floor(Math.random() * 10000).toString().padStart(4, '0');
+                return `SM-${ts}-${rand}`;
+            }
+
+            // --- Main Admission Form Submission (Modified for Firestore) ---
+            form.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                if (form.checkValidity()) {
+                    showSpinner();
+                    const clientSideApplicationID = generateApplicationID(); // Optional: can use Firestore's auto-ID primarily
+
+                    try {
+                        const formData = {
+                            clientApplicationID: clientSideApplicationID, // Store client-generated ID if needed
+                            collegeType: document.getElementById('collegeType').value,
+                            collegeName: document.getElementById('collegeName').value,
+                            fullName: document.getElementById('fullName').value,
+                            dob: document.getElementById('dob').value,
+                            email: document.getElementById('email').value,
+                            mobile: document.getElementById('mobile').value,
+                            address: document.getElementById('address').value,
+                            tenthPercentage: document.getElementById('tenthPercentage').value,
+                            twelfthPercentage: document.getElementById('twelfthPercentage').value,
+                            domainType: domainSelect ? domainSelect.value : mobileDomainSelect.value,      
+                            subDomainType: subDomainSelect ? subDomainSelect.value : mobileSubDomainSelect.value,
+                            courseType: courseSelect ? courseSelect.value : mobileCourseSelect.value,    
+                            // 'createdAt' will be added by serverTimestamp in saveToFirestore
+                        };
+                        
+                        const firestoreDocId = await saveToFirestore('admissions', formData); // Save to 'admissions' collection
+                        
+                        hideSpinner();
+                        showToast(`Application submitted! Firestore ID: ${firestoreDocId}`, 'success');
+                        form.reset();
+                        form.classList.remove('was-validated');
+                        
+                        if(domainSelect) resetCourseSelect(courseSelect, exploreButton);
+                        if(subDomainSelect) subDomainSelect.innerHTML = '<option value="">First select domain</option>';
+                        if(domainSelect) domainSelect.value = "";
+                        
+                        collegeNameSelect.innerHTML = '<option value="">First select college type</option>';
+                        collegeTypeSelect.value = "";
+
+                    } catch (error) {
+                        hideSpinner();
+                        console.error("Form submission error (Firestore):", error);
+                        showToast(`Error: ${error.message}`, 'error');
+                    }
+                } else {
+                    form.classList.add('was-validated');
+                    showToast('Please fill all required fields.', 'warning');
+                }
+            });
+        });
+
+        // --- Ribbon Form Submission (Modified for Firestore) ---
+        document.getElementById('ribbonForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            if (!this.checkValidity()) {
+                showToast('Please fill all fields in the notification form.', 'warning');
+                this.classList.add('was-validated');
+                return;
+            }
+            this.classList.remove('was-validated');
+            showSpinner();
+            try {
+                const ts = new Date().getTime().toString().slice(-6);
+                const rand = Math.floor(Math.random() * 1000).toString().padStart(3, '0');
+                const clientNotificationID = `NT-${ts}-${rand}`; // Optional client-side ID
+                
+                const ribbonData = {
+                    clientNotificationID: clientNotificationID,
+                    name: document.getElementById('ribbonName').value,
+                    mobile: document.getElementById('ribbonMobile').value,
+                    email: document.getElementById('ribbonEmail').value,
+                    // 'createdAt' will be added by serverTimestamp
+                };
+                
+                await addDoc(collection(db, "notifications"), {
+                    ...ribbonData,
+                    createdAt: serverTimestamp()
+                });
+                
+                hideSpinner();
+                closeRibbonModal();
+                showToast('Thank you for subscribing!', 'success');
+                this.reset();
+            } catch (error) {
+                hideSpinner();
+                console.error("Ribbon form error (Firestore):", error);
+                showToast(`Subscription error: ${error.message}`, 'error');
+            }
+        });
+    </script>
+
+    <script>
+        // Global Utility Functions (remain the same)
+        function showSpinner() {
+            const spinner = document.querySelector('.spinner-overlay');
+            if(spinner) spinner.style.display = 'flex';
         }
-    });
-
-    // Utility Functions
-    function showSpinner() {
-        document.querySelector('.spinner-overlay').style.display = 'flex';
-    }
-
-    function hideSpinner() {
-        document.querySelector('.spinner-overlay').style.display = 'none';
-    }
-
-    function showToast(message, type = 'success') {
-        const toastContainer = document.querySelector('.toast-container');
-        const toast = document.createElement('div');
-        toast.className = `toast ${type}`;
-        toast.innerHTML = `
-            <div class="toast-header">
-                <i class="bi bi-${type === 'success' ? 'check-circle' : 'exclamation-circle'}"></i>
-                <strong class="me-auto">${type.charAt(0).toUpperCase() + type.slice(1)}</strong>
-                <button type="button" class="btn-close" onclick="this.parentElement.parentElement.remove()"></button>
-            </div>
-            <div class="toast-body">${message}</div>
-        `;
-        toastContainer.appendChild(toast);
-        toast.style.display = 'block';
-        setTimeout(() => toast.remove(), 5000);
-    }
-
-    // Ribbon Functions
-    function openRibbonModal() {
-        document.getElementById('ribbonModal').style.display = 'block';
-    }
-
-    function closeRibbonModal() {
-        document.getElementById('ribbonModal').style.display = 'none';
-    }
-
-    // Initialize AOS
-    AOS.init();
-
-    // Scroll to Top Functionality
-    window.onscroll = function() {
-        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
-            document.getElementById('scrollToTop').style.display = 'block';
-        } else {
-            document.getElementById('scrollToTop').style.display = 'none';
+        function hideSpinner() {
+            const spinner = document.querySelector('.spinner-overlay');
+            if(spinner) spinner.style.display = 'none';
         }
-    };
+        function showToast(message, type = 'success') {
+            const toastContainer = document.querySelector('.toast-container');
+            if (!toastContainer) { console.error("Toast container not found!"); alert(message); return; }
+            const toastEl = document.createElement('div');
+            toastEl.className = `toast ${type} align-items-center`; // Bootstrap 5 toast classes
+            toastEl.setAttribute('role', 'alert');
+            toastEl.setAttribute('aria-live', 'assertive');
+            toastEl.setAttribute('aria-atomic', 'true');
 
-    document.getElementById('scrollToTop').onclick = function() {
-        window.scrollTo({top: 0, behavior: 'smooth'});
-    };
+            let iconClass = 'bi-check-circle-fill'; // Default success
+            if (type === 'error') iconClass = 'bi-x-octagon-fill';
+            else if (type === 'warning') iconClass = 'bi-exclamation-triangle-fill';
+            
+            toastEl.innerHTML = `
+                <div class="d-flex">
+                    <div class="toast-body">
+                        <i class="bi ${iconClass} me-2"></i>
+                        ${message}
+                    </div>
+                    <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Close"></button>
+                </div>
+            `;
+            toastContainer.appendChild(toastEl);
+            const bsToast = new bootstrap.Toast(toastEl, { delay: 5000 });
+            bsToast.show();
+            toastEl.addEventListener('hidden.bs.toast', () => toastEl.remove());
+        }
 
-    // Ribbon Form Handler
-    document.getElementById('ribbonForm').addEventListener('submit', function(e) {
-        e.preventDefault();
-        showSpinner();
-        setTimeout(() => {
-            hideSpinner();
-            closeRibbonModal();
-            showToast('Thank you for subscribing!', 'success');
-            this.reset();
-        }, 1000);
-    });
-</script>
-<!-- jQuery -->
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        function openRibbonModal() { 
+            const modal = document.getElementById('ribbonModal');
+            if(modal) modal.style.display = 'block';
+        }
+        function closeRibbonModal() {
+            const modal = document.getElementById('ribbonModal');
+            if(modal) modal.style.display = 'none';
+        }
 
-<!-- Bootstrap JS -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        document.addEventListener('DOMContentLoaded', function() {
+            AOS.init({ duration: 800, once: true });
 
-<!-- AOS JS -->
-<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+            const scrollToTopBtn = document.getElementById('scrollToTop');
+            if (scrollToTopBtn) {
+                window.onscroll = () => {
+                    scrollToTopBtn.style.display = (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) ? 'block' : 'none';
+                };
+                scrollToTopBtn.onclick = () => window.scrollTo({top: 0, behavior: 'smooth'});
+            }
 
-<!-- Custom JS -->
-<script src="assets/js/scripts.js"></script>
-
-<!-- Ribbon JS -->
-<script src="assets/js/ribbon.js"></script>
+            const newsletterForm = document.querySelector('.newsletter-form');
+            if (newsletterForm) {
+                newsletterForm.addEventListener('submit', function(e) {
+                    e.preventDefault();
+                    const emailInput = this.querySelector('input[type="email"]');
+                    if (emailInput && emailInput.checkValidity()) {
+                        // Here you could also save newsletter subscriptions to a Firestore collection
+                        showToast(`Subscribed with ${emailInput.value}! (Demo)`, 'success');
+                        // Example: saveToFirestore('newsletterSubscriptions', { email: emailInput.value });
+                        emailInput.value = '';
+                    } else {
+                        showToast('Please enter a valid email for newsletter.', 'warning');
+                    }
+                });
+            }
+        });
+    </script>
 </body>
 </html>
